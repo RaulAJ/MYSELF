@@ -3,9 +3,11 @@ Myself
 INTRODUCCIÓN
 Este documento especifica un diseño para nuestro proyecto de videojuego llamado "Myself", que será creado en el segundo cuatrimestre del curso 2023-2024. En este proyecto están involucrados Raúl Arellano Jorge, Mario Alcolea Alcolea, Jorge López Carrión y Unai.
 
+
 -----ESPECIFICACIÓN-----
 Concepto:
 El objetivo de myself es un juego entretenido single-player de tipo metroid, para pasarselo bien durante un largo periodo de tiempo.
+Pegi 7.
 Historia:
 El juego estará situado en un mundo de fantasía.
 Estructura del juego:
