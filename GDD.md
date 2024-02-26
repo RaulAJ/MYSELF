@@ -14,7 +14,7 @@ Pegi 7.
 ### Historia: ###
 El juego estará situado en un mundo de fantasía.
 
-### Estructura del juego:###
+### Estructura del juego: ###
 Habrá 4 zonas distintas, de manera que cada zona tendrá unas características concretas y un tipo de enemigo concreto. En las 3 primeras zonas se conseguirán diferentes poderes al matar al enemigo final y la última será para enfrentarse al boss final del juego.  Todas las zonas estarán conectadas entre si y además será posible desbloquear ciertos caminos(atajos), obteniendo los distintos poderes de los enemigos al eliminarlos de las diferentes zonas.
 
 
@@ -27,8 +27,8 @@ Graficos 2D, de manera que la cámara se centrará en el personaje y los fondos 
 ### Mundo: ###
 El mundo será grande y tendrá diferentes cambios de pantalla. En el mapa se verá el icono de la ubicación actual del jugador en todo momento que se desee abrir el mapa.
 
-Enemigos:
-### -Hormigas ###
+### Enemigos: ### 
+-Hormigas
 -Lobos
 -(?)
 -Boss final
