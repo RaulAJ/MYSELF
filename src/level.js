@@ -23,16 +23,10 @@ export default class Level extends Phaser.Scene {
      * Creación de los elementos de la escena principal de juego
      */
     create() {
-        this.stars = 10;
-        this.bases = this.add.group();
+        const fondo = this.add.image(0, 0, 'background').setOrigin(0, 0);
+        fondo.setDisplaySize(this.sys.game.config.width, this.sys.game.config.height);
+        fondo.setDepth(0);
         this.player = new Player(this, 500, 500);
-
-        new Platform(this, this.player, this.bases, 150, 350);
-        new Platform(this, this.player, this.bases, 850, 350);
-        new Platform(this, this.player, this.bases, 500, 200);
-        new Platform(this, this.player, this.bases, 150, 100);
-        new Platform(this, this.player, this.bases, 850, 100);
-        this.spawn();
 
     }
 
