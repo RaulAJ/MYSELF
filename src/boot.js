@@ -4,7 +4,7 @@ import Phaser from 'phaser'
 import platform from '../assets/sprites/platform.png'
 import base from '../assets/sprites/base.png'
 import star from '../assets/sprites/star.png'
-import player from '../assets/sprites/player.png'
+import player from '../assets/sprites/Viking/Viking/VikingNoEffect-Sheet.png'
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -23,20 +23,30 @@ export default class Boot extends Phaser.Scene {
   /**
    * Carga de los assets del juego
    */
-  preload() {
-    // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
-    this.load.setPath('assets/sprites/');
-    this.load.image('platform', platform);
-    this.load.image('base', base);
-    this.load.image('star', star);
-    this.load.image('player', player);
-  }
+    preload() {
+      // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
+      this.load.setPath('assets/sprites/');
+      this.load.image('platform', platform);
+      this.load.image('base', base);
+      this.load.image('star', star);
+      this.load.spritesheet('player', player,{
+        frameWidth: 115, frameHeight: 84 
+      });
+      //this.load.image('player', player);
+    }
 
-  /**
-   * Creación de la escena. En este caso, solo cambiamos a la escena que representa el
-   * nivel del juego
-   */
-  create() {
-    this.scene.start('level');
+    /**
+     * Creación de la escena. En este caso, solo cambiamos a la escena que representa el
+     * nivel del juego
+     */
+    create() {
+      this.scene.start('level');
+      this.anims.create({
+        key: 'stand',
+        frames: this.anims.generateFrameNumbers('player', {start: 0, end: 3}),
+        frameRate: 3,
+        repeat: -1
+      });
+
+    }
   }
-}

@@ -18,13 +18,19 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.score = 0;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this.setDisplaySize(180, 140);
+        this.body.setSize(45, 55);
+
+        //this.body.setOffset(0, 0);
         // Queremos que el jugador no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
         this.speed = 300;
         this.jumpSpeed = -400;
         // Esta label es la UI en la que pondremos la puntuación del jugador
+        this.play('stand');
         this.label = this.scene.add.text(10, 10, "");
         this.cursors = this.scene.input.keyboard.createCursorKeys();
+        
         this.updateScore();
     }
 
@@ -57,9 +63,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
         if (this.cursors.left.isDown) {
             this.body.setVelocityX(-this.speed);
+            this.setFlipX(true);
+
         }
         else if (this.cursors.right.isDown) {
             this.body.setVelocityX(this.speed);
+            this.setFlipX(false);
+
         }
         else {
             this.body.setVelocityX(0);
