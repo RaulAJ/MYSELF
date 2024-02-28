@@ -27,7 +27,7 @@ export default class Level extends Phaser.Scene {
         fondo.setDisplaySize(this.sys.game.config.width, this.sys.game.config.height);
         fondo.setDepth(0);
         this.player = new Player(this, 500, 500);
-
+        
     }
 
     /**
