@@ -1,4 +1,3 @@
-import Platform from './platform.js';
 import Player from './player.js';
 import Phaser from 'phaser'
 
@@ -30,14 +29,6 @@ export default class Level extends Phaser.Scene {
         
     }
 
-    /**
-     * Genera una estrella en una de las bases del escenario
-     * @param {Array<Base>} from Lista de bases sobre las que se puede crear una estrella
-     * Si es null, entonces se crea aleatoriamente sobre cualquiera de las bases existentes
-     */
-    spawn(from = null) {
-        Phaser.Math.RND.pick(from || this.bases.children.entries).spawn();
-    }
 
     /**
      * Método que se ejecuta al coger una estrella. Se pasa la base
@@ -55,4 +46,6 @@ export default class Level extends Phaser.Scene {
 
         }
     }
+
+    
 }

@@ -1,4 +1,3 @@
-import Star from './star.ts';
 import Phaser from 'phaser'
 
 /**
@@ -19,19 +18,22 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.setDisplaySize(180, 140);
-        this.body.setSize(45, 55);
+        this.body.setSize(35, 52);
+        this.body.setOffset(39, 20); // Ajusta el valor de Y según sea necesario
 
-        //this.body.setOffset(0, 0);
         // Queremos que el jugador no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
         this.speed = 300;
         this.jumpSpeed = -400;
-        // Esta label es la UI en la que pondremos la puntuación del jugador
+        //Animación inicial default
         this.play('stand');
+        // Esta label es la UI en la que pondremos la puntuación del jugador
         this.label = this.scene.add.text(10, 10, "");
         this.cursors = this.scene.input.keyboard.createCursorKeys();
         
         this.updateScore();
+        this.j = this.scene.input.keyboard.addKey('J');
+
     }
 
     /**
@@ -58,22 +60,45 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
+        let isRunning = false;
+        let isAttacking = false;
+        
+        if (Phaser.Input.Keyboard.JustDown(this.j) && !this.isAttacking) {
+            this.isAttacking = true;
+            this.play('attack1', true);
+            this.on('animationcomplete-attack1', () => {
+                this.isAttacking = false;
+            });
+        }
+    
+
         if (this.cursors.up.isDown && this.body.onFloor()) {
             this.body.setVelocityY(this.jumpSpeed);
+            isRunning = true;
         }
         if (this.cursors.left.isDown) {
             this.body.setVelocityX(-this.speed);
             this.setFlipX(true);
-
+            isRunning = true;
         }
         else if (this.cursors.right.isDown) {
             this.body.setVelocityX(this.speed);
             this.setFlipX(false);
-
+            isRunning = true;
         }
         else {
             this.body.setVelocityX(0);
+            isRunning = false;
         }
+        if (!this.isAttacking && !this.body.onFloor()) {
+            this.play('jump', true);
+        } else if (!this.isAttacking && isRunning && this.body.onFloor()) {
+            this.play('run', true); 
+        } else if (!this.isAttacking) {
+            this.play('stand', true);
+        }
+        
+
     }
 
 }
