@@ -30,13 +30,18 @@ export default class Level extends Phaser.Scene {
         this.plant1.setDisplaySize(46, 36); // Cambiar el tamaño a 100x100 píxeles
         this.wolf = new Wolf(this, 100, 250);
         this.player = new Player(this, 500, 500);
-        
+
+        this.physics.world.setBounds(0, -500, 2000, 1000); // Cambiar los valores según sea necesario
+
+        // Establecer los límites de desplazamiento de la cámara
+        this.cameras.main.setBounds(0, -500, 2000, 1000); // Deben coincidir con el tamaño del mundo del juego
+    
+
+        this.cameras.main.startFollow(this.player);
 
         
 
     }
-
-
     
 
 

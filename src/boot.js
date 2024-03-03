@@ -77,6 +77,13 @@ export default class Boot extends Phaser.Scene {
       });
       
       this.anims.create({
+        key: 'attack2',
+        frames: this.anims.generateFrameNumbers('player', {start: 117, end: 120}),
+        frameRate: 10,
+        repeat: 0
+      });
+
+      this.anims.create({
         key: 'wolf_stand',
         frames: this.anims.generateFrameNumbers('wolf_stand', { start: 0, end: 7 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
         frameRate: 3, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación

@@ -15,6 +15,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     constructor(scene, x, y) {
         super(scene, x, y, 'player');
+        this.attackCount = 0;
         this.health = 100;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
@@ -73,14 +74,26 @@ export default class Player extends Phaser.GameObjects.Sprite {
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
         let isRunning = false;
-        let isAttacking = false;
         
         if (Phaser.Input.Keyboard.JustDown(this.j) && !this.isAttacking) {
             this.isAttacking = true;
-            this.play('attack1', true);
-            this.on('animationcomplete-attack1', () => {
-                this.isAttacking = false;
-            });
+            this.attackCount++; // Incrementar el contador de ataques
+            
+            if (this.attackCount === 1) {
+                // Primer ataque: reproducir animación de ataque 1
+                this.play('attack1', true);
+                this.on('animationcomplete-attack1', () => {
+                    this.isAttacking = false;
+                });
+            } else if (this.attackCount === 2) {
+                // Segundo ataque: reproducir animación de ataque 2
+                this.play('attack2', true);
+                this.on('animationcomplete-attack2', () => {
+                    this.isAttacking = false;
+                });
+                this.attackCount = 0;
+            }
+            
             
         }
         
