@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import Enemy from './enemy.js';
 
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -14,42 +15,53 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     constructor(scene, x, y) {
         super(scene, x, y, 'player');
-        this.score = 0;
+        this.health = 100;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.setDisplaySize(180, 140);
         this.body.setSize(35, 52);
-        this.body.setOffset(39, 20); // Ajusta el valor de Y según sea necesario
-
-        // Queremos que el jugador no se salga de los límites del mundo
+        this.body.setOffset(39, 20);
+        this.setScale(1.9, 2);
         this.body.setCollideWorldBounds();
         this.speed = 300;
         this.jumpSpeed = -400;
-        //Animación inicial default
         this.play('stand');
-        // Esta label es la UI en la que pondremos la puntuación del jugador
-        this.label = this.scene.add.text(10, 10, "");
+
+        // Crear la barra de vida como un objeto de gráfico
+        this.healthBar = this.scene.add.graphics();
+        this.updateHealthBar();
+
         this.cursors = this.scene.input.keyboard.createCursorKeys();
-        
-        this.updateScore();
         this.j = this.scene.input.keyboard.addKey('J');
-
     }
 
-    /**
-     * El jugador ha recogido una estrella por lo que este método añade un punto y
-     * actualiza la UI con la puntuación actual.
-     */
-    point() {
-        this.score++;
-        this.updateScore();
+    updateHealthBar() {
+        const barWidth = 200; // Ancho de la barra de vida
+        const barHeight = 20; // Alto de la barra de vida
+        const padding = 20; // Espacio entre la barra de vida y el borde de la pantalla
+        const barX = padding; // Posición horizontal de la barra de vida
+        const barY = padding; // Posición vertical de la barra de vida
+        const healthPercentage = this.health / 100; // Porcentaje de vida actual
+    
+        // Limpiar el área del cuadrado de la barra de vida
+        this.healthBar.clear();
+    
+        // Dibujar el fondo del cuadrado de la barra de vida (rectángulo negro)
+        this.healthBar.fillStyle(0x000000); // Negro
+        this.healthBar.fillRect(barX, barY, barWidth, barHeight);
+    
+        // Dibujar la barra de vida encima del fondo
+        this.healthBar.fillStyle(0x00ff00); // Verde
+        this.healthBar.fillRect(barX, barY, barWidth * healthPercentage, barHeight);
     }
 
-    /**
-     * Actualiza la UI con la puntuación actual
-     */
-    updateScore() {
-        this.label.text = 'Score: ' + this.score;
+    updateHealth() {
+        this.updateHealthBar();
+    }
+
+    attackEnemy(player, enemy) {
+        // Reducir la salud del enemigo
+        enemy.reduceHealth(10); // Por ejemplo, reducir en 10 puntos
     }
 
     /**
@@ -69,7 +81,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.on('animationcomplete-attack1', () => {
                 this.isAttacking = false;
             });
+            
         }
+        
     
 
         if (this.cursors.up.isDown && this.body.onFloor()) {
@@ -90,15 +104,22 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.body.setVelocityX(0);
             isRunning = false;
         }
-        if (!this.isAttacking && !this.body.onFloor()) {
-            this.play('jump', true);
-        } else if (!this.isAttacking && isRunning && this.body.onFloor()) {
-            this.play('run', true); 
-        } else if (!this.isAttacking) {
-            this.play('stand', true);
+        
+        if (this.health <= 0) {
+            // Si la vida llega a 0, el jugador muere
+            // Aquí puedes implementar lógica adicional, como reiniciar el juego, mostrar un mensaje de game over, etc.
+            console.log("Game Over");
+        } else {
+            if (!this.isAttacking && !this.body.onFloor()) {
+                this.play('jump', true);
+            } else if (!this.isAttacking && isRunning && this.body.onFloor()) {
+                this.play('run', true); 
+            } else if (!this.isAttacking) {
+                this.play('stand', true);
+            }
         }
         
-
+        this.updateHealthBar();
     }
 
 }

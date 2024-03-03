@@ -1,4 +1,5 @@
 import Player from './player.js';
+import Wolf from './wolf.js';
 import Phaser from 'phaser'
 
 
@@ -25,9 +26,18 @@ export default class Level extends Phaser.Scene {
         const fondo = this.add.image(0, 0, 'background').setOrigin(0, 0);
         fondo.setDisplaySize(this.sys.game.config.width, this.sys.game.config.height);
         fondo.setDepth(0);
+        this.plant1 = this.add.image(200, 485, 'crystal');
+        this.plant1.setDisplaySize(46, 36); // Cambiar el tamaño a 100x100 píxeles
+        this.wolf = new Wolf(this, 100, 250);
         this.player = new Player(this, 500, 500);
         
+
+        
+
     }
+
+
+    
 
 
     /**
@@ -35,7 +45,7 @@ export default class Level extends Phaser.Scene {
      * sobre la que estaba la estrella cogida para evitar repeticiones
      * @param {Base} base La base sobre la que estaba la estrella que se ha cogido
      */
-    starPickt(base) {
+    /*starPickt(base) {
         this.player.point();
         if (this.player.score == this.stars) {
             this.scene.start('end');
@@ -45,7 +55,7 @@ export default class Level extends Phaser.Scene {
             this.spawn(s.filter(o => o !== base));
 
         }
-    }
+    }*/
 
     
 }

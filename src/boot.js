@@ -2,7 +2,12 @@ import Phaser from 'phaser'
 
 
 import player from '../assets/sprites/Viking/Viking-Sheet.png'
+import wolf_stand from '../assets/sprites/Wolf/Black_Werewolf/Idle.png'
+import wolf_walk from '../assets/sprites/Wolf/Black_Werewolf/walk.png'
 import background from '../assets/sprites/Mountain-Dusk.png'
+import crystal from '../assets/sprites/Estructuras/crystal.png'
+
+
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -25,8 +30,15 @@ export default class Boot extends Phaser.Scene {
       // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
       this.load.setPath('assets/sprites/');
       this.load.image('background', background);
+      this.load.image('crystal', crystal);
       this.load.spritesheet('player', player,{
         frameWidth: 115, frameHeight: 84 
+      });
+      this.load.spritesheet('wolf_stand', wolf_stand,{
+        frameWidth: 128, frameHeight: 128 
+      });
+      this.load.spritesheet('wolf_walk', wolf_walk,{
+        frameWidth: 128, frameHeight: 128 
       });
     }
 
@@ -62,6 +74,20 @@ export default class Boot extends Phaser.Scene {
         frames: this.anims.generateFrameNumbers('player', {start: 104, end: 107}),
         frameRate: 10,
         repeat: 0
+      });
+      
+      this.anims.create({
+        key: 'wolf_stand',
+        frames: this.anims.generateFrameNumbers('wolf_stand', { start: 0, end: 7 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 3, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: -1 // -1 para repetir la animación continuamente
+      });
+
+      this.anims.create({
+        key: 'wolf_walk',
+        frames: this.anims.generateFrameNumbers('wolf_walk', { start: 0, end: 10 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 8, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: -1 // -1 para repetir la animación continuamente
       });
 
     }
