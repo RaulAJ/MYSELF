@@ -23,9 +23,13 @@ export default class Level extends Phaser.Scene {
      * Creación de los elementos de la escena principal de juego
      */
     create() {
-        const fondo = this.add.image(0, 0, 'background').setOrigin(0, 0);
-        fondo.setDisplaySize(this.sys.game.config.width, this.sys.game.config.height);
-        fondo.setDepth(0);
+        
+
+        this.Castlebg1 = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height, 'background');
+        this.Castlebg1.setScrollFactor(0,0);
+        this.Castlebg1.setScale(2, 2.2);
+
+
         this.plant1 = this.add.image(200, 485, 'crystal');
         this.plant1.setDisplaySize(46, 36); // Cambiar el tamaño a 100x100 píxeles
         this.wolf = new Wolf(this, 100, 250);
@@ -37,13 +41,15 @@ export default class Level extends Phaser.Scene {
         this.cameras.main.setBounds(0, -500, 2000, 1000); // Deben coincidir con el tamaño del mundo del juego
     
 
-        this.cameras.main.startFollow(this.player);
+        this.playerCamera = this.cameras.main.startFollow(this.player, false, 1, 1, 0, 75);
 
         
 
     }
     
-
+    update(){
+        this.Castlebg1.tilePositionX = this.playerCamera.scrollX * 0.1;
+    }
 
     /**
      * Método que se ejecuta al coger una estrella. Se pasa la base

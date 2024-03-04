@@ -28,37 +28,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.jumpSpeed = -400;
         this.play('stand');
 
-        // Crear la barra de vida como un objeto de gráfico
-        this.healthBar = this.scene.add.graphics();
-        this.updateHealthBar();
+        
 
         this.cursors = this.scene.input.keyboard.createCursorKeys();
         this.j = this.scene.input.keyboard.addKey('J');
     }
 
-    updateHealthBar() {
-        const barWidth = 200; // Ancho de la barra de vida
-        const barHeight = 20; // Alto de la barra de vida
-        const padding = 20; // Espacio entre la barra de vida y el borde de la pantalla
-        const barX = padding; // Posición horizontal de la barra de vida
-        const barY = padding; // Posición vertical de la barra de vida
-        const healthPercentage = this.health / 100; // Porcentaje de vida actual
     
-        // Limpiar el área del cuadrado de la barra de vida
-        this.healthBar.clear();
-    
-        // Dibujar el fondo del cuadrado de la barra de vida (rectángulo negro)
-        this.healthBar.fillStyle(0x000000); // Negro
-        this.healthBar.fillRect(barX, barY, barWidth, barHeight);
-    
-        // Dibujar la barra de vida encima del fondo
-        this.healthBar.fillStyle(0x00ff00); // Verde
-        this.healthBar.fillRect(barX, barY, barWidth * healthPercentage, barHeight);
-    }
-
-    updateHealth() {
-        this.updateHealthBar();
-    }
 
     attackEnemy(player, enemy) {
         // Reducir la salud del enemigo
@@ -132,7 +108,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         }
         
-        this.updateHealthBar();
+       // this.updateHealthBar();
     }
 
 }
