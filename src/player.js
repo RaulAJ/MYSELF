@@ -29,22 +29,38 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.play('stand');
 
         
+        /*this.weaponDamage = this.scene.add.zone(100, 40, 110, 80);
+        this.scene.physics.add.existing(this.weaponDamage);
+        this.weaponDamage.body.setAllowGravity(false);
+
+        this.add(this.weaponDamage); */
+
+
+        this.healthbar = this.scene.add.sprite(185, 52, 'healthbar');
+        this.healthbar.setScale(0.60);
+        this.healthbar.setScrollFactor(0,0);
+
+        this.relleno_healthbar = this.scene.add.sprite(213, 52, 'relleno_healthbar');
+        this.relleno_healthbar.setScale(0.60);
+        this.relleno_healthbar.setScrollFactor(0,0);
 
         this.cursors = this.scene.input.keyboard.createCursorKeys();
         this.j = this.scene.input.keyboard.addKey('J');
+
+        this.relleno_healthbar.setCrop(0,0,this.relleno_healthbar.width*((this.health/ 100)), 317);
+        this.relleno_healthbar.isCropped = true;
     }
 
     
-
-    attackEnemy(player, enemy) {
-        // Reducir la salud del enemigo
-        enemy.reduceHealth(10); // Por ejemplo, reducir en 10 puntos
+    
+    makeDamage(){
+        this.scene.physics.overlap(this.body, this.scene.enemies,(hitbox, enemy) => {
+          enemy.getDamage(40);
+        });
     }
-
-    /**
+/*
+    *
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
-     * Como se puede ver, no se tratan las colisiones con las estrellas, ya que estas colisiones 
-     * ya son gestionadas por la estrella (no gestionar las colisiones dos veces)
      * @override
      */
     preUpdate(t, dt) {
@@ -54,7 +70,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
         if (Phaser.Input.Keyboard.JustDown(this.j) && !this.isAttacking) {
             this.isAttacking = true;
             this.attackCount++; // Incrementar el contador de ataques
-            
+
+            this.scene.time.delayedCall(400, () => {if(!this.hasBeenHurt)this.makeDamage();}, [], this);
+
             if (this.attackCount === 1) {
                 // Primer ataque: reproducir animación de ataque 1
                 this.play('attack1', true);
@@ -68,9 +86,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.isAttacking = false;
                 });
                 this.attackCount = 0;
-            }
-            
-            
+            }           
         }
         
     
@@ -108,7 +124,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         }
         
-       // this.updateHealthBar();
     }
 
 }

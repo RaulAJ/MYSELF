@@ -29,22 +29,38 @@ export default class Wolf extends Enemy {
         this.play('idle');
     }
 
-    
+    getDamage(damage) {
+        if(this.health>0){
+            if(this.health>=damage){
+                this.health-=damage;
+            }
+            else{
+                this.health = 0;
+                
+                this.anims.play('wolf_dead',true);
+                this.body.setVelocityX(0);
+                this.scene.time.delayedCall(10000, () => {this.destroy();}, [], this);
+            }
+        }
+    }
+
     cambiarDireccion() {
         // Cambiar la dirección del movimiento según la posición actual del enemigo
-        if (this.x >= this.distanciaMaxima) {
-            this.moverDerecha = false;
-            this.setFlipX(true);
-        } else if (this.x <= this.distanciaMinima) {
-            this.moverDerecha = true;
-            this.setFlipX(false);
-        }
+        if(this.health > 0){
+            if (this.x >= this.distanciaMaxima) {
+                this.moverDerecha = false;
+                this.setFlipX(true);
+            } else if (this.x <= this.distanciaMinima) {
+                this.moverDerecha = true;
+                this.setFlipX(false);
+            }
 
-        // Establecer la velocidad en la dirección correspondiente
-        if (this.moverDerecha) {
-            this.body.setVelocityX(this.speed);
-        } else {
-            this.body.setVelocityX(-this.speed);
+            // Establecer la velocidad en la dirección correspondiente
+            if (this.moverDerecha) {
+                this.body.setVelocityX(this.speed);
+            } else {
+                this.body.setVelocityX(-this.speed);
+            }
         }
     }
 
@@ -56,13 +72,16 @@ export default class Wolf extends Enemy {
         super.preUpdate(t, dt);
 
         // Verificar si el enemigo está en movimiento
-        if (this.body.velocity.x !== 0) {
-            // Si se está moviendo, reproducir la animación de movimiento
-            this.anims.play('wolf_walk', true);
-        } else {
-            // Si no se está moviendo, reproducir la animación de estar quieto
-            this.anims.play('wolf_stand', true);
+        if(this.health >0){
+            if (this.body.velocity.x !== 0) {
+                // Si se está moviendo, reproducir la animación de movimiento
+                this.anims.play('wolf_walk', true);
+            } else {
+                // Si no se está moviendo, reproducir la animación de estar quieto
+                this.anims.play('wolf_stand', true);
+            }
         }
+
         this.updateHealthBar();
     }
 }
