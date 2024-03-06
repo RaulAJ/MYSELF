@@ -1,7 +1,7 @@
 # Myself #
 
 ## INTRODUCCIÓN ##
-Este documento especifica un diseño para nuestro proyecto de videojuego llamado _Myself_, que será creado en el segundo cuatrimestre del curso 2023-2024. En este proyecto están involucrados Raúl Arellano Jorge, Mario Alcolea Alcolea, Jorge López Carrión y Unai.
+Este documento especifica un diseño para nuestro proyecto de videojuego llamado _Myself_, que será creado en el segundo cuatrimestre del curso 2023-2024. En este proyecto están involucrados los siguientes miembros del equipo _AntzTeam_, Raúl Arellano Jorge, Mario Alcolea Alcolea y Jorge López Carrión.
 
 
 ## ESPECIFICACIÓN ##
@@ -21,7 +21,7 @@ Habrá 4 zonas distintas, de manera que cada zona tendrá unas características 
 ### Objetivo: ###
 Derrotar los bosses e ir consiguiendo los poderes correspondientes de cada zona hasta llegar al boss final.
 Gráficos:
-Graficos 2D, de manera que la cámara se centrará en el personaje y los fondos se moverán con el personaje, y según el gameplay, en algunas zonas habrá cambios de pantlla/carga de mapa.
+Graficos 2D pixelart, de manera que la cámara se centrará en el personaje y los fondos se moverán con el personaje, y según el gameplay, en algunas zonas habrá cambios de pantlla/carga de mapa.
 
 ## GAMEPLAY ##
 ### Mundo: ###
@@ -30,17 +30,19 @@ El mundo será grande y tendrá diferentes cambios de pantalla. En el mapa se ve
 ### Enemigos: ### 
 -Hormigas
 -Lobos
--(?)
+-Zorro
 -Boss final
 
 
 
 ### Control: ###
-Se podrá jugar por teclado y ratón.
+Se podrá jugar por teclado o gamepad.
 Los controles serán:
 -Moverse (izquierda/derecha)
 -Saltar -> Salto doble
 -Golpear a meleé
 -Golpear a distancia
+-Ataque especial a meleé
+-Ataque especial a distancia
 -Encogerse/Agrandarse
 -Dash
