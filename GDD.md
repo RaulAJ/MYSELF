@@ -6,7 +6,7 @@ Este documento especifica un diseño para nuestro proyecto de videojuego llamado
 
 ## ESPECIFICACIÓN ##
 ### Concepto: ###
-El objetivo de myself es un juego entretenido single-player de tipo metroid, para pasarselo bien durante un largo periodo de tiempo.
+El objetivo de _Myself_ es un juego entretenido single-player de tipo metroid, para pasarselo bien durante un largo periodo de tiempo.
 
 ### PEGI ###
 Pegi 7.
@@ -15,7 +15,7 @@ Pegi 7.
 El juego estará situado en un mundo de fantasía.
 
 ### Estructura del juego: ###
-Habrá 4 zonas distintas, de manera que cada zona tendrá unas características concretas y un tipo de enemigo concreto. En las 3 primeras zonas se conseguirán diferentes poderes al matar al enemigo final y la última será para enfrentarse al boss final del juego.  Todas las zonas estarán conectadas entre si y además será posible desbloquear ciertos caminos(atajos), obteniendo los distintos poderes de los enemigos al eliminarlos de las diferentes zonas.
+Habrá 4 zonas distintas, de manera que cada zona tendrá unas características concretas y un tipo de enemigo concreto. En las 3 primeras zonas se conseguirán diferentes poderes al matar al enemigo final y la última será para enfrentarse al boss final del juego, donde apareceran todos los tipos de enemigos vistos en las anteriores zonas. Todas las zonas estarán conectadas entre si y además será posible desbloquear ciertos caminos(atajos), obteniendo los distintos poderes de los bosses al eliminarlos de las diferentes zonas.
 
 
 ### Objetivo: ###
@@ -28,16 +28,16 @@ Graficos 2D pixelart, de manera que la cámara se centrará en el personaje y lo
 El mundo será grande y tendrá diferentes cambios de pantalla. En el mapa se verá el icono de la ubicación actual del jugador en todo momento que se desee abrir el mapa.
 
 ### Enemigos: ### 
--Hormigas
--Lobos
--Zorro
+-Hormigas. Deslobquearán la habilidad de encogerse y agrandarse.
+-Lobos. Desbloquearán la habilidad de dash.
+-Zorro. Desbloquearán la habilidad de doble salto.
 -Boss final
 
 
 
 ### Control: ###
 Se podrá jugar por teclado o gamepad.
-Los controles serán:
+## Mecánicas ##
 -Moverse (izquierda/derecha)
 -Saltar -> Salto doble
 -Golpear a meleé
