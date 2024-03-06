@@ -20,29 +20,30 @@ Habrá 4 zonas distintas, de manera que cada zona tendrá unas características 
 
 ### Objetivo: ###
 Derrotar los bosses e ir consiguiendo los poderes correspondientes de cada zona hasta llegar al boss final.
-Gráficos:
-Graficos 2D pixelart, de manera que la cámara se centrará en el personaje y los fondos se moverán con el personaje, y según el gameplay, en algunas zonas habrá cambios de pantlla/carga de mapa.
 
 ## GAMEPLAY ##
+
+### Gráficos ###
+Graficos 2D pixelart, de manera que la cámara se centrará en el personaje y los fondos se moverán con el personaje, y según el gameplay, en algunas zonas habrá cambios de pantlla/carga de mapa.
+
 ### Mundo: ###
 El mundo será grande y tendrá diferentes cambios de pantalla. En el mapa se verá el icono de la ubicación actual del jugador en todo momento que se desee abrir el mapa.
 
 ### Enemigos: ### 
--Hormigas. Deslobquearán la habilidad de encogerse y agrandarse.
--Lobos. Desbloquearán la habilidad de dash.
--Zorro. Desbloquearán la habilidad de doble salto.
--Boss final
-
-
+- Hormigas. Deslobquearán la habilidad de encogerse y agrandarse.
+- Lobos. Desbloquearán la habilidad de dash.
+- Zorro. Desbloquearán la habilidad de doble salto.
+- Boss final
 
 ### Control: ###
 Se podrá jugar por teclado o gamepad.
+
 ## Mecánicas ##
--Moverse (izquierda/derecha)
--Saltar -> Salto doble
--Golpear a meleé
--Golpear a distancia
--Ataque especial a meleé
--Ataque especial a distancia
--Encogerse/Agrandarse
--Dash
+- Moverse (izquierda/derecha)
+- Saltar -> Salto doble
+- Golpear a meleé
+- Golpear a distancia
+- Ataque especial a meleé
+- Ataque especial a distancia
+- Encogerse/Agrandarse
+- Dash
