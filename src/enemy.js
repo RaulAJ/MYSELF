@@ -2,15 +2,23 @@
 import Phaser from 'phaser';
 
 export default class Enemy extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y, texture, health) {
-        super(scene, x, y, texture);
-        this.health = health;
+    constructor(scene, x, y, health, speed, jumpSpeed, fieldOfView, rangeAttack, attackSpeed, damage) {
+        super(scene, x, y);
+        
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
+        this.health = health;
+        this.speed = speed;
+        this.jumpSpeed = jumpSpeed;
+        this.fieldOfView = fieldOfView;
+        this.rangeAttack = rangeAttack;
+        this.attackSpeed = attackSpeed;
+        this.damage = damage;
         // Crear la barra de vida del enemigo
         this.healthBar = this.scene.add.graphics();
         this.updateHealthBar();
+
     }
 
     getDamage(damage) {}

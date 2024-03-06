@@ -1,30 +1,17 @@
 import Enemy from './enemy.js';
 
 export default class Wolf extends Enemy {
+
     constructor(scene, x, y) {
-        super(scene, x, y, 'wolf', 100); // Textura 'wolf' y salud inicial de 100
+        super(scene, x, y, 100, 75, 0, 60, 10, 5, 20);
         this.setDisplaySize(180, 140);
         this.body.setSize(70, 60);
         this.body.setOffset(40, 70);
         this.setScale(1.2, 1);
 
-        this.distanciaMinima = x;
-        this.distanciaMaxima = x + 200; // Cambia este valor según el rango deseado
-
-        // Inicia el movimiento automáticamente
-        this.moverDerecha = true;
-
-        // Inicia el temporizador para controlar el movimiento repetido
-        this.timer = scene.time.addEvent({
-            delay: 50, // Intervalo de tiempo entre cambios de dirección
-            callback: this.cambiarDireccion,
-            callbackScope: this,
-            loop: true // Repetir el temporizador indefinidamente
-        });
-
         // Queremos que el enemigo no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
-        this.speed = 75;
+
         // Animación inicial default
         this.play('idle');
     }
@@ -44,22 +31,20 @@ export default class Wolf extends Enemy {
         }
     }
 
-    cambiarDireccion() {
-        // Cambiar la dirección del movimiento según la posición actual del enemigo
-        if(this.health > 0){
-            if (this.x >= this.distanciaMaxima) {
-                this.moverDerecha = false;
-                this.setFlipX(true);
-            } else if (this.x <= this.distanciaMinima) {
-                this.moverDerecha = true;
-                this.setFlipX(false);
+    move(){
+        if((this.x - this.fieldOfView < this.scene.player.x)  && (this.scene.player.x < this.x + this.fieldOfView) && (this.y - this.fieldOfView< this.scene.player.y)  && (this.scene.player.y < this.y + this.fieldOfView )){
+            if((this.x - 10 < this.scene.player.x)  && (this.scene.player.x < this.x + 10)){
+                this.body.setVelocityX(0);
             }
-
-            // Establecer la velocidad en la dirección correspondiente
-            if (this.moverDerecha) {
-                this.body.setVelocityX(this.speed);
-            } else {
+            else if (this.scene.player.x<this.x && (this.scene.groundLayer.hasTileAtWorldXY(this.x, this.y + 110) || this.scene.platformLayer.hasTileAtWorldXY(this.x, this.y + 110)) && !this.scene.wallLayer.hasTileAtWorldXY(this.x -35, this.y + 50) && !this.scene.groundLayer.hasTileAtWorldXY(this.x -35, this.y + 50)) {
                 this.body.setVelocityX(-this.speed);
+                
+            }
+            else if (this.scene.player.x>this.x&& (this.scene.groundLayer.hasTileAtWorldXY(this.x + 135, this.y + 110) || this.scene.platformLayer.hasTileAtWorldXY(this.x + 135, this.y + 110)) && !this.scene.wallLayer.hasTileAtWorldXY(this.x + 175, this.y + 50) && !this.scene.groundLayer.hasTileAtWorldXY(this.x + 175, this.y + 50)) {
+                this.body.setVelocityX(this.speed);
+            }
+            else{
+                this.body.setVelocityX(0);
             }
         }
     }
@@ -72,10 +57,14 @@ export default class Wolf extends Enemy {
         super.preUpdate(t, dt);
 
         // Verificar si el enemigo está en movimiento
-        if(this.health >0){
+        if(this.health > 0){
+           // this.move();
+
+            
             if (this.body.velocity.x !== 0) {
                 // Si se está moviendo, reproducir la animación de movimiento
                 this.anims.play('wolf_walk', true);
+
             } else {
                 // Si no se está moviendo, reproducir la animación de estar quieto
                 this.anims.play('wolf_stand', true);

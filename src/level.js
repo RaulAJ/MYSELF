@@ -25,17 +25,18 @@ export default class Level extends Phaser.Scene {
     create() {
         
 
-        this.Castlebg1 = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height, 'background');
-        this.Castlebg1.setScrollFactor(0,0);
-        this.Castlebg1.setScale(2, 2.2);
+        this.fondo = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height, 'background');
+        this.fondo.setScrollFactor(0,0);
+        this.fondo.setScale(2, 2.2);
 
         this.enemies = this.add.group();
 
         this.plant1 = this.add.image(200, 485, 'crystal');
         this.plant1.setDisplaySize(46, 36); // Cambiar el tamaño a 100x100 píxeles
+        this.player = new Player(this, 500, 500);
         this.wolf = new Wolf(this, 100, 250);
         this.enemies.add(this.wolf);
-        this.player = new Player(this, 500, 500);
+        
 
         this.physics.world.setBounds(0, -500, 2000, 1000); // Cambiar los valores según sea necesario
 
@@ -54,7 +55,7 @@ export default class Level extends Phaser.Scene {
     }
     
     update(){
-        this.Castlebg1.tilePositionX = this.playerCamera.scrollX * 0.1;
+        this.fondo.tilePositionX = this.playerCamera.scrollX * 0.1;
     }
 
     /**

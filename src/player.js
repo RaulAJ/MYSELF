@@ -17,7 +17,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
         super(scene, x, y, 'player');
         this.attackCount = 0;
         this.health = 100;
+
         this.scene.add.existing(this);
+        
         this.scene.physics.add.existing(this);
         this.setDisplaySize(180, 140);
         this.body.setSize(35, 52);
@@ -71,7 +73,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.isAttacking = true;
             this.attackCount++; // Incrementar el contador de ataques
 
-            this.scene.time.delayedCall(400, () => {if(!this.hasBeenHurt)this.makeDamage();}, [], this);
+            this.scene.time.delayedCall(200, () => {if(!this.hasBeenHurt)this.makeDamage();}, [], this);
 
             if (this.attackCount === 1) {
                 // Primer ataque: reproducir animación de ataque 1
