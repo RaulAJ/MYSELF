@@ -1,5 +1,6 @@
 import Player from './player.js';
 import Wolf from './wolf.js';
+import Fox from './fox.js';
 import Phaser from 'phaser'
 
 
@@ -35,8 +36,9 @@ export default class Level extends Phaser.Scene {
         this.plant1.setDisplaySize(46, 36); // Cambiar el tamaño a 100x100 píxeles
         this.player = new Player(this, 500, 500);
         this.wolf = new Wolf(this, 100, 250);
+        //this.fox = new Fox(this,150,300);
         this.enemies.add(this.wolf);
-        
+        //this.enemies.add(this.fox);
 
         this.physics.world.setBounds(0, -500, 2000, 1000); // Cambiar los valores según sea necesario
 

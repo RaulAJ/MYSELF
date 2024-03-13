@@ -5,6 +5,7 @@ import player from '../assets/sprites/Viking/Viking-Sheet.png'
 import wolf_stand from '../assets/sprites/Wolf/Black_Werewolf/Idle.png'
 import wolf_walk from '../assets/sprites/Wolf/Black_Werewolf/walk.png'
 import wolf_dead from '../assets/sprites/Wolf/Black_Werewolf/Dead.png'
+import fox from '../assets/sprites/fox-sword.png'
 
 import background from '../assets/sprites/Mountain-Dusk.png'
 import crystal from '../assets/sprites/Estructuras/crystal.png'
@@ -49,6 +50,9 @@ export default class Boot extends Phaser.Scene {
       this.load.spritesheet('wolf_dead', wolf_dead,{
         frameWidth: 128, frameHeight: 128 
       });
+      this.load.spritesheet('fox', fox,{
+        frameWidth:84, frameHeight: 128
+      })
     }
 
     /**
@@ -113,6 +117,19 @@ export default class Boot extends Phaser.Scene {
         repeat: 0  // para no repetir la animación continuamente
       });
 
+      this.anims.create({
+        key: 'fox_walk',
+        frames: this.anims.generateFrameNumbers('fox', { start: 0, end: 7 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 8, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: -1  // para no repetir la animación continuamente
+      });
+
+      this.anims.create({
+        key: 'fox_stand',
+        frames: this.anims.generateFrameNumbers('fox', { start: 6, end: 7 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 3, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: -1  // para no repetir la animación continuamente
+      });
     }
     
   }
