@@ -1,6 +1,7 @@
 import Enemy from './enemy.js';
 
 export default class Fox extends Enemy {
+    
     constructor(scene, x, y) {
         super(scene, x, y, 70, 90, 5, 60, 10, 10, 10);
         this.setDisplaySize(180, 140);
@@ -12,7 +13,7 @@ export default class Fox extends Enemy {
         this.body.setCollideWorldBounds();
 
         // Animación inicial default
-        this.play('fox');
+        this.play('fox-sword');
     }
 
     getDamage(damage) {

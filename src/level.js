@@ -28,8 +28,8 @@ export default class Level extends Phaser.Scene {
 
         this.fondo = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height, 'background');
         this.fondo.setScrollFactor(0,0);
-        this.fondo.setScale(2, 2.2);
-
+        this.fondo.setScale(2.5, 2.2);
+        
         this.enemies = this.add.group();
 
         this.plant1 = this.add.image(200, 485, 'crystal');

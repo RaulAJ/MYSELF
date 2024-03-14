@@ -8,6 +8,7 @@ import wolf_dead from '../assets/sprites/Wolf/Black_Werewolf/Dead.png'
 import fox from '../assets/sprites/fox-sword.png'
 
 import background from '../assets/sprites/Mountain-Dusk.png'
+import castle_background from '../assets/sprites/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-background.png'
 import crystal from '../assets/sprites/Estructuras/crystal.png'
 import healthbar from '../assets/sprites/healthbar.png'
 import relleno_healthbar from '../assets/sprites/relleno_healthbar.png'
@@ -35,6 +36,7 @@ export default class Boot extends Phaser.Scene {
       // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
       this.load.setPath('assets/sprites/');
       this.load.image('background', background);
+      this.load.image('castle_background',castle_background);
       this.load.image('healthbar', healthbar);
       this.load.image('relleno_healthbar', relleno_healthbar);
       this.load.image('crystal', crystal);
@@ -64,7 +66,7 @@ export default class Boot extends Phaser.Scene {
       this.anims.create({
         key: 'stand',
         frames: this.anims.generateFrameNumbers('player', {start: 0, end: 7}),
-        frameRate: 3,
+        frameRate: 8,
         repeat: -1
       });
 
@@ -77,9 +79,16 @@ export default class Boot extends Phaser.Scene {
 
       this.anims.create({
         key: 'jump',
-        frames: this.anims.generateFrameNumbers('player', {start: 78, end: 80}),
+        frames: this.anims.generateFrameNumbers('player', {start: 78, end: 79}),
         frameRate: 3,
         repeat: 0
+      });
+
+      this.anims.create({
+        key: 'dash',
+        frames: this.anims.generateFrameNumbers('player', {start: 299, end: 303}),
+        frameRate: 8,
+        repeat: -1
       });
 
       this.anims.create({
@@ -113,7 +122,7 @@ export default class Boot extends Phaser.Scene {
       this.anims.create({
         key: 'wolf_dead',
         frames: this.anims.generateFrameNumbers('wolf_dead', { start: 0, end: 1 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
-        frameRate: 1.5, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        frameRate: 2, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
         repeat: 0  // para no repetir la animación continuamente
       });
 
