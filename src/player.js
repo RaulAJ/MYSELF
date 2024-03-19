@@ -29,7 +29,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.lastDash = 0;
         this.dashCooldown = 500;
         //variables para el doble salto
-        this.doubleJumpON = false;
+        this.doubleJumpON = true;   // si tiene la habilidad de hacer doble salto o no
         this.doubleJumpAvailiable = false;
 
         this.scene.add.existing(this);
@@ -114,12 +114,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.time.delayedCall(200, function(){isDashing = false;}, [], this);
     }
-
+/*
     doubleJump(){
         this.body.setVelocityY(this.jumpSpeed);
         isRunning = true;
         this.doubleJumpAvailiable = false;
-    }
+    }*/
     /*  
     
     *
@@ -154,15 +154,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
             
            // if(!isDashing){
-                if (this.cursors.up.isDown /*|| Phaser.Input.Keyboard.isDown(this.w))*/ && this.body.onFloor()) {
+                
+                if(this.doubleJumpON == true){
+                    if(this.cursors.up.isDown && Phaser.Input.Keyboard.JustDown(this.cursors.up)){
+                        this.body.setVelocityY(this.jumpSpeed);
+                        isRunning = true;
+                    }
+                        
+                }else{if (this.cursors.up.isDown /*|| Phaser.Input.Keyboard.isDown(this.w))*/ && this.body.onFloor()) {
                     this.body.setVelocityY(this.jumpSpeed);
                     isRunning = true;
-                    if(this.doubleJumpON == true)
-                        this.doubleJumpAvailiable = true;
-                }
-                else if(this.cursors.up.isDown && this.doubleJumpAvailiable){
-                    this.doubleJump();
-                }
+                }}
+            
 
                 if (this.cursors.left.isDown /*|| Phaser.Input.Keyboard.isDown(this.a)*/) {
                     this.body.setVelocityX(-this.speed);
