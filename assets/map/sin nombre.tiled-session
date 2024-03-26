@@ -55,6 +55,7 @@
     "last.imagePath": "C:/Users/Jorge/Downloads/MYSELF/assets/sprites/Environment/PNG",
     "map.height": 40,
     "map.lastUsedExportFilter": "Todos los archivos (*)",
+    "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "map.width": 150,
