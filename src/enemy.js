@@ -15,6 +15,10 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.rangeAttack = rangeAttack;
         this.attackSpeed = attackSpeed;
         this.damage = damage;
+        this.spawnX = x;
+        this.spawnY = y;
+        this.canAttack = true;
+        this.canAnimate = true;
         // Crear la barra de vida del enemigo
         this.healthBar = this.scene.add.graphics();
         this.updateHealthBar();
@@ -25,7 +29,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     // Método para actualizar la barra de vida del enemigo
     updateHealthBar() {
-        if(this.health > 0 && this.health < 100){
+        if(this.health > 0){
             const barWidth = this.width/2; // Ancho de la barra de vida igual al ancho del enemigo
             const barHeight = 5; // Alto de la barra de vida
             const padding = -30; // Espacio entre la barra de vida y el enemigo

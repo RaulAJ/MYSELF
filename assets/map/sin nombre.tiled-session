@@ -1,0 +1,79 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "zona1.json",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "#main": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "mapa.json": {
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 134.25,
+                "y": 138.5
+            }
+        },
+        "mapa.json#main": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "sin nombre.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 341.66666666666663,
+                "y": 170.33333333333334
+            }
+        },
+        "sin nombre.tmx#main": {
+            "scaleInDock": 1
+        },
+        "tileset.tsx": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "zona1.json": {
+            "scale": 0.10417613636363636,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 3508.4810471775295,
+                "y": 2308.5901281701663
+            }
+        },
+        "zona1.json#tileset": {
+            "scaleInDock": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/Jorge/Downloads/MYSELF/assets/map",
+    "last.imagePath": "C:/Users/Jorge/Downloads/MYSELF/assets/sprites/Environment/PNG",
+    "map.height": 40,
+    "map.lastUsedExportFilter": "Todos los archivos (*)",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 150,
+    "openFiles": [
+        "sin nombre.tmx",
+        "mapa.json",
+        "zona1.json"
+    ],
+    "project": "sin nombre.tiled-project",
+    "property.type": "object",
+    "recentFiles": [
+        "zona1.json",
+        "mapa.json",
+        "sin nombre.tmx",
+        "tileset.tsx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

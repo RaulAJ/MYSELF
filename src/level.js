@@ -25,37 +25,53 @@ export default class Level extends Phaser.Scene {
      */
     create() {
         
-
-        this.fondo = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height, 'background');
+        
+        this.fondo = this.add.tileSprite(-300, 0, this.game.config.width+100, this.game.config.height, 'background');
         this.fondo.setScrollFactor(0,0);
         this.fondo.setScale(2.5, 2.2);
         
+
+        this.map = this.make.tilemap({key: 'tilemap'});
+
+        const mainMap = this.map.addTilesetImage('main', 'mainMap');
+
+
+
+        this.groundLayer = this.map.createLayer('Plataformas', mainMap);
+        
+        this.groundLayer.setCollisionByProperty({colision:true});
+
         this.enemies = this.add.group();
 
-        this.plant1 = this.add.image(200, 485, 'crystal');
-        this.plant1.setDisplaySize(46, 36); // Cambiar el tamaño a 100x100 píxeles
-        this.player = new Player(this, 500, 500);
-        this.wolf = new Wolf(this, 100, 250);
+        //this.backWallLayer.setCollisionByProperty({colision:true});
+        
+        
+        this.player = new Player(this, 500, 400);
+        this.wolf = new Wolf(this, 3605, 500);
         //this.fox = new Fox(this,150,300);
         this.enemies.add(this.wolf);
         //this.enemies.add(this.fox);
 
-        this.physics.world.setBounds(0, -500, 2000, 1000); // Cambiar los valores según sea necesario
-
-
-        
+        this.physics.world.setBounds(0, -4470, 5000, 6000); // Cambiar los valores según sea necesario
 
         // Establecer los límites de desplazamiento de la cámara
-        this.cameras.main.setBounds(0, -500, 2000, 1000); // Deben coincidir con el tamaño del mundo del juego
+        this.cameras.main.setBounds(0, -4470, 5000, 5100); // Casi coincidir con el tamaño del mundo del juego
     
-        
 
         this.playerCamera = this.cameras.main.startFollow(this.player, false, 1, 1, 0, 75);
 
-        
+        this.physics.add.collider(this.player, this.groundLayer);
+        this.physics.add.collider(this.enemies, this.groundLayer);
 
     }
+
+    playerDeath() {
+        this.time.delayedCall(4000, () => {
+            this.player.respawn();
+        }, [], this);
+    }
     
+
     update(){
         this.fondo.tilePositionX = this.playerCamera.scrollX * 0.1;
     }

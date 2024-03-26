@@ -21,6 +21,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.level_distance = 1;
         this.enemies_melee = 0;
         this.enemies_distance = 0;
+        this.canMove = true; // Inicializar la variable canMove como true para permitir que el jugador se mueva
+
+        this.spawnX = this.x;
+        this.spawnY = this.y;
+
+
+        this.positionText = this.scene.add.text(500, 50, 'Posición: (0, 0)', { fontSize: '24px', fill: '#ffffff' }).setScrollFactor(0);
+
+
+
 
         this.scene.add.existing(this);
         
@@ -28,9 +38,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.setDisplaySize(180, 140);
         this.body.setSize(35, 52);
         this.body.setOffset(39, 20);
-        this.setScale(1.9, 2);
+        this.setScale(1.5, 1.6);
         this.body.setCollideWorldBounds();
-        this.speed = 300;
+        this.speed = 200;
         this.jumpSpeed = -400;
         this.play('stand');
 
@@ -60,7 +70,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.relleno_healthbar.isCropped = true;
     }
 
-    
+    death(){
+        this.health -= 100;
+        this.canMove = false;
+    }
     
     makeDamage(){
        // if(level_melee == 1){
@@ -69,7 +82,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
         });
         //}
     }
-/*
+
+
+
+    respawn() {
+        // Restablecer la posición del jugador a su punto de aparición inicial
+        this.x = this.spawnX+10;
+        this.y = this.spawnY+10;
+    
+        // Restablecer la vida del jugador y otras propiedades
+        this.health = 100;
+        this.attackCount = 0;
+        this.canMove = true;
+    
+        // Reproducir la animación de estar de pie
+        this.play('stand');
+    }
+    /*
     *
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
      * @override
@@ -78,6 +107,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
         let isRunning = false;
         let isDashing = false;
+
+
+        this.positionText.setText('Posición: (' + this.x + ', ' + this.y + ')');
+
+        if (!this.canMove) {
+            // Si el jugador no puede moverse, establecer la velocidad del jugador en 0 y salir de preUpdate
+            this.body.setVelocity(0);
+            return;
+        }
+
+        
+       
 
         if (Phaser.Input.Keyboard.JustDown(this.j) && !this.isAttacking) {
             this.isAttacking = true;
@@ -108,16 +149,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
             isDashing = true;
             isRunning = true;
         }    
-        if (this.cursors.up.isDown /*|| Phaser.Input.Keyboard.isDown(this.w))*/ && this.body.onFloor()) {
+        if (this.cursors.up.isDown  && this.body.onFloor()) {
             this.body.setVelocityY(this.jumpSpeed);
             isRunning = true;
         }
-        if (this.cursors.left.isDown /*|| Phaser.Input.Keyboard.isDown(this.a)*/) {
+        if (this.cursors.left.isDown ) {
             this.body.setVelocityX(-this.speed);
             this.setFlipX(true);
             isRunning = true;
         }
-        else if (this.cursors.right.isDown /*|| Phaser.Input.Keyboard.isDown(this.d)*/) {
+        else if (this.cursors.right.isDown ) {
             this.body.setVelocityX(this.speed);
             this.setFlipX(false);
             isRunning = true;
@@ -127,10 +168,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
             isRunning = false;
         }
         
-        if (this.health <= 0) {
-            // Si la vida llega a 0, el jugador muere
-            // Aquí puedes implementar lógica adicional, como reiniciar el juego, mostrar un mensaje de game over, etc.
-            console.log("Game Over");
+        if (this.y >= 650 || this.health <= 0) {
+            // Llama a la función death(), y luego espera 4 segundos antes de llamar a respawn()
+            this.death();
+            this.scene.playerDeath();
         } else {
             if (!this.isAttacking && !this.body.onFloor()) {
                 this.play('jump', true);
@@ -142,6 +183,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.play('dash',true);
             }
         }
+        
+        this.relleno_healthbar.setCrop(0,0,this.relleno_healthbar.width*((this.health/ 100)), 317);
+        this.relleno_healthbar.isCropped = true;
         
     }
 
