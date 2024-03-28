@@ -10,6 +10,7 @@ import fox from '../assets/sprites/fox-sword.png'
 
 import background from '../assets/sprites/Forest_of_Illusion_Files/Layers/back.png'
 import castle_background from '../assets/sprites/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-background.png'
+import pantalla_completa from '../assets/sprites/pantalla_completa.png'
 import healthbar from '../assets/sprites/healthbar.png'
 import relleno_healthbar from '../assets/sprites/relleno_healthbar.png'
 import mapa from '../assets/map/mapa.json'
@@ -43,7 +44,7 @@ export default class Boot extends Phaser.Scene {
       this.load.image('castle_background',castle_background);
       this.load.image('healthbar', healthbar);
       this.load.image('relleno_healthbar', relleno_healthbar);
-
+      this.load.image('pantalla_completa', pantalla_completa);
       this.load.image('mainMap', tileset);
       
       this.load.spritesheet('player', player,{

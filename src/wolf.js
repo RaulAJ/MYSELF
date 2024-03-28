@@ -90,7 +90,7 @@ export default class Wolf extends Enemy {
                 this.canAnimate = true;
               }
             }, [], this);*/
-            this.scene.time.delayedCall(this.attackSpeed, () => {this.canAttack = true;this.canAnimate = true;}, [], this);
+            this.scene.time.delayedCall(1000, () => {this.canAttack = true;this.canAnimate = true;}, [], this);
           }
           return true;
         }

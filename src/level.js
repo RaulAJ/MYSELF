@@ -26,7 +26,7 @@ export default class Level extends Phaser.Scene {
     create() {
         
         
-        this.fondo = this.add.tileSprite(-300, 0, this.game.config.width+100, this.game.config.height, 'background');
+        this.fondo = this.add.tileSprite(0, 0, this.game.config.width+100, this.game.config.height, 'background');
         this.fondo.setScrollFactor(0,0);
         this.fondo.setScale(2.5, 2.2);
         
@@ -59,6 +59,19 @@ export default class Level extends Phaser.Scene {
     
 
         this.playerCamera = this.cameras.main.startFollow(this.player, false, 1, 1, 0, 75);
+
+        this.pantalla_completa = this.add.image(990, 10, 'pantalla_completa', 0).setOrigin(1, 0).setInteractive();
+        this.pantalla_completa.setScale(0.04);
+        this.pantalla_completa.setScrollFactor(0,0);
+        // Agregar evento de clic para el botón de pantalla completa
+        this.pantalla_completa.on('pointerup', () => {
+            if (!this.scale.isFullscreen) { // Si no está en pantalla completa
+                this.scale.startFullscreen(); // Activar el modo de pantalla completa
+            } else {
+                this.scale.stopFullscreen(); // Salir del modo de pantalla completa
+            }
+        });
+       
 
         this.physics.add.collider(this.player, this.groundLayer);
         this.physics.add.collider(this.enemies, this.groundLayer);
