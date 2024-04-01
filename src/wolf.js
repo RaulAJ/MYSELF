@@ -4,7 +4,7 @@ import Player from './player.js';
 export default class Wolf extends Enemy {
 
     constructor(scene, x, y) {
-        super(scene, x, y, 100, 75, 0, 400, 60, 100, 20);
+        super(scene, x, y, 100, 75, 0, 400, 50, 100, 20);
         this.setDisplaySize(180, 140);
         this.body.setSize(70, 60);
         this.body.setOffset(40, 70);

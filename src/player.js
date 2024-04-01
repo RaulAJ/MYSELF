@@ -214,6 +214,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }  
         if (this.y >= 700 || this.health <= 0) {
             // Llama a la función death(), y luego espera 4 segundos antes de llamar a respawn()
+            this.play('death');
             this.death();
             this.scene.playerDeath();
         } else {

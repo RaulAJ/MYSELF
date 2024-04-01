@@ -95,6 +95,13 @@ export default class Boot extends Phaser.Scene {
       });
 
       this.anims.create({
+        key: 'death',
+        frames: this.anims.generateFrameNumbers('player', {start: 52, end: 64}),
+        frameRate: 5,
+        repeat: 0
+      });
+
+      this.anims.create({
         key: 'dash',
         frames: this.anims.generateFrameNumbers('player', {start: 286, end: 290}),
         frameRate: 8,
