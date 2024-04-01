@@ -28,6 +28,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.canDash = true; //cambiar luego
         this.doubleJumped = false;
         this.dashed = false;
+        this.shrinked = false;
 
         this.spawnX = this.x;
         this.spawnY = this.y;
@@ -60,6 +61,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.cursors = this.scene.input.keyboard.createCursorKeys();
         this.j = this.scene.input.keyboard.addKey('J');
+        this.k = this.scene.input.keyboard.addKey('K');
         this.w = this.scene.input.keyboard.addKey('W');
         this.a = this.scene.input.keyboard.addKey('A');
         this.d = this.scene.input.keyboard.addKey('D');
@@ -77,6 +79,20 @@ export default class Player extends Phaser.GameObjects.Sprite {
             duration: 1000,
             scaleX: 0.7,
             scaleY: 0.7,
+            ease: 'Quad',
+            yoyo: false,
+            repeat: 0
+        });
+    }
+
+    backtoNormalTween(){
+        //agrandarse cuando has encogido
+
+        let tween = this.scene.tweens.add({
+            targets: this,
+            duration: 1000,
+            scaleX: 1.3,
+            scaleY: 1.3,
             ease: 'Quad',
             yoyo: false,
             repeat: 0
@@ -184,7 +200,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }           
         }
        
-        
         if (this.cursors.left.isDown) {
             if(this.dashed){
                 this.body.setVelocityX(-this.speed * 1.7);
@@ -233,8 +248,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
             } 
         }
 
-        if(Phaser.Input.Keyboard.JustDown(this.ctrl)){
+        if(Phaser.Input.Keyboard.JustDown(this.ctrl) && !this.shrinked){
             this.shrinkTween();
+            this.shrinked = true;
+        }
+        else if(Phaser.Input.Keyboard.JustDown(this.cursors.space) && this.shrinked){
+            this.backtoNormalTween();
+            this.shrinked = false;
         }
         
         this.relleno_healthbar.setCrop(0,0,this.relleno_healthbar.width*((this.health/ 100)), 317);
