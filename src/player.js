@@ -22,7 +22,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.enemies_melee = 0;
         this.enemies_distance = 0;
         this.canMove = true; // Inicializar la variable canMove como true para permitir que el jugador se mueva
-
+        this.canDoubleJump = true; //cambiar luego
+        this.doubleJumped = false;
         this.spawnX = this.x;
         this.spawnY = this.y;
 
@@ -107,7 +108,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
         let isRunning = false;
         let isDashing = false;
-
+        //let isJumping = false;
 
         this.positionText.setText('Posición: (' + this.x + ', ' + this.y + ')');
 
@@ -117,8 +118,24 @@ export default class Player extends Phaser.GameObjects.Sprite {
             return;
         }
 
-        
-       
+        if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
+            if (this.body.onFloor() || (this.canDoubleJump && !this.body.onFloor() && !this.doubleJumped)) {
+                if (!this.body.onFloor()) {
+                    this.doubleJumped = true; // Registrar el doble salto
+                }
+                this.body.setVelocityY(this.jumpSpeed);
+                isRunning = true;
+            }
+        }
+    
+        // Restablecer el doble salto cuando el jugador toca el suelo
+        if (this.body.onFloor()) {
+            this.doubleJumped = false;
+        }
+
+        if(this.body.onFloor()){
+            this.isDoubleJumping = false;
+        }
 
         if (Phaser.Input.Keyboard.JustDown(this.j) && !this.isAttacking) {
             this.isAttacking = true;
@@ -149,10 +166,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             isDashing = true;
             isRunning = true;
         }    
-        if (this.cursors.up.isDown  && this.body.onFloor()) {
-            this.body.setVelocityY(this.jumpSpeed);
-            isRunning = true;
-        }
+        
         if (this.cursors.left.isDown ) {
             this.body.setVelocityX(-this.speed);
             this.setFlipX(true);
