@@ -47,14 +47,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.jumpSpeed = -400;
         this.play('stand');
 
-        
-        /*this.weaponDamage = this.scene.add.zone(100, 40, 110, 80);
-        this.scene.physics.add.existing(this.weaponDamage);
-        this.weaponDamage.body.setAllowGravity(false);
-
-        this.add(this.weaponDamage); */
-
-
         this.healthbar = this.scene.add.sprite(185, 52, 'healthbar');
         this.healthbar.setScale(0.60);
         this.healthbar.setScrollFactor(0,0);
@@ -77,7 +69,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.health -= 100;
         this.canMove = false;
     }
-    
+
+    getDamage(damage) {
+        this.health-=damage;   
+    }
+
     makeDamage(){
        // if(level_melee == 1){
         this.scene.physics.overlap(this.body, this.scene.enemies,(hitbox, enemy) => {

@@ -1,4 +1,5 @@
 import Enemy from './enemy.js';
+import Player from './player.js';
 
 export default class Wolf extends Enemy {
 
@@ -26,7 +27,7 @@ export default class Wolf extends Enemy {
                 
                 this.anims.play('wolf_dead',true);
                 this.body.setVelocityX(0);
-                this.scene.time.delayedCall(10000, () => {this.destroy();}, [], this);
+                this.scene.time.delayedCall(5000, () => {this.destroy();}, [], this);
             }
         }
     }
@@ -59,38 +60,32 @@ export default class Wolf extends Enemy {
             this.body.setVelocityX(0);
         }
     }
-
+    makeDamage(){
+        this.scene.physics.overlap(this.body, this.scene.player, (hitbox, player) => {
+            player.getDamage(20); // Aplicar daño al jugador
+        });
+     }
 
     attack(){
         if(this.scene.player.health > 0 && (this.x - this.rangeAttack < this.scene.player.x)  && (this.scene.player.x < this.x + this.rangeAttack) && ( this.y - this.rangeAttack < this.scene.player.y)  && (this.scene.player.y < this.y + this.rangeAttack) && this.health > 0){
           this.body.setVelocityX(0);
-          /*if (this.scene.player.x < this.x) {
-            this.weaponHitbox.setX(-15);
-            this.setFlipX(true);
-            //this.sprite.x = this.oldX = 70;  
-            
-          }
-          else if (this.scene.player.x>this.x) {
-            this.weaponHitbox.setX(150);
-            this.setFlipX(false);
-            //this.sprite.x = this.oldX = 60;
-          }*/
+
           if(this.canAttack === true && this.health > 0){
             this.canAttack = false;
             //this.scene.time.delayedCall(400, () => {if(!this.hasBeenHurt)this.dealWeaponDamage();}, [], this);
             this.canAnimate = false;
             //this.isOnAction = true;
             this.play('wolf_attack',true);
-            /*
-            //this.oldX = this.sprite.x;
-  
-            this.scene.time.delayedCall(1000, () => {
-              //this.isOnAction = false;
-              if(this.health > 0){
+            this.on('animationcomplete-wolf_attack', function attackCompleteCallback() {
+                // Desvincular el evento después de que se dispare por primera vez
+                this.off('animationcomplete-wolf_attack', attackCompleteCallback);
+            
+                // Lógica que quieres ejecutar cuando la animación 'wolf_attack' se completa
+                this.canAttack = true;
                 this.canAnimate = true;
-              }
-            }, [], this);*/
-            this.scene.time.delayedCall(1000, () => {this.canAttack = true;this.canAnimate = true;}, [], this);
+                this.makeDamage();
+            });
+            
           }
           return true;
         }
