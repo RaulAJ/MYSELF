@@ -36,10 +36,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
 
         this.scene.add.existing(this);
-        
+        this.originalBodySize = {width: 35, height: 52};
         this.scene.physics.add.existing(this);
         this.setDisplaySize(180, 140);
-        this.body.setSize(35, 52);
+        this.body.setSize(this.originalBodySize.width, this.originalBodySize.height);
         this.body.setOffset(39, 20);
         this.setScale(1.5, 1.6);
         this.body.setCollideWorldBounds();
@@ -86,7 +86,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
         //}
     }
 
-
+    readjustHitbox(){
+        this.body.setSize(this.originalBodySize.width, this.originalBodySize.height);
+        this.body.setOffset(39, 20);
+    }
 
     respawn() {
         // Restablecer la posición del jugador a su punto de aparición inicial
@@ -139,19 +142,29 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.isAttacking = true;
             this.attackCount++; // Incrementar el contador de ataques
 
-            this.scene.time.delayedCall(200, () => {if(!this.hasBeenHurt)this.makeDamage();}, [], this);
-
+            // Aumentar temporalmente la hitbox del jugador durante el ataque
+            const enlargedBodySize = { width: this.originalBodySize.width * 1.5, height: this.originalBodySize.height * 1.5 };
+            this.body.setSize(this.originalBodySize.width * 1.8, this.originalBodySize.height);
+            // Restaurar el tamaño del cuerpo después de un cierto período de tiempo
+            this.scene.time.delayedCall(200, () => {
+                    if (!this.hasBeenHurt) 
+                        this.makeDamage();
+                }, [], this);
             if (this.attackCount === 1) {
                 // Primer ataque: reproducir animación de ataque 1
                 this.play('attack1', true);
                 this.on('animationcomplete-attack1', () => {
                     this.isAttacking = false;
+                    this.readjustHitbox();
+
                 });
             } else if (this.attackCount === 2) {
                 // Segundo ataque: reproducir animación de ataque 2
                 this.play('attack2', true);
                 this.on('animationcomplete-attack2', () => {
                     this.isAttacking = false;
+                    this.readjustHitbox();
+
                 });
                 this.attackCount = 0;
             }           
