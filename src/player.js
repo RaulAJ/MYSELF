@@ -23,7 +23,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.enemies_distance = 0;
         this.canMove = true; // Inicializar la variable canMove como true para permitir que el jugador se mueva
         this.canDoubleJump = true; //cambiar luego
+        this.canDash = true; //cambiar luego
         this.doubleJumped = false;
+        this.dashed = false;
         this.spawnX = this.x;
         this.spawnY = this.y;
 
@@ -107,9 +109,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
         let isRunning = false;
-        let isDashing = false;
-        //let isJumping = false;
-
         this.positionText.setText('Posición: (' + this.x + ', ' + this.y + ')');
 
         if (!this.canMove) {
@@ -127,7 +126,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 isRunning = true;
             }
         }
-    
         // Restablecer el doble salto cuando el jugador toca el suelo
         if (this.body.onFloor()) {
             this.doubleJumped = false;
@@ -159,21 +157,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }           
         }
         
-    
-        if(this.cursors.shift.isDown){ //dash derecha
-            this.body.setVelocityX(this.speed *1.5);
-            this.setFlipX(false);
-            isDashing = true;
-            isRunning = true;
-        }    
-        
-        if (this.cursors.left.isDown ) {
-            this.body.setVelocityX(-this.speed);
+        if (this.cursors.left.isDown) {
+            if(this.dashed){
+                this.body.setVelocityX(-this.speed * 1.7);
+            }
+            else{
+                this.body.setVelocityX(-this.speed);
+            }
             this.setFlipX(true);
             isRunning = true;
         }
-        else if (this.cursors.right.isDown ) {
-            this.body.setVelocityX(this.speed);
+        else if (this.cursors.right.isDown) {
+            if(this.dashed){
+                this.body.setVelocityX(this.speed * 1.7);
+            }
+            else{
+                this.body.setVelocityX(this.speed);
+            }
             this.setFlipX(false);
             isRunning = true;
         }
@@ -181,7 +181,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.body.setVelocityX(0);
             isRunning = false;
         }
-        
+        if(Phaser.Input.Keyboard.JustDown(this.cursors.shift) && this.canDash && !this.dashed && this.body.onFloor()){
+            this.dashed = true;
+        }  
         if (this.y >= 700 || this.health <= 0) {
             // Llama a la función death(), y luego espera 4 segundos antes de llamar a respawn()
             this.death();
@@ -189,13 +191,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
         } else {
             if (!this.isAttacking && !this.body.onFloor()) {
                 this.play('jump', true);
-            } else if (!this.isAttacking && isRunning && this.body.onFloor()) {
+            }else if(!this.isAttacking && this.dashed){
+                this.play('dash',true);
+                this.on('animationcomplete-dash', () => {
+                    this.dashed = false;
+                });
+            } 
+            else if (!this.isAttacking && isRunning && this.body.onFloor()) {
                 this.play('run', true); 
             } else if (!this.isAttacking) {
                 this.play('stand', true);
-            } else if(!this.isAttacking && isRunning && isDashing){
-                this.play('dash',true);
-            }
+            } 
         }
         
         this.relleno_healthbar.setCrop(0,0,this.relleno_healthbar.width*((this.health/ 100)), 317);
