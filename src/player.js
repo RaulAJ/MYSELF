@@ -21,11 +21,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.level_distance = 1;
         this.enemies_melee = 0;
         this.enemies_distance = 0;
+
         this.canMove = true; // Inicializar la variable canMove como true para permitir que el jugador se mueva
         this.canDoubleJump = true; //cambiar luego
+        this.canShrink = true;
         this.canDash = true; //cambiar luego
         this.doubleJumped = false;
         this.dashed = false;
+
         this.spawnX = this.x;
         this.spawnY = this.y;
 
@@ -60,9 +63,24 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.w = this.scene.input.keyboard.addKey('W');
         this.a = this.scene.input.keyboard.addKey('A');
         this.d = this.scene.input.keyboard.addKey('D');
+        this.ctrl = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.CTRL);
         
         this.relleno_healthbar.setCrop(0,0,this.relleno_healthbar.width*((this.health/ 100)), 317);
         this.relleno_healthbar.isCropped = true;
+    }
+
+    shrinkTween() {
+        // Crear y ejecutar el tween de encogimiento
+        
+        let tween = this.scene.tweens.add({
+            targets: this,
+            duration: 1000,
+            scaleX: 0.7,
+            scaleY: 0.7,
+            ease: 'Quad',
+            yoyo: false,
+            repeat: 0
+        });
     }
 
     death(){
@@ -165,6 +183,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.attackCount = 0;
             }           
         }
+       
         
         if (this.cursors.left.isDown) {
             if(this.dashed){
@@ -211,6 +230,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
             } else if (!this.isAttacking) {
                 this.play('stand', true);
             } 
+        }
+
+        if(Phaser.Input.Keyboard.JustDown(this.ctrl)){
+            this.shrinkTween();
         }
         
         this.relleno_healthbar.setCrop(0,0,this.relleno_healthbar.width*((this.health/ 100)), 317);
