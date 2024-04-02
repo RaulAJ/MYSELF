@@ -25,7 +25,9 @@ export default class Level extends Phaser.Scene {
      */
     create() {
         
-        
+        const Collectible_list = [];
+        this.collectible_list = Collectible_list;
+
         this.fondo = this.add.tileSprite(0, 0, this.game.config.width+100, this.game.config.height, 'background');
         this.fondo.setScrollFactor(0,0);
         this.fondo.setScale(2.5, 2.2);
@@ -38,8 +40,10 @@ export default class Level extends Phaser.Scene {
 
 
         this.groundLayer = this.map.createLayer('Plataformas', mainMap);
+        this.wallLayer = this.map.createLayer('Paredes', mainMap);
         
         this.groundLayer.setCollisionByProperty({colision:true});
+        this.wallLayer.setCollisionByProperty({colision:true});
 
         this.enemies = this.add.group();
 
@@ -48,14 +52,17 @@ export default class Level extends Phaser.Scene {
         
         this.player = new Player(this, 500, 400);
         this.wolf = new Wolf(this, 3605, 500);
+        this.wolf2 = new Wolf(this, 4100, 402);
         //this.fox = new Fox(this,150,300);
         this.enemies.add(this.wolf);
+        this.enemies.add(this.wolf2);
+
         //this.enemies.add(this.fox);
 
-        this.physics.world.setBounds(0, -4470, 5000, 6000); // Cambiar los valores según sea necesario
+        this.physics.world.setBounds(0, -4470, 4566, 6000); // Cambiar los valores según sea necesario
 
         // Establecer los límites de desplazamiento de la cámara
-        this.cameras.main.setBounds(0, -4470, 5000, 5100); // Casi coincidir con el tamaño del mundo del juego
+        this.cameras.main.setBounds(0, -4470, 4500, 5100); // Casi coincidir con el tamaño del mundo del juego
     
 
         this.playerCamera = this.cameras.main.startFollow(this.player, false, 1, 1, 0, 75);
@@ -75,6 +82,8 @@ export default class Level extends Phaser.Scene {
 
         this.physics.add.collider(this.player, this.groundLayer);
         this.physics.add.collider(this.enemies, this.groundLayer);
+        this.physics.add.collider(this.player, this.wallLayer);
+        this.physics.add.collider(this.enemies, this.wallLayer);
 
     }
 
@@ -89,22 +98,9 @@ export default class Level extends Phaser.Scene {
         this.fondo.tilePositionX = this.playerCamera.scrollX * 0.1;
     }
 
-    /**
-     * Método que se ejecuta al coger una estrella. Se pasa la base
-     * sobre la que estaba la estrella cogida para evitar repeticiones
-     * @param {Base} base La base sobre la que estaba la estrella que se ha cogido
-     */
-    /*starPickt(base) {
-        this.player.point();
-        if (this.player.score == this.stars) {
-            this.scene.start('end');
-        }
-        else {
-            let s = this.bases.children.entries;
-            this.spawn(s.filter(o => o !== base));
-
-        }
-    }*/
-
+    pause_function(){
+        this.scene.launch('pause',{collectible_list: this.collectible_list});
+        this.scene.pause();
+    }
     
 }

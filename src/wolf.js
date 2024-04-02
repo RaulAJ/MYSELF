@@ -32,37 +32,41 @@ export default class Wolf extends Enemy {
         }
     }
 
-    move(){
-        if((this.x - this.fieldOfView < this.scene.player.x)  && (this.scene.player.x < this.x + this.fieldOfView) && (this.y - this.fieldOfView< this.scene.player.y)  && (this.scene.player.y < this.y + this.fieldOfView )){
-            
-            if((this.x - 40 < this.scene.player.x)  && (this.scene.player.x < this.x + 40)){
-                this.body.setVelocityX(0);
-            }
-            else if (this.scene.player.x < this.x && (this.scene.groundLayer.hasTileAtWorldXY(this.x, this.y + 110) /*|| this.scene.platformLayer.hasTileAtWorldXY(this.x, this.y + 110)) && !this.scene.wallLayer.hasTileAtWorldXY(this.x -35, this.y + 50) && !this.scene.groundLayer.hasTileAtWorldXY(this.x -35, this.y + 50*/)) {
+    move() {
+        // Verificar si el jugador está dentro del campo de visión del enemigo
+        if ((this.x - this.fieldOfView < this.scene.player.x) && (this.scene.player.x < this.x + this.fieldOfView) && (this.y - this.fieldOfView < this.scene.player.y) && (this.scene.player.y < this.y + this.fieldOfView)) {
+    
+            // Verificar si hay una pared delante del enemigo
+            if (this.scene.player.x < this.x - 25 && !this.isWallInFront(-20)) {
+                // Mover hacia la izquierda si no hay pared
                 this.body.setVelocityX(-this.speed);
                 this.setFlipX(true);
-            }
-            else if (this.scene.player.x>this.x&& (this.scene.groundLayer.hasTileAtWorldXY(this.x + 135, this.y + 110) /*|| this.scene.platformLayer.hasTileAtWorldXY(this.x + 135, this.y + 110)) && !this.scene.wallLayer.hasTileAtWorldXY(this.x + 175, this.y + 50) && !this.scene.groundLayer.hasTileAtWorldXY(this.x + 175, this.y + 50*/)) {
+            } else if (this.scene.player.x > this.x + 25 && !this.isWallInFront(50)) {
+                // Mover hacia la derecha si no hay pared
                 this.body.setVelocityX(this.speed);
                 this.setFlipX(false);
-            }
-            else{
+            } else {
+                // Quedarse quieto si hay una pared
                 this.body.setVelocityX(0);
             }
-            if(this.x > this.scene.player.x){
-                this.setFlipX(true);
-            }
-            else{
-                this.setFlipX(false);
-            }
-        }
-        else{
+        } else {
+            // Quedarse quieto si el jugador está fuera del campo de visión
             this.body.setVelocityX(0);
         }
     }
-    makeDamage(){
+    
+    isWallInFront(offsetX) {
+        // Calcula las coordenadas del punto en frente del enemigo
+        const frontX = this.x + offsetX;
+        const frontY = this.y; // Ajusta la altura según la posición de la hitbox del enemigo
+    
+        // Verifica si hay un tile en la capa de paredes en las coordenadas calculadas
+        return this.scene.wallLayer.hasTileAtWorldXY(frontX, frontY);
+    }
+    
+    makeDamage(damage){
         this.scene.physics.overlap(this.body, this.scene.player, (hitbox, player) => {
-            player.getDamage(20); // Aplicar daño al jugador
+            player.getDamage(damage); // Aplicar daño al jugador
         });
      }
 
@@ -83,7 +87,7 @@ export default class Wolf extends Enemy {
                 // Lógica que quieres ejecutar cuando la animación 'wolf_attack' se completa
                 this.canAttack = true;
                 this.canAnimate = true;
-                this.makeDamage();
+                this.makeDamage(20);
             });
             
           }
@@ -100,7 +104,7 @@ export default class Wolf extends Enemy {
         super.preUpdate(t, dt);
 
         // Verificar si el enemigo está en movimiento
-        if(this.health >= 0){
+        if(this.health > 0){
             if(!this.attack()){
                 this.move();
             }

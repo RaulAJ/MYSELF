@@ -34,7 +34,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.spawnY = this.y;
 
 
-        this.positionText = this.scene.add.text(500, 50, 'Posición: (0, 0)', { fontSize: '24px', fill: '#ffffff' }).setScrollFactor(0);
+        //this.positionText = this.scene.add.text(500, 50, 'Posición: (0, 0)', { fontSize: '24px', fill: '#ffffff' }).setScrollFactor(0);
 
 
 
@@ -66,6 +66,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.a = this.scene.input.keyboard.addKey('A');
         this.d = this.scene.input.keyboard.addKey('D');
         this.ctrl = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.CTRL);
+        this.esc = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+
         
         this.relleno_healthbar.setCrop(0,0,this.relleno_healthbar.width*((this.health/ 100)), 317);
         this.relleno_healthbar.isCropped = true;
@@ -91,8 +93,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
         let tween = this.scene.tweens.add({
             targets: this,
             duration: 1000,
-            scaleX: 1.3,
-            scaleY: 1.3,
+            scaleX: 1.5,
+            scaleY: 1.6,
             ease: 'Quad',
             yoyo: false,
             repeat: 0
@@ -114,6 +116,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
           enemy.getDamage(40);
         });
         //}
+    }
+
+    make_pause(){
+        if (Phaser.Input.Keyboard.JustDown(this.esc)) { 
+         this.scene.pause_function();
+        }
     }
 
     readjustHitbox(){
@@ -142,7 +150,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
         let isRunning = false;
-        this.positionText.setText('Posición: (' + this.x + ', ' + this.y + ')');
+        //this.positionText.setText('Posición: (' + this.x + ', ' + this.y + ')');
 
         if (!this.canMove) {
             // Si el jugador no puede moverse, establecer la velocidad del jugador en 0 y salir de preUpdate
@@ -173,8 +181,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.attackCount++; // Incrementar el contador de ataques
 
             // Aumentar temporalmente la hitbox del jugador durante el ataque
-            const enlargedBodySize = { width: this.originalBodySize.width * 1.5, height: this.originalBodySize.height * 1.5 };
             this.body.setSize(this.originalBodySize.width * 1.8, this.originalBodySize.height);
+            this.body.setOffset(31, 21);
             // Restaurar el tamaño del cuerpo después de un cierto período de tiempo
             this.scene.time.delayedCall(200, () => {
                     if (!this.hasBeenHurt) 
@@ -260,6 +268,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.relleno_healthbar.setCrop(0,0,this.relleno_healthbar.width*((this.health/ 100)), 317);
         this.relleno_healthbar.isCropped = true;
         
+        this.make_pause();
     }
 
 }
