@@ -29,7 +29,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.doubleJumped = false;
         this.dashed = false;
         this.shrinked = false;
-
+        this.isShrinking = false;
         this.spawnX = this.x;
         this.spawnY = this.y;
 
@@ -83,8 +83,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
             scaleY: 0.7,
             ease: 'Quad',
             yoyo: false,
-            repeat: 0
+            repeat: 0,
+            onComplete: () => {
+                this.isShrinking = false;
+            }
         });
+        
     }
 
     backtoNormalTween(){
@@ -241,7 +245,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.death();
             this.scene.playerDeath();
         } else {
-            if (!this.isAttacking && !this.body.onFloor()) {
+            if (!this.isAttacking && !this.body.onFloor() && !this.isShrinking) {
                 this.play('jump', true);
             }else if(!this.isAttacking && this.dashed){
                 this.play('dash',true);
@@ -259,6 +263,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         if(Phaser.Input.Keyboard.JustDown(this.ctrl) && !this.shrinked){
             this.shrinkTween();
             this.shrinked = true;
+            this.isShrinking = true;
         }
         else if(Phaser.Input.Keyboard.JustDown(this.cursors.space) && this.shrinked){
             this.backtoNormalTween();
