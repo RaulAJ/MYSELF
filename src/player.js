@@ -253,7 +253,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.dashed = false;
                 });
             } 
-            else if (!this.isAttacking && isRunning && this.body.onFloor()) {
+            else if (!this.isAttacking && isRunning ) {
                 this.play('run', true); 
             } else if (!this.isAttacking) {
                 this.play('stand', true);

@@ -50,9 +50,10 @@ export default class Level extends Phaser.Scene {
         //this.backWallLayer.setCollisionByProperty({colision:true});
         
         
-        this.player = new Player(this, 500, 400);
         this.wolf = new Wolf(this, 3605, 500);
         this.wolf2 = new Wolf(this, 4100, 402);
+        this.player = new Player(this, 500, 400);
+
         //this.fox = new Fox(this,150,300);
         this.enemies.add(this.wolf);
         this.enemies.add(this.wolf2);
