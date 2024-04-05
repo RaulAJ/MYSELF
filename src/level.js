@@ -1,6 +1,5 @@
 import Player from './player.js';
 import Wolf from './wolf.js';
-import Fox from './fox.js';
 import Phaser from 'phaser'
 
 
@@ -33,11 +32,9 @@ export default class Level extends Phaser.Scene {
         this.fondo.setScale(2.5, 2.2);
         
 
-        this.map = this.make.tilemap({key: 'tilemap'});
+        this.map = this.make.tilemap({key: 'tilemap3'});
 
         const mainMap = this.map.addTilesetImage('main', 'mainMap');
-
-
 
         this.groundLayer = this.map.createLayer('Plataformas', mainMap);
         this.wallLayer = this.map.createLayer('Paredes', mainMap);
@@ -54,16 +51,13 @@ export default class Level extends Phaser.Scene {
         this.wolf2 = new Wolf(this, 4100, 402);
         this.player = new Player(this, 500, 400);
 
-        //this.fox = new Fox(this,150,300);
         this.enemies.add(this.wolf);
         this.enemies.add(this.wolf2);
 
-        //this.enemies.add(this.fox);
-
-        this.physics.world.setBounds(0, -4470, 4566, 6000); // Cambiar los valores según sea necesario
+        this.physics.world.setBounds(0, -4470, 7566, 7000); // Cambiar los valores según sea necesario
 
         // Establecer los límites de desplazamiento de la cámara
-        this.cameras.main.setBounds(0, -4470, 4500, 5100); // Casi coincidir con el tamaño del mundo del juego
+        this.cameras.main.setBounds(0, -4470, 8500, 6100); // Casi coincidir con el tamaño del mundo del juego
     
 
         this.playerCamera = this.cameras.main.startFollow(this.player, false, 1, 1, 0, 75);

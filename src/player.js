@@ -30,6 +30,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.dashed = false;
         this.shrinked = false;
         this.isShrinking = false;
+        this.hitten = false;
         this.spawnX = this.x;
         this.spawnY = this.y;
 
@@ -47,7 +48,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.body.setOffset(39, 20);
         this.setScale(1.5, 1.6);
         this.body.setCollideWorldBounds();
-        this.speed = 200;
+        this.speed = 250;
         this.jumpSpeed = -400;
         this.play('stand');
 
@@ -111,7 +112,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     getDamage(damage) {
-        this.health-=damage;   
+        //if(this.health > 0){
+            this.health-=damage;    
+            /*this.play('hurt');
+        }*/
     }
 
     makeDamage(){
@@ -239,7 +243,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         if(Phaser.Input.Keyboard.JustDown(this.cursors.shift) && this.canDash && !this.dashed && this.body.onFloor()){
             this.dashed = true;
         }  
-        if (this.y >= 700 || this.health <= 0) {
+        if (this.y >= 6000 || this.health <= 0) {
             // Llama a la función death(), y luego espera 4 segundos antes de llamar a respawn()
             this.play('death');
             this.death();

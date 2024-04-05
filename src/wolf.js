@@ -21,6 +21,7 @@ export default class Wolf extends Enemy {
         if(this.health>0){
             if(this.health>=damage){
                 this.health-=damage;
+                //this.play('wolf_hurt',true);
             }
             else{
                 this.health = 0;

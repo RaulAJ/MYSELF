@@ -6,7 +6,7 @@ import wolf_stand from '../assets/sprites/Wolf/Black_Werewolf/Idle.png'
 import wolf_walk from '../assets/sprites/Wolf/Black_Werewolf/walk.png'
 import wolf_dead from '../assets/sprites/Wolf/Black_Werewolf/Dead.png'
 import wolf_attack from '../assets/sprites/Wolf/Black_Werewolf/Attack_1.png'
-import fox from '../assets/sprites/fox-sword.png'
+import wolf_hurt from '../assets/sprites/Wolf/Black_Werewolf/Hurt.png'
 
 import logo_hormiga from '../assets/sprites/logo_hormiga.png'
 import background from '../assets/sprites/Forest_of_Illusion_Files/Layers/back.png'
@@ -17,6 +17,7 @@ import relleno_healthbar from '../assets/sprites/relleno_healthbar.png'
 import pause from '../assets/sprites/pause.png'
 import mapa from '../assets/map/mapa.json'
 import mapa2 from '../assets/map/mapa2.json'
+import mapa3 from '../assets/map/mapa3.json'
 
 import tileset from '../assets/sprites/Environment/PNG/tileset.png'
 /**
@@ -94,7 +95,7 @@ export default class Boot extends Phaser.Scene {
 
       this.load.tilemapTiledJSON('tilemap', mapa);
       this.load.tilemapTiledJSON('tilemap2', mapa2);
-
+      this.load.tilemapTiledJSON('tilemap3', mapa3);
       
       this.load.image('mainMap', tileset);
       
@@ -122,12 +123,9 @@ export default class Boot extends Phaser.Scene {
       this.load.spritesheet('wolf_attack', wolf_attack,{
         frameWidth: 128, frameHeight: 128 
       });
-      this.load.spritesheet('fox', fox,{
-        frameWidth:84, frameHeight: 128
-      })
-
-
-      
+      this.load.spritesheet('wolf_hurt', wolf_hurt,{
+        frameWidth: 128, frameHeight: 128 
+      })      
 }
     
 
@@ -210,10 +208,17 @@ export default class Boot extends Phaser.Scene {
       this.anims.create({
         key: 'death',
         frames: this.anims.generateFrameNumbers('player', {start: 52, end: 64}),
-        frameRate: 5,
+        frameRate: 8,
         repeat: 0
       });
 
+      this.anims.create({
+        key: 'hurt',
+        frames: this.anims.generateFrameNumbers('player', {start: 39, end: 42}),
+        frameRate: 6,
+        repeat: -1
+      });
+      
       this.anims.create({
         key: 'dash',
         frames: this.anims.generateFrameNumbers('player', {start: 286, end: 290}),
@@ -252,7 +257,7 @@ export default class Boot extends Phaser.Scene {
       this.anims.create({
         key: 'wolf_dead',
         frames: this.anims.generateFrameNumbers('wolf_dead', { start: 0, end: 1 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
-        frameRate: 2, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        frameRate: 4, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
         repeat: 0  // para no repetir la animación continuamente
       });
       
@@ -264,19 +269,11 @@ export default class Boot extends Phaser.Scene {
       });
 
       this.anims.create({
-        key: 'fox_walk',
-        frames: this.anims.generateFrameNumbers('fox', { start: 0, end: 7 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
-        frameRate: 8, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        key: 'wolf_hurt',
+        frames: this.anims.generateFrameNumbers('wolf_hurt', { start: 0, end: 1 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 2, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
         repeat: -1  // para no repetir la animación continuamente
       });
-
-      this.anims.create({
-        key: 'fox_stand',
-        frames: this.anims.generateFrameNumbers('fox', { start: 6, end: 7 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
-        frameRate: 3, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
-        repeat: -1  // para no repetir la animación continuamente
-      });
-
       
     }
     
