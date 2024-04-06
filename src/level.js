@@ -54,10 +54,10 @@ export default class Level extends Phaser.Scene {
         this.enemies.add(this.wolf);
         this.enemies.add(this.wolf2);
 
-        this.physics.world.setBounds(0, -4470, 7566, 7000); // Cambiar los valores según sea necesario
+        this.physics.world.setBounds(0, -4470, 8566, 10000); // Cambiar los valores según sea necesario
 
         // Establecer los límites de desplazamiento de la cámara
-        this.cameras.main.setBounds(0, -4470, 8500, 6100); // Casi coincidir con el tamaño del mundo del juego
+        this.cameras.main.setBounds(0, -4470, 8500, 9800); // Casi coincidir con el tamaño del mundo del juego
     
 
         this.playerCamera = this.cameras.main.startFollow(this.player, false, 1, 1, 0, 75);
