@@ -40,7 +40,7 @@ export default class Boot extends Phaser.Scene {
    */
   preload() {
 
-      var silkscreen_font = new FontFace('Times_New_Roman', 'url(../assets/styles/Times-New-Roman-Subsetted.woff)');
+      var times_new_roman = new FontFace('Times_New_Roman', 'url(../assets/styles/Times-New-Roman-Subsetted.woff)');
 
       var progressBar = this.add.graphics();
       var progressBox = this.add.graphics();
@@ -134,7 +134,7 @@ export default class Boot extends Phaser.Scene {
      * nivel del juego
      */
     create() {
-      
+      /*
       // Crear un rectángulo blanco para el fondo
       const backgroundRect = this.add.rectangle(
           this.sys.game.canvas.width / 2,
@@ -183,6 +183,8 @@ export default class Boot extends Phaser.Scene {
         },
         onCompleteScope: this // laanimación se agrega al objeto correcto
       });
+      */
+      this.scene.start('level');
 
       this.anims.create({
         key: 'stand',
