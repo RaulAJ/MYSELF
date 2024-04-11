@@ -109,14 +109,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     getDamage(damage) {
-        this.health-=damage;    
-        this.play('hurt', true);
-        this.gettingHurt = true;
-        this.canMove = false;
-        this.on('animationcomplete-hurt', () => {
-            this.gettingHurt = false;
-            this.canMove = true;
-        });
+        this.health-=damage;
+        if(this.health > 0){    
+            this.play('hurt', true);
+            this.gettingHurt = true;
+            this.canMove = false;
+            this.on('animationcomplete-hurt', () => {
+                this.gettingHurt = false;
+                this.canMove = true;
+            });
+        }
     }
 
     makeDamage(){
