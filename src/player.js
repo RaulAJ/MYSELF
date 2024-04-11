@@ -180,10 +180,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.doubleJumped = false;
         }
 
-        if(this.body.onFloor()){
-            this.isDoubleJumping = false;
-        }
-
         if (Phaser.Input.Keyboard.JustDown(this.j) && !this.isAttacking) {
             this.isAttacking = true;
             this.attackCount++; // Incrementar el contador de ataques
@@ -240,8 +236,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.body.setVelocityX(0);
             isRunning = false;
         }
-        if(Phaser.Input.Keyboard.JustDown(this.cursors.shift) && this.canDash && !this.dashed && this.body.onFloor()){
+        if(Phaser.Input.Keyboard.JustDown(this.cursors.shift) && this.canDash && !this.dashed){
             this.dashed = true;
+            this.body.setVelocityY(0); // Detener cualquier movimiento vertical
+            this.body.setAllowGravity(false);
+
         }  
         if (this.y >= 6000 || this.health <= 0) {
             // Llama a la función death(), y luego espera 4 segundos antes de llamar a respawn()
@@ -249,14 +248,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.death();
             this.scene.playerDeath();
         } else {
-            if (!this.isAttacking && !this.body.onFloor() && !this.isShrinking) {
-                this.play('jump', true);
-            }else if(!this.isAttacking && this.dashed){
+            if(!this.isAttacking && this.dashed){
                 this.play('dash',true);
                 this.on('animationcomplete-dash', () => {
                     this.dashed = false;
+                    this.body.setAllowGravity(true);
                 });
-            } 
+            } else if (!this.isAttacking && !this.body.onFloor() && !this.isShrinking) {
+                this.play('jump', true);
+            }
             else if (!this.isAttacking && isRunning ) {
                 this.play('run', true); 
             } else if (!this.isAttacking) {
