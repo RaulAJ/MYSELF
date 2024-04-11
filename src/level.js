@@ -1,5 +1,6 @@
 import Player from './player.js';
 import Wolf from './wolf.js';
+import Spider from './spider.js';
 import Phaser from 'phaser'
 
 
@@ -49,10 +50,12 @@ export default class Level extends Phaser.Scene {
         
         this.wolf = new Wolf(this, 3605, 500);
         this.wolf2 = new Wolf(this, 4100, 402);
-        this.player = new Player(this, 500, 400);
+        this.spider = new Spider(this, 800, 1100)
+        this.player = new Player(this, 500, 1200);
 
         this.enemies.add(this.wolf);
         this.enemies.add(this.wolf2);
+        this.enemies.add(this.spider);
 
         this.physics.world.setBounds(0, -4470, 8566, 10000); // Cambiar los valores según sea necesario
 

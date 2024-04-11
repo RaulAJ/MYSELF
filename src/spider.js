@@ -1,20 +1,20 @@
 import Enemy from './enemy.js';
 import Player from './player.js';
 
-export default class Wolf extends Enemy {
+export default class Spider extends Enemy {
 
     constructor(scene, x, y) {
-        super(scene, x, y, 100, 75, 0, 400, 50, 100, 20);
+        super(scene, x, y, 100, 75, 0, 400, 50, 100, 5);
         this.setDisplaySize(180, 140);
         this.body.setSize(70, 60);
-        this.body.setOffset(40, 70);
+        this.body.setOffset(25, 25);
         this.setScale(1.2, 1);
 
         // Queremos que el enemigo no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
 
         // Animación inicial default
-        this.play('wolf_stand');
+        this.play('spider_stand');
     }
 
     getDamage(damage) {
@@ -26,7 +26,7 @@ export default class Wolf extends Enemy {
             else{
                 this.health = 0;
                 
-                this.anims.play('wolf_dead',true);
+                this.anims.play('spider_dead',true);
                 this.body.setVelocityX(0);
                 this.scene.time.delayedCall(5000, () => {this.destroy();}, [], this);
             }
@@ -80,12 +80,12 @@ export default class Wolf extends Enemy {
             //this.scene.time.delayedCall(400, () => {if(!this.hasBeenHurt)this.dealWeaponDamage();}, [], this);
             this.canAnimate = false;
             //this.isOnAction = true;
-            this.play('wolf_attack',true);
-            this.on('animationcomplete-wolf_attack', function attackCompleteCallback() {
+            this.play('spider_attack',true);
+            this.on('animationcomplete-spider_attack', function attackCompleteCallback() {
                 // Desvincular el evento después de que se dispare por primera vez
-                this.off('animationcomplete-wolf_attack', attackCompleteCallback);
+                this.off('animationcomplete-spider_attack', attackCompleteCallback);
             
-                // Lógica que quieres ejecutar cuando la animación 'wolf_attack' se completa
+                // Lógica que quieres ejecutar cuando la animación 'spider_attack' se completa
                 this.canAttack = true;
                 this.canAnimate = true;
                 this.makeDamage(this.damage);
@@ -109,17 +109,17 @@ export default class Wolf extends Enemy {
             if(!this.attack()){
                 this.move();
             }
-        
             if(this.canAnimate){    
                 if (this.body.velocity.x !== 0) {
                     // Si se está moviendo, reproducir la animación de movimiento
-                    this.anims.play('wolf_walk', true);
+                    this.anims.play('spider_walk', true);
 
                 } else {
                     // Si no se está moviendo, reproducir la animación de estar quieto
-                    this.anims.play('wolf_stand', true);
+                    this.anims.play('spider_stand', true);
                 }
             }
+            
         }
 
         this.updateHealthBar();
