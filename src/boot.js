@@ -10,7 +10,7 @@ import wolf_hurt from '../assets/sprites/Wolf/Black_Werewolf/Hurt.png'
 import spider_stand from '../assets/sprites/Spider/spider_stand.png'
 import spider_attack from '../assets/sprites/Spider/spider_attack.png'
 import spider_walk from '../assets/sprites/Spider/spider_walk.png'
-
+import spider_die from '../assets/sprites/Spider/spider_die.png' 
 
 import logo_hormiga from '../assets/sprites/logo_hormiga.png'
 import background from '../assets/sprites/Forest_of_Illusion_Files/Layers/back.png'
@@ -138,6 +138,9 @@ export default class Boot extends Phaser.Scene {
         frameWidth: 100, frameHeight: 96 
       });
       this.load.spritesheet('spider_walk', spider_walk,{
+        frameWidth: 96, frameHeight: 96 
+      });
+      this.load.spritesheet('spider_die', spider_die,{
         frameWidth: 96, frameHeight: 96 
       });
 }
@@ -307,6 +310,12 @@ export default class Boot extends Phaser.Scene {
       this.anims.create({
         key: 'spider_attack',
         frames: this.anims.generateFrameNumbers('spider_attack', { start: 0, end: 2 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 6, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: 0  // para no repetir la animación continuamente
+      });
+      this.anims.create({
+        key: 'spider_die',
+        frames: this.anims.generateFrameNumbers('spider_die', { start: 0, end: 3 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
         frameRate: 6, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
         repeat: 0  // para no repetir la animación continuamente
       });

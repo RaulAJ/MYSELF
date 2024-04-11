@@ -7,7 +7,7 @@ export default class Spider extends Enemy {
         super(scene, x, y, 100, 75, 0, 400, 50, 100, 5);
         this.setDisplaySize(180, 140);
         this.body.setSize(70, 60);
-        this.body.setOffset(25, 25);
+        this.body.setOffset(25, 23);
         this.setScale(1.2, 1);
 
         // Queremos que el enemigo no se salga de los límites del mundo
@@ -26,7 +26,7 @@ export default class Spider extends Enemy {
             else{
                 this.health = 0;
                 
-                this.anims.play('spider_dead',true);
+                this.anims.play('spider_die',true);
                 this.body.setVelocityX(0);
                 this.scene.time.delayedCall(5000, () => {this.destroy();}, [], this);
             }
