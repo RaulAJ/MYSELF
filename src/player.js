@@ -34,11 +34,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.spawnX = this.x;
         this.spawnY = this.y;
 
-
         //this.positionText = this.scene.add.text(500, 50, 'Posición: (0, 0)', { fontSize: '24px', fill: '#ffffff' }).setScrollFactor(0);
-
-
-
 
         this.scene.add.existing(this);
         this.originalBodySize = {width: 35, height: 52};
@@ -211,6 +207,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.attackCount = 0;
             }           
         }
+
+        if(Phaser.Input.Keyboard.JustDown(this.ctrl)){
+            if(!this.shrinked){
+            this.shrinkTween();
+            this.shrinked = true;
+            this.isShrinking = true;
+            }
+            else{
+                this.backtoNormalTween();
+                this.shrinked = false;
+            }
+        }
        
         if (this.cursors.left.isDown) {
             if(this.dashed){
@@ -263,17 +271,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.play('stand', true);
             } 
         }
-
-        if(Phaser.Input.Keyboard.JustDown(this.ctrl) && !this.shrinked){
-            this.shrinkTween();
-            this.shrinked = true;
-            this.isShrinking = true;
-        }
-        else if(Phaser.Input.Keyboard.JustDown(this.cursors.space) && this.shrinked){
-            this.backtoNormalTween();
-            this.shrinked = false;
-        }
-        
         this.relleno_healthbar.setCrop(0,0,this.relleno_healthbar.width*((this.health/ 100)), 317);
         this.relleno_healthbar.isCropped = true;
         
