@@ -30,6 +30,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.dashed = false;
         this.shrinked = false;
         this.isShrinking = false;
+        this.gettingHurt = false;
         this.hitten = false;
         this.spawnX = this.x;
         this.spawnY = this.y;
@@ -108,10 +109,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     getDamage(damage) {
-        //if(this.health > 0){
-            this.health-=damage;    
-            /*this.play('hurt');
-        }*/
+        this.health-=damage;    
+        this.play('hurt', true);
+        this.gettingHurt = true;
+        this.canMove = false;
+        this.on('animationcomplete-hurt', () => {
+            this.gettingHurt = false;
+            this.canMove = true;
+        });
     }
 
     makeDamage(){
@@ -265,7 +270,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             } else if (!this.isAttacking && !this.body.onFloor() && !this.isShrinking) {
                 this.play('jump', true);
             }
-            else if (!this.isAttacking && isRunning ) {
+            else if (!this.isAttacking && isRunning) {
                 this.play('run', true); 
             } else if (!this.isAttacking) {
                 this.play('stand', true);
