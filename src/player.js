@@ -30,15 +30,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.dashed = false;
         this.shrinked = false;
         this.isShrinking = false;
+        this.gettingHurt = false;
         this.hitten = false;
         this.spawnX = this.x;
         this.spawnY = this.y;
 
-
         //this.positionText = this.scene.add.text(500, 50, 'Posición: (0, 0)', { fontSize: '24px', fill: '#ffffff' }).setScrollFactor(0);
-
-
-
 
         this.scene.add.existing(this);
         this.originalBodySize = {width: 35, height: 52};
@@ -112,10 +109,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     getDamage(damage) {
-        //if(this.health > 0){
-            this.health-=damage;    
-            /*this.play('hurt');
-        }*/
+        this.health-=damage;    
+        this.play('hurt', true);
+        this.gettingHurt = true;
+        this.canMove = false;
+        this.on('animationcomplete-hurt', () => {
+            this.gettingHurt = false;
+            this.canMove = true;
+        });
     }
 
     makeDamage(){
@@ -180,10 +181,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.doubleJumped = false;
         }
 
-        if(this.body.onFloor()){
-            this.isDoubleJumping = false;
-        }
-
         if (Phaser.Input.Keyboard.JustDown(this.j) && !this.isAttacking) {
             this.isAttacking = true;
             this.attackCount++; // Incrementar el contador de ataques
@@ -215,6 +212,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.attackCount = 0;
             }           
         }
+
+        if(Phaser.Input.Keyboard.JustDown(this.ctrl)){
+            if(!this.shrinked){
+            this.shrinkTween();
+            this.shrinked = true;
+            this.isShrinking = true;
+            }
+            else{
+                this.backtoNormalTween();
+                this.shrinked = false;
+            }
+        }
        
         if (this.cursors.left.isDown) {
             if(this.dashed){
@@ -240,8 +249,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.body.setVelocityX(0);
             isRunning = false;
         }
-        if(Phaser.Input.Keyboard.JustDown(this.cursors.shift) && this.canDash && !this.dashed && this.body.onFloor()){
+        if(Phaser.Input.Keyboard.JustDown(this.cursors.shift) && this.canDash && !this.dashed){
             this.dashed = true;
+            this.body.setVelocityY(0); // Detener cualquier movimiento vertical
+            this.body.setAllowGravity(false);
+
         }  
         if (this.y >= 6000 || this.health <= 0) {
             // Llama a la función death(), y luego espera 4 segundos antes de llamar a respawn()
@@ -249,31 +261,21 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.death();
             this.scene.playerDeath();
         } else {
-            if (!this.isAttacking && !this.body.onFloor() && !this.isShrinking) {
-                this.play('jump', true);
-            }else if(!this.isAttacking && this.dashed){
+            if(!this.isAttacking && this.dashed){
                 this.play('dash',true);
                 this.on('animationcomplete-dash', () => {
                     this.dashed = false;
+                    this.body.setAllowGravity(true);
                 });
-            } 
-            else if (!this.isAttacking && isRunning ) {
+            } else if (!this.isAttacking && !this.body.onFloor() && !this.isShrinking) {
+                this.play('jump', true);
+            }
+            else if (!this.isAttacking && isRunning) {
                 this.play('run', true); 
             } else if (!this.isAttacking) {
                 this.play('stand', true);
             } 
         }
-
-        if(Phaser.Input.Keyboard.JustDown(this.ctrl) && !this.shrinked){
-            this.shrinkTween();
-            this.shrinked = true;
-            this.isShrinking = true;
-        }
-        else if(Phaser.Input.Keyboard.JustDown(this.cursors.space) && this.shrinked){
-            this.backtoNormalTween();
-            this.shrinked = false;
-        }
-        
         this.relleno_healthbar.setCrop(0,0,this.relleno_healthbar.width*((this.health/ 100)), 317);
         this.relleno_healthbar.isCropped = true;
         
