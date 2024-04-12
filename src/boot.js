@@ -13,7 +13,10 @@ import spider_walk from '../assets/sprites/Spider/spider_walk.png'
 import spider_die from '../assets/sprites/Spider/spider_die.png' 
 
 import logo_hormiga from '../assets/sprites/logo_hormiga.png'
-import background from '../assets/sprites/Forest_of_Illusion_Files/Layers/back.png'
+import background_clouds from '../assets/sprites/Environment/PNG/clouds.png'
+import background_sky from '../assets/sprites/Environment/PNG/sky.png'
+import background_grounds from '../assets/sprites/Environment/PNG/far-grounds.png'
+
 import castle_background from '../assets/sprites/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-background.png'
 import pantalla_completa from '../assets/sprites/pantalla_completa.png'
 import healthbar from '../assets/sprites/healthbar.png'
@@ -104,7 +107,9 @@ export default class Boot extends Phaser.Scene {
       this.load.image('mainMap', tileset);
       
       this.load.image('logo_hormiga', logo_hormiga);
-      this.load.image('background', background);
+      this.load.image('background_clouds', background_clouds);
+      this.load.image('background_sky', background_sky);
+      this.load.image('background_grounds', background_grounds);
       this.load.image('pause', pause);
       this.load.image('castle_background',castle_background);
       this.load.image('healthbar', healthbar);
@@ -298,13 +303,13 @@ export default class Boot extends Phaser.Scene {
       this.anims.create({
         key: 'spider_stand',
         frames: this.anims.generateFrameNumbers('spider_stand', { start: 0, end: 1 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
-        frameRate: 3, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        frameRate: 1, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
         repeat: -1 // -1 para repetir la animación continuamente
       });
       this.anims.create({
         key: 'spider_walk',
         frames: this.anims.generateFrameNumbers('spider_walk', { start: 0, end: 7 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
-        frameRate: 8, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        frameRate: 12, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
         repeat: -1 // -1 para repetir la animación continuamente
       });
       this.anims.create({

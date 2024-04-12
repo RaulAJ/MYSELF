@@ -28,9 +28,18 @@ export default class Level extends Phaser.Scene {
         const Collectible_list = [];
         this.collectible_list = Collectible_list;
 
-        this.fondo = this.add.tileSprite(0, 0, this.game.config.width+100, this.game.config.height, 'background');
-        this.fondo.setScrollFactor(0,0);
-        this.fondo.setScale(2.5, 2.2);
+        this.fondo_sky = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height+45, 'background_sky');
+        this.fondo_sky.setScrollFactor(0,0);
+        this.fondo_sky.setScale(2.0, 2.0);
+
+        this.fondo_clouds = this.add.tileSprite(0, 0, this.game.config.width+2000, this.game.config.height-90, 'background_clouds');
+        this.fondo_clouds.setScrollFactor(0,0);
+        this.fondo_clouds.setScale(0.8, -0.5);
+
+        this.fondo_grounds = this.add.tileSprite(0, 470, this.game.config.width+235, this.game.config.height-435, 'background_grounds');
+        this.fondo_grounds.setScrollFactor(0,0);
+        this.fondo_grounds.setScale(3.0, 2.0);
+        
         
 
         this.map = this.make.tilemap({key: 'tilemap3'});
@@ -50,7 +59,7 @@ export default class Level extends Phaser.Scene {
         
         this.wolf = new Wolf(this, 3605, 500);
         this.wolf2 = new Wolf(this, 4100, 402);
-        this.spider = new Spider(this, 800, 1100)
+        this.spider = new Spider(this, 1800, 1100)
         this.player = new Player(this, 500, 1200);
 
         this.enemies.add(this.wolf);
@@ -93,7 +102,9 @@ export default class Level extends Phaser.Scene {
     
 
     update(){
-        this.fondo.tilePositionX = this.playerCamera.scrollX * 0.1;
+        this.fondo_clouds.tilePositionX = this.playerCamera.scrollX * 0.1;
+        this.fondo_sky.tilePositionX = this.playerCamera.scrollX * 0.05;
+        this.fondo_grounds.tilePositionX = this.playerCamera.scrollX * 0.2;
     }
 
     pause_function(){
