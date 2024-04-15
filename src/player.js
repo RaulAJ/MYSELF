@@ -66,9 +66,30 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.ctrl = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.CTRL);
         this.esc = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
-        
         this.relleno_healthbar.setCrop(0,0,this.relleno_healthbar.width*((this.health/ 100)), 317);
         this.relleno_healthbar.isCropped = true;
+
+    }
+
+    createAttackHitbox(){
+        //hitbox adicional
+        this.attackHitbox = this.scene.physics.add.sprite(this.x, this.y, 'attackHitboxTexture');
+        this.attackHitbox.setSize(this.originalBodySize.width, this.originalBodySize.height);
+        if(!this.flipX){
+            this.attackHitbox.setOffset(30, -6);
+        }
+        else{
+            this.attackHitbox.setOffset(-30,-6)
+        }
+        this.attackHitbox.body.setAllowGravity(false);
+        this.attackHitbox.body.setCollideWorldBounds(false);
+        this.attackHitbox.setActive(true);
+        this.attackHitbox.setVisible(false);
+        this.attackHitbox.setScale(1.5,1.6);
+    }
+
+    destroyAttackHitbox(){
+        this.attackHitbox.destroy();
     }
 
     shrinkTween() {
@@ -110,7 +131,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     getDamage(damage) {
         this.health-=damage;
-        if(this.health > 0){    
+        if(this.health > 0 && !this.isAttacking){    
             this.play('hurt', true);
             this.gettingHurt = true;
             this.canMove = false;
@@ -123,7 +144,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     makeDamage(){
        // if(level_melee == 1){
-        this.scene.physics.overlap(this.body, this.scene.enemies,(hitbox, enemy) => {
+        
+        this.scene.physics.overlap(this.attackHitbox.body, this.scene.enemies,(hitbox, enemy) => {
           enemy.getDamage(40);
         });
         //}
@@ -135,10 +157,21 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
     }
 
+    /*adjustHitbox(){
+        if(this.flipX){
+            this.body.setSize(this.originalBodySize.width * 1.4, this.originalBodySize.height);
+            this.body.setOffset(25, 21);
+        }
+        else{
+            this.body.setSize(this.originalBodySize.width * 1.4, this.originalBodySize.height);
+            this.body.setOffset(43, 21);
+        }
+    }
+
     readjustHitbox(){
         this.body.setSize(this.originalBodySize.width, this.originalBodySize.height);
         this.body.setOffset(39, 20);
-    }
+    }*/
 
     respawn() {
         // Restablecer la posición del jugador a su punto de aparición inicial
@@ -187,29 +220,25 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.isAttacking = true;
             this.attackCount++; // Incrementar el contador de ataques
 
-            // Aumentar temporalmente la hitbox del jugador durante el ataque
-            this.body.setSize(this.originalBodySize.width * 1.8, this.originalBodySize.height);
-            this.body.setOffset(31, 21);
-            // Restaurar el tamaño del cuerpo después de un cierto período de tiempo
+            this.createAttackHitbox();
             this.scene.time.delayedCall(200, () => {
                     if (!this.hasBeenHurt) 
                         this.makeDamage();
+                    
                 }, [], this);
             if (this.attackCount === 1) {
                 // Primer ataque: reproducir animación de ataque 1
                 this.play('attack1', true);
                 this.on('animationcomplete-attack1', () => {
                     this.isAttacking = false;
-                    this.readjustHitbox();
-
+                    this.destroyAttackHitbox();
                 });
             } else if (this.attackCount === 2) {
                 // Segundo ataque: reproducir animación de ataque 2
                 this.play('attack2', true);
                 this.on('animationcomplete-attack2', () => {
                     this.isAttacking = false;
-                    this.readjustHitbox();
-
+                    this.destroyAttackHitbox();
                 });
                 this.attackCount = 0;
             }           

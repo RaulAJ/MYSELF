@@ -253,14 +253,14 @@ export default class Boot extends Phaser.Scene {
       this.anims.create({
         key: 'attack1',
         frames: this.anims.generateFrameNumbers('player', {start: 104, end: 107}),
-        frameRate: 10,
+        frameRate: 13,
         repeat: 0
       });
       
       this.anims.create({
         key: 'attack2',
         frames: this.anims.generateFrameNumbers('player', {start: 117, end: 120}),
-        frameRate: 10,
+        frameRate: 13,
         repeat: 0
       });
 
