@@ -3,7 +3,8 @@
  */
 export default class Pause extends Phaser.Scene {
 
-
+    //https://github.com/admont02/PVLI22-23_GRUPO01/blob/main/src/Scenes/level1.js#L210
+    
     constructor() {
         super({ key: 'pause' });
     }

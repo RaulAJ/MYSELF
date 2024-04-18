@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 
 
 import player from '../assets/sprites/Viking/Viking-Sheet.png'
+import minotaur from '../assets/sprites/FantasyEnemyCreatures/Minotaur/128x80Minotaur_FullSheet.png'
 import wolf_stand from '../assets/sprites/Wolf/Black_Werewolf/Idle.png'
 import wolf_walk from '../assets/sprites/Wolf/Black_Werewolf/walk.png'
 import wolf_dead from '../assets/sprites/Wolf/Black_Werewolf/Dead.png'
@@ -119,6 +120,9 @@ export default class Boot extends Phaser.Scene {
       
       this.load.spritesheet('player', player,{
         frameWidth: 115, frameHeight: 84 
+      });
+      this.load.spritesheet('minotaur', minotaur,{
+        frameWidth: 128, frameHeight: 80 
       });
       this.load.spritesheet('wolf_stand', wolf_stand,{
         frameWidth: 128, frameHeight: 128 
@@ -260,6 +264,34 @@ export default class Boot extends Phaser.Scene {
       this.anims.create({
         key: 'attack2',
         frames: this.anims.generateFrameNumbers('player', {start: 117, end: 120}),
+        frameRate: 13,
+        repeat: 0
+      });
+
+      this.anims.create({
+        key: 'minotaur_stand',
+        frames: this.anims.generateFrameNumbers('minotaur', {start: 0, end: 7}),
+        frameRate: 8,
+        repeat: 0
+      });
+
+      this.anims.create({
+        key: 'minotaur_run',
+        frames: this.anims.generateFrameNumbers('minotaur', {start: 8, end: 15 }),
+        frameRate: 8,
+        repeat: -1
+      });
+
+      this.anims.create({
+        key: 'minotaur_death',
+        frames: this.anims.generateFrameNumbers('minotaur', {start: 31, end: 41}),
+        frameRate: 8,
+        repeat: 0
+      });
+
+      this.anims.create({
+        key: 'minotaur_attack',
+        frames: this.anims.generateFrameNumbers('minotaur', {start: 16, end: 30}),
         frameRate: 13,
         repeat: 0
       });
