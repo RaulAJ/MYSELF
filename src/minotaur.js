@@ -4,10 +4,10 @@ import Player from './player.js';
 export default class Minotaur extends Enemy {
 
     constructor(scene, x, y) {
-        super(scene, x, y, 100, 75, 0, 400, 50, 100, 5);
+        super(scene, x, y, 100, 75, 0, 400, 35, 100, 5);
         this.setDisplaySize(180, 140);
-        this.body.setSize(60, 60);
-        this.body.setOffset(25, 23);
+        this.body.setSize(60, 50);
+        this.body.setOffset(50, 30);
         this.setScale(1.2, 1);
 
         // Queremos que el enemigo no se salga de los límites del mundo
@@ -42,10 +42,12 @@ export default class Minotaur extends Enemy {
                 // Mover hacia la izquierda si no hay pared
                 this.body.setVelocityX(-this.speed);
                 this.setFlipX(true);
+                this.body.setOffset(50, 30);
             } else if (this.scene.player.x > this.x + 25 && !this.isWallInFront(50)) {
                 // Mover hacia la derecha si no hay pared
                 this.body.setVelocityX(this.speed);
                 this.setFlipX(false);
+                this.body.setOffset(25, 30);
             } else {
                 // Quedarse quieto si hay una pared
                 this.body.setVelocityX(0);
