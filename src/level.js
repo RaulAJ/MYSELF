@@ -95,6 +95,20 @@ export default class Level extends Phaser.Scene {
         this.physics.add.collider(this.player, this.wallLayer);
         this.physics.add.collider(this.enemies, this.wallLayer);
 
+
+       /* const config = {
+            mute: false,
+            volume: 0.15,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay: 0,
+        };
+
+        this.musica_ambiente = this.sound.add("musica_ambiente", config);
+        this.musica_ambiente.play();
+*/
     }
 
     playerDeath() {

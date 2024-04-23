@@ -28,6 +28,9 @@ import mapa2 from '../assets/map/mapa2.json'
 import mapa3 from '../assets/map/mapa3.json'
 
 import tileset from '../assets/sprites/Environment/PNG/tileset.png'
+
+//import musica from '../assets/audio/musica_ambiente.wav'
+
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
  * Esta escena se puede mejorar añadiendo una imagen del juego y una 
@@ -117,6 +120,7 @@ export default class Boot extends Phaser.Scene {
       this.load.image('relleno_healthbar', relleno_healthbar);
       this.load.image('pantalla_completa', pantalla_completa);
      
+      //this.load.audio('musica_ambiente', "../assets/audio/musica_ambiente.wav");
       
       this.load.spritesheet('player', player,{
         frameWidth: 115, frameHeight: 84 
