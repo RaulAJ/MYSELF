@@ -43,12 +43,12 @@ export default class Level extends Phaser.Scene {
         
         
 
-        this.map = this.make.tilemap({key: 'tilemap3'});
+        this.map = this.make.tilemap({key: 'tilemap4'});
 
         const mainMap = this.map.addTilesetImage('main', 'mainMap');
-
-        this.groundLayer = this.map.createLayer('Plataformas', mainMap);
-        this.wallLayer = this.map.createLayer('Paredes', mainMap);
+        const zone4 = this.map.addTilesetImage('zona4', 'zone4');
+        this.groundLayer = this.map.createLayer('Plataformas', [mainMap,zone4]);
+        this.wallLayer = this.map.createLayer('Paredes', [mainMap,zone4]);
         
         this.groundLayer.setCollisionByProperty({colision:true});
         this.wallLayer.setCollisionByProperty({colision:true});
@@ -69,10 +69,10 @@ export default class Level extends Phaser.Scene {
         this.enemies.add(this.spider);
         this.enemies.add(this.minotaur);
 
-        this.physics.world.setBounds(0, -4470, 8566, 10000); // Cambiar los valores según sea necesario
+        this.physics.world.setBounds(0, -6870, 20566, 20000); // Cambiar los valores según sea necesario
 
         // Establecer los límites de desplazamiento de la cámara
-        this.cameras.main.setBounds(0, -4470, 8500, 9800); // Casi coincidir con el tamaño del mundo del juego
+        this.cameras.main.setBounds(0, -6870, 20500, 19800); // Casi coincidir con el tamaño del mundo del juego
     
 
         this.playerCamera = this.cameras.main.startFollow(this.player, false, 1, 1, 0, 75);

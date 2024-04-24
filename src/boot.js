@@ -26,9 +26,10 @@ import pause from '../assets/sprites/pause.png'
 import mapa from '../assets/map/mapa.json'
 import mapa2 from '../assets/map/mapa2.json'
 import mapa3 from '../assets/map/mapa3.json'
+import mapa4 from '../assets/map/mapa4.json'
 
 import tileset from '../assets/sprites/Environment/PNG/tileset.png'
-
+import tileset2 from '../assets/sprites/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-tileset.png'
 //import musica from '../assets/audio/musica_ambiente.wav'
 
 /**
@@ -107,9 +108,11 @@ export default class Boot extends Phaser.Scene {
       this.load.tilemapTiledJSON('tilemap', mapa);
       this.load.tilemapTiledJSON('tilemap2', mapa2);
       this.load.tilemapTiledJSON('tilemap3', mapa3);
+      this.load.tilemapTiledJSON('tilemap4', mapa4);
       
       this.load.image('mainMap', tileset);
-      
+      this.load.image('zone4',tileset2);
+
       this.load.image('logo_hormiga', logo_hormiga);
       this.load.image('background_clouds', background_clouds);
       this.load.image('background_sky', background_sky);
