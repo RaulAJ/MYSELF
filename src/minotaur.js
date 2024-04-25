@@ -4,7 +4,7 @@ import Player from './player.js';
 export default class Minotaur extends Enemy {
 
     constructor(scene, x, y) {
-        super(scene, x, y, 100, 75, 0, 400, 35, 100, 5);
+        super(scene, x, y, 100, 75, 0, 400, 35, 100, 15);
         this.setDisplaySize(180, 140);
         this.body.setSize(60, 50);
         this.body.setOffset(50, 30);

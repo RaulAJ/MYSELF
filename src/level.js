@@ -2,6 +2,7 @@ import Player from './player.js';
 import Wolf from './wolf.js';
 import Spider from './spider.js';
 import Minotaur from './minotaur.js';
+import WolfBoss from './wolfboss.js';
 import Phaser from 'phaser'
 
 
@@ -57,7 +58,7 @@ export default class Level extends Phaser.Scene {
 
         //this.backWallLayer.setCollisionByProperty({colision:true});
         
-        
+        this.boss1 = new WolfBoss(this, 800, 1000);
         this.wolf = new Wolf(this, 3605, 500);
         this.wolf2 = new Wolf(this, 4100, 402);
         this.spider = new Spider(this, 1800, 1100);
@@ -68,7 +69,7 @@ export default class Level extends Phaser.Scene {
         this.enemies.add(this.wolf2);
         this.enemies.add(this.spider);
         this.enemies.add(this.minotaur);
-
+        this.enemies.add(this.boss1);
         this.physics.world.setBounds(0, -6870, 20566, 20000); // Cambiar los valores según sea necesario
 
         // Establecer los límites de desplazamiento de la cámara

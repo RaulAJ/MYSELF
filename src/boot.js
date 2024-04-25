@@ -8,6 +8,11 @@ import wolf_walk from '../assets/sprites/Wolf/Black_Werewolf/walk.png'
 import wolf_dead from '../assets/sprites/Wolf/Black_Werewolf/Dead.png'
 import wolf_attack from '../assets/sprites/Wolf/Black_Werewolf/Attack_1.png'
 import wolf_hurt from '../assets/sprites/Wolf/Black_Werewolf/Hurt.png'
+import wolfBoss_stand from '../assets/sprites/Wolf/Red_Werewolf/Idle.png'
+import wolfBoss_walk from '../assets/sprites/Wolf/Red_Werewolf/walk.png'
+import wolfBoss_dead from '../assets/sprites/Wolf/Red_Werewolf/Dead.png'
+import wolfBoss_attack from '../assets/sprites/Wolf/Red_Werewolf/Attack_1.png'
+import wolfBoss_hurt from '../assets/sprites/Wolf/Red_Werewolf/Hurt.png'
 import spider_stand from '../assets/sprites/Spider/spider_stand.png'
 import spider_attack from '../assets/sprites/Spider/spider_attack.png'
 import spider_walk from '../assets/sprites/Spider/spider_walk.png'
@@ -145,8 +150,22 @@ export default class Boot extends Phaser.Scene {
       });
       this.load.spritesheet('wolf_hurt', wolf_hurt,{
         frameWidth: 128, frameHeight: 128 
+      })    
+      this.load.spritesheet('wolfBoss_stand', wolfBoss_stand,{
+        frameWidth: 128, frameHeight: 128 
+      });
+      this.load.spritesheet('wolfBoss_walk', wolfBoss_walk,{
+        frameWidth: 128, frameHeight: 128 
+      });
+      this.load.spritesheet('wolfBoss_dead', wolfBoss_dead,{
+        frameWidth: 128, frameHeight: 128 
+      });
+      this.load.spritesheet('wolfBoss_attack', wolfBoss_attack,{
+        frameWidth: 128, frameHeight: 128 
+      });
+      this.load.spritesheet('wolfBoss_hurt', wolfBoss_hurt,{
+        frameWidth: 128, frameHeight: 128 
       })   
-      
       this.load.spritesheet('spider_stand', spider_stand,{
         frameWidth: 100, frameHeight: 96 
       });
@@ -338,6 +357,40 @@ export default class Boot extends Phaser.Scene {
         repeat: -1  // para no repetir la animación continuamente
       });
       
+      this.anims.create({
+        key: 'wolfBoss_stand',
+        frames: this.anims.generateFrameNumbers('wolfBoss_stand', { start: 0, end: 7 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 3, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: -1 // -1 para repetir la animación continuamente
+      });
+
+      this.anims.create({
+        key: 'wolfBoss_walk',
+        frames: this.anims.generateFrameNumbers('wolfBoss_walk', { start: 0, end: 10 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 8, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: -1 // -1 para repetir la animación continuamente
+      });
+
+      this.anims.create({
+        key: 'wolfBoss_dead',
+        frames: this.anims.generateFrameNumbers('wolfBoss_dead', { start: 0, end: 1 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 4, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: 0  // para no repetir la animación continuamente
+      });
+      
+      this.anims.create({
+        key: 'wolfBoss_attack',
+        frames: this.anims.generateFrameNumbers('wolfBoss_attack', { start: 0, end: 5 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 6, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: 0  // para no repetir la animación continuamente
+      });
+
+      this.anims.create({
+        key: 'wolfBoss_hurt',
+        frames: this.anims.generateFrameNumbers('wolfBoss_hurt', { start: 0, end: 1 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 2, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: -1  // para no repetir la animación continuamente
+      });
 
       this.anims.create({
         key: 'spider_stand',
