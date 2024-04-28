@@ -70,10 +70,10 @@ export default class Level extends Phaser.Scene {
         this.enemies.add(this.spider);
         this.enemies.add(this.minotaur);
         this.enemies.add(this.boss1);
-        this.physics.world.setBounds(0, -6870, 20566, 20000); // Cambiar los valores según sea necesario
+        this.physics.world.setBounds(0, -13870, 23566, 20000); // Cambiar los valores según sea necesario
 
         // Establecer los límites de desplazamiento de la cámara
-        this.cameras.main.setBounds(0, -6870, 20500, 19800); // Casi coincidir con el tamaño del mundo del juego
+        this.cameras.main.setBounds(0, -13870, 23500, 19800); // Casi coincidir con el tamaño del mundo del juego
     
 
         this.playerCamera = this.cameras.main.startFollow(this.player, false, 1, 1, 0, 75);
