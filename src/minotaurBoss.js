@@ -1,38 +1,38 @@
 import Enemy from './enemy.js';
 import Player from './player.js';
 
-export default class WolfBoss extends Enemy {
+export default class Minotaur extends Enemy {
 
     constructor(scene, x, y) {
-        super(scene, x, y, 550, 75, 0, 400, 50, 100, 25);
+        super(scene, x, y, 350, 75, 0, 400, 35, 100, 25);
         this.setDisplaySize(180, 140);
-        this.body.setSize(70, 60);
-        this.body.setOffset(40, 70);
-        this.setScale(2.2, 2);
+        this.body.setSize(60, 50);
+        this.body.setOffset(50, 30);
+        this.setScale(2.4, 2);
 
         // Queremos que el enemigo no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
 
         // Animación inicial default
-        this.play('wolfBoss_stand');
+        this.play('minotaur_stand');
     }
 
     getDamage(damage) {
         if(this.health>0){
             if(this.health>=damage){
                 this.health-=damage;
-                //this.play('wolfBoss_hurt',true);
+                //this.play('minotaur_hurt',true);
             }
             else{
                 this.health = 0;
                 
-                this.anims.play('wolfBoss_dead',true);
+                this.anims.play('minotaur_death',true);
                 this.body.setVelocityX(0);
                 this.scene.time.delayedCall(5000, () => {this.destroy();}, [], this);
             }
         }
     }
-    
+
     makeDamage(damage){
         this.scene.physics.overlap(this.body, this.scene.player, (hitbox, player) => {
             player.getDamage(damage); // Aplicar daño al jugador
@@ -48,12 +48,12 @@ export default class WolfBoss extends Enemy {
             //this.scene.time.delayedCall(400, () => {if(!this.hasBeenHurt)this.dealWeaponDamage();}, [], this);
             this.canAnimate = false;
             //this.isOnAction = true;
-            this.play('wolfBoss_attack',true);
-            this.on('animationcomplete-wolfBoss_attack', function attackCompleteCallback() {
+            this.play('minotaur_attack',true);
+            this.on('animationcomplete-minotaur_attack', function attackCompleteCallback() {
                 // Desvincular el evento después de que se dispare por primera vez
-                this.off('animationcomplete-wolfBoss_attack', attackCompleteCallback);
+                this.off('animationcomplete-minotaur_attack', attackCompleteCallback);
             
-                // Lógica que quieres ejecutar cuando la animación 'wolf_attack' se completa
+                // Lógica que quieres ejecutar cuando la animación 'minotaur_attack' se completa
                 this.canAttack = true;
                 this.canAnimate = true;
                 this.makeDamage(this.damage);
@@ -77,17 +77,17 @@ export default class WolfBoss extends Enemy {
             if(!this.attack()){
                 this.move();
             }
-        
             if(this.canAnimate){    
                 if (this.body.velocity.x !== 0) {
                     // Si se está moviendo, reproducir la animación de movimiento
-                    this.anims.play('wolfBoss_walk', true);
+                    this.anims.play('minotaur_run', true);
 
                 } else {
                     // Si no se está moviendo, reproducir la animación de estar quieto
-                    this.anims.play('wolfBoss_stand', true);
+                    this.anims.play('minotaur_stand', true);
                 }
             }
+            
         }
 
         this.updateHealthBar();

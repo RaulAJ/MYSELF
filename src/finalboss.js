@@ -1,10 +1,10 @@
 import Enemy from './enemy.js';
 import Player from './player.js';
 
-export default class WolfBoss extends Enemy {
+export default class FinalBoss extends Enemy {
 
     constructor(scene, x, y) {
-        super(scene, x, y, 550, 75, 0, 400, 50, 100, 25);
+        super(scene, x, y, 550, 75, 0, 400, 50, 100, 30);
         this.setDisplaySize(180, 140);
         this.body.setSize(70, 60);
         this.body.setOffset(40, 70);
@@ -14,19 +14,19 @@ export default class WolfBoss extends Enemy {
         this.body.setCollideWorldBounds();
 
         // Animación inicial default
-        this.play('wolfBoss_stand');
+        this.play('finalBoss_stand');
     }
 
     getDamage(damage) {
         if(this.health>0){
             if(this.health>=damage){
                 this.health-=damage;
-                //this.play('wolfBoss_hurt',true);
+                //this.play('finalBoss_hurt',true);
             }
             else{
                 this.health = 0;
                 
-                this.anims.play('wolfBoss_dead',true);
+                this.anims.play('finalBoss_dead',true);
                 this.body.setVelocityX(0);
                 this.scene.time.delayedCall(5000, () => {this.destroy();}, [], this);
             }
@@ -48,10 +48,10 @@ export default class WolfBoss extends Enemy {
             //this.scene.time.delayedCall(400, () => {if(!this.hasBeenHurt)this.dealWeaponDamage();}, [], this);
             this.canAnimate = false;
             //this.isOnAction = true;
-            this.play('wolfBoss_attack',true);
-            this.on('animationcomplete-wolfBoss_attack', function attackCompleteCallback() {
+            this.play('finalBoss_attack',true);
+            this.on('animationcomplete-finalBoss_attack', function attackCompleteCallback() {
                 // Desvincular el evento después de que se dispare por primera vez
-                this.off('animationcomplete-wolfBoss_attack', attackCompleteCallback);
+                this.off('animationcomplete-finalBoss_attack', attackCompleteCallback);
             
                 // Lógica que quieres ejecutar cuando la animación 'wolf_attack' se completa
                 this.canAttack = true;
@@ -81,11 +81,11 @@ export default class WolfBoss extends Enemy {
             if(this.canAnimate){    
                 if (this.body.velocity.x !== 0) {
                     // Si se está moviendo, reproducir la animación de movimiento
-                    this.anims.play('wolfBoss_walk', true);
+                    this.anims.play('finalBoss_walk', true);
 
                 } else {
                     // Si no se está moviendo, reproducir la animación de estar quieto
-                    this.anims.play('wolfBoss_stand', true);
+                    this.anims.play('finalBoss_stand', true);
                 }
             }
         }

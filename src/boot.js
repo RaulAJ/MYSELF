@@ -8,15 +8,22 @@ import wolf_walk from '../assets/sprites/Wolf/Black_Werewolf/walk.png'
 import wolf_dead from '../assets/sprites/Wolf/Black_Werewolf/Dead.png'
 import wolf_attack from '../assets/sprites/Wolf/Black_Werewolf/Attack_1.png'
 import wolf_hurt from '../assets/sprites/Wolf/Black_Werewolf/Hurt.png'
+import spider_stand from '../assets/sprites/Spider/spider_stand.png'
+import spider_attack from '../assets/sprites/Spider/spider_attack.png'
+import spider_walk from '../assets/sprites/Spider/spider_walk.png'
+import spider_die from '../assets/sprites/Spider/spider_die.png' 
+
 import wolfBoss_stand from '../assets/sprites/Wolf/Red_Werewolf/Idle.png'
 import wolfBoss_walk from '../assets/sprites/Wolf/Red_Werewolf/walk.png'
 import wolfBoss_dead from '../assets/sprites/Wolf/Red_Werewolf/Dead.png'
 import wolfBoss_attack from '../assets/sprites/Wolf/Red_Werewolf/Attack_1.png'
 import wolfBoss_hurt from '../assets/sprites/Wolf/Red_Werewolf/Hurt.png'
-import spider_stand from '../assets/sprites/Spider/spider_stand.png'
-import spider_attack from '../assets/sprites/Spider/spider_attack.png'
-import spider_walk from '../assets/sprites/Spider/spider_walk.png'
-import spider_die from '../assets/sprites/Spider/spider_die.png' 
+/*import finalBoss_attack from '../assets/sprites/Dwarf 2/bossFinal_ataque2.png'
+import finalBoss_walk from '../assets/sprites/Dwarf 2/bossFinal_correr.png'
+import finalBoss_dead from '../assets/sprites/Dwarf 2/bossFinal_muerte.png'
+import finalBoss_jump from '../assets/sprites/Dwarf 2/bossFinal_salto.png'
+import finalBoss_hurt from '../assets/sprites/Dwarf 2/bossFinal_daño.png'
+import finalBoss_stand from '../assets/sprites/Dwarf 2/bossFinal_salto.png'*/
 
 import logo_hormiga from '../assets/sprites/logo_hormiga.png'
 import background_clouds from '../assets/sprites/Environment/PNG/clouds.png'
@@ -151,6 +158,19 @@ export default class Boot extends Phaser.Scene {
       this.load.spritesheet('wolf_hurt', wolf_hurt,{
         frameWidth: 128, frameHeight: 128 
       })    
+      this.load.spritesheet('spider_stand', spider_stand,{
+        frameWidth: 100, frameHeight: 96 
+      });
+      this.load.spritesheet('spider_attack', spider_attack,{
+        frameWidth: 100, frameHeight: 96 
+      });
+      this.load.spritesheet('spider_walk', spider_walk,{
+        frameWidth: 96, frameHeight: 96 
+      });
+      this.load.spritesheet('spider_die', spider_die,{
+        frameWidth: 96, frameHeight: 96 
+      });
+
       this.load.spritesheet('wolfBoss_stand', wolfBoss_stand,{
         frameWidth: 128, frameHeight: 128 
       });
@@ -166,18 +186,26 @@ export default class Boot extends Phaser.Scene {
       this.load.spritesheet('wolfBoss_hurt', wolfBoss_hurt,{
         frameWidth: 128, frameHeight: 128 
       })   
-      this.load.spritesheet('spider_stand', spider_stand,{
-        frameWidth: 100, frameHeight: 96 
+      /*this.load.spritesheet('finalBoss_attack', finalBoss_attack,{
+        frameWidth: 80, frameHeight: 80 
       });
-      this.load.spritesheet('spider_attack', spider_attack,{
-        frameWidth: 100, frameHeight: 96 
+      this.load.spritesheet('finalBoss_walk', finalBoss_walk,{
+        frameWidth: 80, frameHeight: 80 
       });
-      this.load.spritesheet('spider_walk', spider_walk,{
-        frameWidth: 96, frameHeight: 96 
+      this.load.spritesheet('finalBoss_hurt', finalBoss_hurt,{
+        frameWidth: 80, frameHeight: 80 
       });
-      this.load.spritesheet('spider_die', spider_die,{
-        frameWidth: 96, frameHeight: 96 
+      this.load.spritesheet('finalBoss_stand', finalBoss_stand,{
+        frameWidth: 80, frameHeight: 80 
       });
+      this.load.spritesheet('finalBoss_jump', finalBoss_jump,{
+        frameWidth: 80, frameHeight: 80 
+      });
+      this.load.spritesheet('finalBoss_dead', finalBoss_dead,{
+        frameWidth: 80, frameHeight: 80 
+      });
+      */
+      
 }
     
 
@@ -416,6 +444,48 @@ export default class Boot extends Phaser.Scene {
         frameRate: 6, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
         repeat: 0  // para no repetir la animación continuamente
       });
+/*
+      this.anims.create({
+        key: 'finalBoss_stand',
+        frames: this.anims.generateFrameNumbers('finalBoss_stand', { start: 0, end: 2 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 3, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: -1 // -1 para repetir la animación continuamente
+      });
+
+      this.anims.create({
+        key: 'finalBoss_attack',
+        frames: this.anims.generateFrameNumbers('finalBoss_attack', { start: 0, end: 2 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 3, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: 0 // -1 para repetir la animación continuamente
+      });
+
+      this.anims.create({
+        key: 'finalBoss_die',
+        frames: this.anims.generateFrameNumbers('finalBoss_dead', { start: 0, end: 5 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 6, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: 0 // -1 para repetir la animación continuamente
+      });
+
+      this.anims.create({
+        key: 'finalBoss_hurt',
+        frames: this.anims.generateFrameNumbers('finalBoss_hurt', { start: 0, end: 1 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 3, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: -1 // -1 para repetir la animación continuamente
+      });
+
+      this.anims.create({
+        key: 'finalBoss_walk',
+        frames: this.anims.generateFrameNumbers('finalBoss_walk', { start: 0, end: 7 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 8, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: -1 // -1 para repetir la animación continuamente
+      });
+
+      this.anims.create({
+        key: 'finalBoss_jump',
+        frames: this.anims.generateFrameNumbers('finalBoss_jump', { start: 0, end: 3 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frameRate: 3, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
+        repeat: 0 // -1 para repetir la animación continuamente
+      });*/
     }
     
   }

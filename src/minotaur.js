@@ -21,7 +21,7 @@ export default class Minotaur extends Enemy {
         if(this.health>0){
             if(this.health>=damage){
                 this.health-=damage;
-                //this.play('wolf_hurt',true);
+                //this.play('minotaur_hurt',true);
             }
             else{
                 this.health = 0;
@@ -33,40 +33,6 @@ export default class Minotaur extends Enemy {
         }
     }
 
-    move() {
-        // Verificar si el jugador está dentro del campo de visión del enemigo
-        if ((this.x - this.fieldOfView < this.scene.player.x) && (this.scene.player.x < this.x + this.fieldOfView) && (this.y - this.fieldOfView < this.scene.player.y) && (this.scene.player.y < this.y + this.fieldOfView)) {
-    
-            // Verificar si hay una pared delante del enemigo
-            if (this.scene.player.x < this.x - 25 && !this.isWallInFront(-20)) {
-                // Mover hacia la izquierda si no hay pared
-                this.body.setVelocityX(-this.speed);
-                this.setFlipX(true);
-                this.body.setOffset(50, 30);
-            } else if (this.scene.player.x > this.x + 25 && !this.isWallInFront(50)) {
-                // Mover hacia la derecha si no hay pared
-                this.body.setVelocityX(this.speed);
-                this.setFlipX(false);
-                this.body.setOffset(25, 30);
-            } else {
-                // Quedarse quieto si hay una pared
-                this.body.setVelocityX(0);
-            }
-        } else {
-            // Quedarse quieto si el jugador está fuera del campo de visión
-            this.body.setVelocityX(0);
-        }
-    }
-    
-    isWallInFront(offsetX) {
-        // Calcula las coordenadas del punto en frente del enemigo
-        const frontX = this.x + offsetX;
-        const frontY = this.y; // Ajusta la altura según la posición de la hitbox del enemigo
-    
-        // Verifica si hay un tile en la capa de paredes en las coordenadas calculadas
-        return this.scene.wallLayer.hasTileAtWorldXY(frontX, frontY);
-    }
-    
     makeDamage(damage){
         this.scene.physics.overlap(this.body, this.scene.player, (hitbox, player) => {
             player.getDamage(damage); // Aplicar daño al jugador
