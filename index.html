@@ -20,29 +20,55 @@
 
 <body>
     <br><br><br>
+    <div align="center">
+    <table>
+      <tr>
+        <td><div><h1><img src="assets/sprites/logo_hormiga.png" width="308" height="271" /></h1></div></td>
+        <td><div align="center"><img src="assets/sprites/title.png"/></div></td>
+        <td><div><a href="https://github.com/RaulAJ/MYSELF.git">
+          <img src="assets/sprites/github.png" width="120" height="120" /></a></div></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div align="center">
+            <br><br><br><br><br>
+            <div class="descripcion">
+                <h1><strong>¿Qué es Myself?</strong></h1>
+                <p>Myself es un metroidvania ambientado en un mundo de fantasía donde llevas a un hombre misterioso que desconoce todo sobre sí mismo</p>
+            </div>
+            
+            <div id="espacio-en-blanco"></div>
 
-    <h1><em>MYSELF</em></h1>
+            <p><h1><strong>Controles</strong></h1></p>
+            
+          <table>
+            <tr>
+              <td><p><img src="assets/sprites/awd.png" width="300" height="150" /></p></td>
+              <td><p><h2>Moverse</h2></p></td>
+            </tr>
+            <tr>
+              <td><p><img src="assets/sprites/ctrl.png" width="300" height="150" /></p></td>
+              <td><p><h2>Encogerse/Agrandarse</h2></p></td>
+            </tr>
+            <tr>
+              <td><p><img src="assets/sprites/j.png" width="300" height="150" /></p></td>
+              <td><p><h2>Atacar</h2></p></td>
+            </tr>
+            <tr>
+              <td><p><img src="assets/sprites/shift.png" width="300" height="150" /></p></td>
+              <td><p><h2>Dash</h2></p></td>
+            </tr>
+          </table>
+          </div>
+        </td>
+        <td valign="top"></td>
+      </tr>
+      
+        </table></div>
 
+    <div id="espacio-en-blanco2"></div>
     <script src="./src/game.js" type="module"></script>
-    <h2> <strong>¿Qué es Myself? </strong>
-        <br>Myself es un metroidvania ambientado en un mundo de fantasía donde llevas a un hombre misterioso que desconoce todo sobre sí mismo
-    </h2>
-
-    <div class="contenedor">
-        <button id="cargarScriptBtn", class="boton">Jugar</button>
-    </div>
-    <!-- Este div se utilizará para mostrar el estado de carga -->
-    <div id="estadoCarga"></div>
-
-    <!-- El script se cargará aquí después de hacer clic en el botón -->
-    <div id="scriptContainer"></div>
-
-    <script>
-        document.getElementById('cargarScriptBtn').addEventListener('click', function() {
-            import('./src/game.js')       
-        });
-    </script>
-    
-</body>
+  </body>
 
 </html>

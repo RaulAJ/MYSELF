@@ -1,34 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=Macondo+Swash+Caps&display=swap");
 
-body{
-  background-image: url("../assets/sprites/Fondo_Papel.jpg");
-  background-size: cover;
-}
-
-.contenedor{
-  display: flex;
-  justify-content: center; 
-  align-items: center; 
-}
-.boton{
-  font-family: "Macondo Swash Caps", cursive;
-  font-size: 20px;
-  color:black;
-  display: block;
-  background-color: bisque;
-  text-align: center;
-  width: 200px;
-  height: 70px;
+body {
+    background-image: url("../assets/sprites/Fondo_Papel.jpg");
+    background-size: cover;
 }
 
 h1 {
-  text-align: center;
-  font-family: "Macondo Swash Caps", cursive;
+    text-align: center;
+    font-family: "Macondo Swash Caps", cursive;
 }
 
 h2 {
-  font-family: "Macondo Swash Caps", cursive;
-  font-weight: 200;
-  color:bisque;
-  margin-left: 200px;
+    font-family: "Macondo Swash Caps", cursive;
+    font-weight: 200;
+    color: bisque;
+    margin-left: 200px;
+}
+
+.descripcion h1 {
+  font-size: 56px; /* Tamaño de fuente para el título */
+}
+
+.descripcion p {
+  font-size: 44px; /* Tamaño de fuente para la descripción */
+}
+
+/* Espacio en blanco */
+#espacio-en-blanco {
+    margin-bottom: 750px;
+}
+/* Espacio en blanco */
+#espacio-en-blanco2 {
+  margin-bottom: 350px;
 }

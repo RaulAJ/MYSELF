@@ -35,7 +35,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.spawnX = this.x;
         this.spawnY = this.y;
 
-        this.positionText = this.scene.add.text(500, 50, 'Posición: (0, 0)', { fontSize: '24px', fill: '#ffffff' }).setScrollFactor(0);
+        //this.positionText = this.scene.add.text(500, 50, 'Posición: (0, 0)', { fontSize: '24px', fill: '#ffffff' }).setScrollFactor(0);
 
         this.scene.add.existing(this);
         this.originalBodySize = {width: 35, height: 52};
@@ -194,7 +194,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
         let isRunning = false;
-        this.positionText.setText('Posición: (' + this.x + ', ' + this.y + ')');
+       // this.positionText.setText('Posición: (' + this.x + ', ' + this.y + ')');
 
         if (!this.canMove) {
             // Si el jugador no puede moverse, establecer la velocidad del jugador en 0 y salir de preUpdate
@@ -202,7 +202,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             return;
         }
 
-        if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
+        if (Phaser.Input.Keyboard.JustDown(this.w)) {
             if (this.body.onFloor() || (this.canDoubleJump && !this.body.onFloor() && !this.doubleJumped)) {
                 if (!this.body.onFloor()) {
                     this.doubleJumped = true; // Registrar el doble salto
@@ -256,7 +256,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         }
        
-        if (this.cursors.left.isDown) {
+        if (this.a.isDown) {
             if(this.dashed){
                 this.body.setVelocityX(-this.speed * 1.7);
             }
@@ -266,7 +266,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.setFlipX(true);
             isRunning = true;
         }
-        else if (this.cursors.right.isDown) {
+        else if (this.d.isDown) {
             if(this.dashed){
                 this.body.setVelocityX(this.speed * 1.7);
             }
