@@ -28,6 +28,20 @@
         <br>Myself es un metroidvania ambientado en un mundo de fantasía donde llevas a un hombre misterioso que desconoce todo sobre sí mismo
     </h2>
 
+    <div class="contenedor">
+        <button id="cargarScriptBtn", class="boton">Jugar</button>
+    </div>
+    <!-- Este div se utilizará para mostrar el estado de carga -->
+    <div id="estadoCarga"></div>
+
+    <!-- El script se cargará aquí después de hacer clic en el botón -->
+    <div id="scriptContainer"></div>
+
+    <script>
+        document.getElementById('cargarScriptBtn').addEventListener('click', function() {
+            import('./src/game.js')       
+        });
+    </script>
     
 </body>
 

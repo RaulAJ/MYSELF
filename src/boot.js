@@ -29,7 +29,14 @@ import logo_hormiga from '../assets/sprites/logo_hormiga.png'
 import background_clouds from '../assets/sprites/Environment/PNG/clouds.png'
 import background_sky from '../assets/sprites/Environment/PNG/sky.png'
 import background_grounds from '../assets/sprites/Environment/PNG/far-grounds.png'
-
+import mountain_sky from '../assets/sprites/fondo_zona2/1_1.png'
+import mountain_1 from '../assets/sprites/fondo_zona2/2.png'
+import mountain_2 from '../assets/sprites/fondo_zona2/3.png'
+import mountain from '../assets/sprites/fondo_zona2/PRE_ORIG_SIZE.png'
+import cave_1 from '../assets/sprites/pixelfantsy/background1.png'
+import cave_2 from '../assets/sprites/pixelfantsy/background2.png'
+import cave_3 from '../assets/sprites/pixelfantsy/background3.png'
+import cave_4 from '../assets/sprites/pixelfantsy/background4a.png'
 import castle_background from '../assets/sprites/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-background.png'
 import pantalla_completa from '../assets/sprites/pantalla_completa.png'
 import healthbar from '../assets/sprites/healthbar.png'
@@ -130,6 +137,14 @@ export default class Boot extends Phaser.Scene {
       this.load.image('background_clouds', background_clouds);
       this.load.image('background_sky', background_sky);
       this.load.image('background_grounds', background_grounds);
+      this.load.image('mountain_sky',mountain_sky);
+      this.load.image('mountain_1',mountain_1);
+      this.load.image('mountain_2',mountain_2);
+      this.load.image('mountain',mountain);
+      this.load.image('cave_1',cave_1);
+      this.load.image('cave_2',cave_2);
+      this.load.image('cave_3',cave_3);
+      this.load.image('cave_4',cave_4);
       this.load.image('pause', pause);
       this.load.image('castle_background',castle_background);
       this.load.image('healthbar', healthbar);

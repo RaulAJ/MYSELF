@@ -2,8 +2,10 @@ import Player from './player.js';
 import Wolf from './wolf.js';
 import Spider from './spider.js';
 import Minotaur from './minotaur.js';
-/*import WolfBoss from './wolfboss.js';
-import FinalBoss from './finalboss.js';*/
+import WolfBoss from './wolfboss.js';
+import MinotaurBoss from './minotaurBoss.js'
+import SpiderBoss from './spiderBoss.js'
+/*import FinalBoss from './finalboss.js';*/
 import Phaser from 'phaser'
 
 
@@ -56,23 +58,170 @@ export default class Level extends Phaser.Scene {
         this.wallLayer.setCollisionByProperty({colision:true});
 
         this.enemies = this.add.group();
-
+        this.bosses = this.add.group();
         //this.backWallLayer.setCollisionByProperty({colision:true});
-        
-        //this.boss1 = new WolfBoss(this, 800, 1000);
-        //this.finalBoss = new FinalBoss(this, 800, 1000);
-        this.wolf = new Wolf(this, 3605, 500);
-        this.wolf2 = new Wolf(this, 4100, 402);
-        this.spider = new Spider(this, 1800, 1100);
-        this.minotaur = new Minotaur(this, 1200, 1100);
-        this.player = new Player(this, 500, 1200);
 
-        this.enemies.add(this.wolf);
+        this.boss1 = new WolfBoss(this, 8100, 5000); // y 5696
+        this.boss2 = new MinotaurBoss(this, 21410,1700);
+       // this.boss3 = new SpiderBoss(this,);
+        //this.finalBoss = new FinalBoss(this, 21300, 3200);
+     
+        //Zona1
+        this.wolf1 = new Wolf(this, 1200,1100);
+        this.wolf2 = new Wolf(this, 1805,1100);
+        this.wolf3 = new Wolf(this, 2420, 1100);
+        this.wolf4 = new Wolf(this, 3405, 402);
+        this.wolf5 = new Wolf(this,3605, 402);
+        this.wolf6 = new Wolf(this, 4100, 402);
+        this.wolf7 = new Wolf(this, 4976, 2000); //y 2976
+        this.wolf8 = new Wolf(this, 4880, 3002); //y 3600
+        this.wolf9 = new Wolf(this, 3635, 3002); //y 3600
+        this.wolf10 = new Wolf(this, 3200, 3002); //y 3600
+        this.wolf11 = new Wolf(this, 4100, 4002); //y 4224
+        this.wolf12 = new Wolf(this, 4800, 4502); //y 5056
+        this.wolf13 = new Wolf(this, 5600, 4502); //y 5056
+        this.wolf14 = new Wolf(this, 2800, 4502); //y 5056
+        this.wolf15 = new Wolf(this, 3900, 4502); //y 5056
+        this.wolf16 = new Wolf(this, 6377, 1600); //y 2128
+        //Zona2
+        this.minotaur1 = new Minotaur(this, 9750, 1100);
+        this.minotaur2 = new Minotaur(this, 10200, 1100);
+        this.minotaur3 = new Minotaur(this, 11200, 1100);
+        this.minotaur4 = new Minotaur(this, 11900, 1100);
+        this.minotaur5 = new Minotaur(this, 12600, 1100);
+        this.minotaur6 = new Minotaur(this, 13200, 1100);
+        this.minotaur7 = new Minotaur(this, 13500, 1100);
+        this.minotaur8 = new Minotaur(this, 14700, 1100);
+        this.minotaur9 = new Minotaur(this, 16000, 1100);
+        this.minotaur10 = new Minotaur(this, 16500, 1100);
+        this.minotaur11 = new Minotaur(this, 16800, 1100);
+        this.minotaur12 = new Minotaur(this, 19000, 1100);
+        this.minotaur13 = new Minotaur(this, 20600, 900);
+        this.minotaur14 = new Minotaur(this, 21200, 900);
+        this.minotaur15 = new Minotaur(this, 10900, 1600);
+        this.minotaur16 = new Minotaur(this, 14900, 4000);
+        this.minotaur17 = new Minotaur(this, 14800, 3600);
+        this.minotaur18 = new Minotaur(this, 15000, 2600);
+        this.minotaur19 = new Minotaur(this, 15400, 2600);
+        this.minotaur20 = new Minotaur(this, 13600, 2600);
+        this.minotaur21 = new Minotaur(this, 14000, 2600);
+        //Zona3
+        this.spider1 = new Spider(this, 10100, 5100);
+        this.spider2 = new Spider(this, 10500, 5100);
+        this.spider3 = new Spider(this, 10900, 5100);
+        this.spider4 = new Spider(this, 10900, 4500);
+        this.spider5 = new Spider(this, 11000, 3500);
+        this.spider6 = new Spider(this, 11300, 2800);
+        this.spider7 = new Spider(this, 10900, 2300);
+        this.spider8 = new Spider(this, 10500, 2300);
+        this.spider9 = new Spider(this, 11000, 1700);
+        this.spider10 = new Spider(this, 11300, 4100);
+        this.spider11 = new Spider(this, 12500, 4300);
+        this.spider12 = new Spider(this, 13000, 4300);
+        this.spider13 = new Spider(this, 12500, 5500);
+        this.spider14 = new Spider(this, 13000, 5500);
+        this.spider15 = new Spider(this, 14100, 5500);
+        this.spider16 = new Spider(this, 14500, 5100);
+        //Zona4
+        this.spider17 = new Spider(this, 15550, 5500);
+        this.spider18 = new Spider(this, 16250, 5300);
+        this.spider19 = new Spider(this, 17050, 5300);
+        this.spider20 = new Spider(this, 20050, 5300);
+        this.spider21 = new Spider(this, 18050, 4800);
+        this.spider22 = new Spider(this, 21000, 4400);
+        this.wolf17 = new Wolf(this,18400, 4800);
+        this.wolf18 = new Wolf(this,17600, 5100);
+        this.wolf19 = new Wolf(this,18500, 5400);
+        this.wolf20 = new Wolf(this,20600, 5100);
+        this.wolf21 = new Wolf(this,19900, 4400);
+        this.wolf22 = new Wolf(this,20300, 4400);
+        this.wolf23 = new Wolf(this,19000, 3800);
+        this.minotaur22 = new Minotaur(this, 19200, 4800);
+        this.minotaur23 = new Minotaur(this, 20700, 4400);
+        this.minotaur24 = new Minotaur(this, 18500, 4100);
+        this.minotaur25 = new Minotaur(this, 19250, 3600);
+        this.minotaur26 = new Minotaur(this,1800,5300);
+        this.player = new Player(this, 500, 1950);
+
+        this.enemies.add(this.wolf1);
         this.enemies.add(this.wolf2);
-        this.enemies.add(this.spider);
-        this.enemies.add(this.minotaur);
-       // this.enemies.add(this.finalBoss);
-       // this.enemies.add(this.boss1);
+        this.enemies.add(this.wolf3);
+        this.enemies.add(this.wolf4);
+        this.enemies.add(this.wolf5);
+        this.enemies.add(this.wolf6);
+        this.enemies.add(this.wolf7);
+        this.enemies.add(this.wolf8);
+        this.enemies.add(this.wolf9);
+        this.enemies.add(this.wolf10);
+        this.enemies.add(this.wolf11);
+        this.enemies.add(this.wolf12);
+        this.enemies.add(this.wolf13);
+        this.enemies.add(this.wolf14);
+        this.enemies.add(this.wolf15);
+        this.enemies.add(this.wolf16);
+        this.enemies.add(this.minotaur1);
+        this.enemies.add(this.minotaur2);
+        this.enemies.add(this.minotaur3);
+        this.enemies.add(this.minotaur4);
+        this.enemies.add(this.minotaur5);
+        this.enemies.add(this.minotaur6);
+        this.enemies.add(this.minotaur7);
+        this.enemies.add(this.minotaur8);
+        this.enemies.add(this.minotaur9);
+        this.enemies.add(this.minotaur10);
+        this.enemies.add(this.minotaur11);
+        this.enemies.add(this.minotaur12);
+        this.enemies.add(this.minotaur13);
+        this.enemies.add(this.minotaur14);
+        this.enemies.add(this.minotaur15);
+        this.enemies.add(this.minotaur16);
+        this.enemies.add(this.minotaur17);
+        this.enemies.add(this.minotaur18);
+        this.enemies.add(this.minotaur19);
+        this.enemies.add(this.minotaur20);
+        this.enemies.add(this.minotaur21);
+        this.enemies.add(this.spider1);
+        this.enemies.add(this.spider2);
+        this.enemies.add(this.spider3);
+        this.enemies.add(this.spider4);
+        this.enemies.add(this.spider5);
+        this.enemies.add(this.spider6);
+        this.enemies.add(this.spider7);
+        this.enemies.add(this.spider8);
+        this.enemies.add(this.spider9);
+        this.enemies.add(this.spider10);
+        this.enemies.add(this.spider11);
+        this.enemies.add(this.spider12);
+        this.enemies.add(this.spider13);
+        this.enemies.add(this.spider14);
+        this.enemies.add(this.spider15);
+        this.enemies.add(this.spider16);
+        this.enemies.add(this.wolf17);
+        this.enemies.add(this.wolf18);
+        this.enemies.add(this.wolf19);
+        this.enemies.add(this.wolf20);
+        this.enemies.add(this.wolf21);
+        this.enemies.add(this.wolf22);
+        this.enemies.add(this.wolf23);
+        this.enemies.add(this.spider17);
+        this.enemies.add(this.spider18);
+        this.enemies.add(this.spider19);
+        this.enemies.add(this.spider20);
+        this.enemies.add(this.spider21);
+        this.enemies.add(this.spider22);
+        this.enemies.add(this.minotaur22);
+        this.enemies.add(this.minotaur23);
+        this.enemies.add(this.minotaur24);
+        this.enemies.add(this.minotaur25);
+        this.enemies.add(this.minotaur26);
+
+
+        this.bosses.add(this.boss1);
+        this.bosses.add(this.boss2);
+        /*
+        this.bosses.add(this.boss3);
+        this.bosses.add(finalBoss);
+        */
         this.physics.world.setBounds(0, -13870, 23566, 20000); // Cambiar los valores según sea necesario
 
         // Establecer los límites de desplazamiento de la cámara
@@ -96,9 +245,17 @@ export default class Level extends Phaser.Scene {
 
         this.physics.add.collider(this.player, this.groundLayer);
         this.physics.add.collider(this.enemies, this.groundLayer);
+        this.physics.add.collider(this.bosses, this.groundLayer);
         this.physics.add.collider(this.player, this.wallLayer);
         this.physics.add.collider(this.enemies, this.wallLayer);
+        this.physics.add.collider(this.enemies, this.wallLayer);
 
+        /*var zoneChange = this.add.zone(8220, 1680,400,400)
+        zoneChange.setOrigin(0);
+        zoneChange.setInteractive();
+        zoneChange.on('pointerdown',function(){
+            this.background.setTexture('mountain');
+        },this);*/
 
        /* const config = {
             mute: false,
@@ -112,8 +269,19 @@ export default class Level extends Phaser.Scene {
 
         this.musica_ambiente = this.sound.add("musica_ambiente", config);
         this.musica_ambiente.play();
+
+        
 */
     }
+
+   /* changeBackground2(){
+        this.add.image(0,0,'mountain').setOrigin(0);
+    }
+    enemiesRespawn(){
+        this.time.delayedCall(4000, () => {
+            this.enemies.respawn();
+        }, [], this);
+    }*/
 
     playerDeath() {
         this.time.delayedCall(4000, () => {
