@@ -194,7 +194,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
         let isRunning = false;
-        //this.positionText.setText('Posición: (' + this.x + ', ' + this.y + ')');
+        this.positionText.setText('Posición: (' + this.x + ', ' + this.y + ')');
 
         if (!this.canMove) {
             // Si el jugador no puede moverse, establecer la velocidad del jugador en 0 y salir de preUpdate
@@ -286,7 +286,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.body.setAllowGravity(false);
 
         }  
-        if (this.y >= 6000 || this.health <= 0) {
+        if (this.y >= 8000 || this.health <= 0) {
             // Llama a la función death(), y luego espera 4 segundos antes de llamar a respawn()
             this.play('death');
             this.death();

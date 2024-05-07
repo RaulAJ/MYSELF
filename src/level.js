@@ -63,7 +63,7 @@ export default class Level extends Phaser.Scene {
 
         this.boss1 = new WolfBoss(this, 8100, 5000); // y 5696
         this.boss2 = new MinotaurBoss(this, 21410,1700);
-       // this.boss3 = new SpiderBoss(this,);
+        this.boss3 = new SpiderBoss(this,17400, 6600);
         //this.finalBoss = new FinalBoss(this, 21300, 3200);
      
         //Zona1
@@ -218,14 +218,12 @@ export default class Level extends Phaser.Scene {
 
         this.bosses.add(this.boss1);
         this.bosses.add(this.boss2);
-        /*
         this.bosses.add(this.boss3);
-        this.bosses.add(finalBoss);
-        */
-        this.physics.world.setBounds(0, -13870, 23566, 20000); // Cambiar los valores según sea necesario
+        //this.bosses.add(finalBoss);
+        this.physics.world.setBounds(0, -13870, 23566, 23000); // Cambiar los valores según sea necesario
 
         // Establecer los límites de desplazamiento de la cámara
-        this.cameras.main.setBounds(0, -13870, 23500, 19800); // Casi coincidir con el tamaño del mundo del juego
+        this.cameras.main.setBounds(0, -13870, 23500, 22800); // Casi coincidir con el tamaño del mundo del juego
     
 
         this.playerCamera = this.cameras.main.startFollow(this.player, false, 1, 1, 0, 75);
