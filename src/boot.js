@@ -113,6 +113,7 @@ export default class Boot extends Phaser.Scene {
           porcentaje.destroy();
           assetText.destroy();
       });
+      this.load.audio('musica_ambiente', "../assets/audio/musica_ambiente.mp3");
 
       // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
       this.load.setPath('assets/sprites/');
@@ -134,9 +135,7 @@ export default class Boot extends Phaser.Scene {
       this.load.image('healthbar', healthbar);
       this.load.image('relleno_healthbar', relleno_healthbar);
       this.load.image('pantalla_completa', pantalla_completa);
-     
-      //this.load.audio('musica_ambiente', "../assets/audio/musica_ambiente.wav");
-      
+           
       this.load.spritesheet('player', player,{
         frameWidth: 115, frameHeight: 84 
       });
@@ -185,7 +184,8 @@ export default class Boot extends Phaser.Scene {
       });
       this.load.spritesheet('wolfBoss_hurt', wolfBoss_hurt,{
         frameWidth: 128, frameHeight: 128 
-      })   
+      })
+   
       /*this.load.spritesheet('finalBoss_attack', finalBoss_attack,{
         frameWidth: 80, frameHeight: 80 
       });
