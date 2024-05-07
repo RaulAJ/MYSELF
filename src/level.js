@@ -248,7 +248,7 @@ export default class Level extends Phaser.Scene {
         this.physics.add.collider(this.bosses, this.groundLayer);
         this.physics.add.collider(this.player, this.wallLayer);
         this.physics.add.collider(this.enemies, this.wallLayer);
-        this.physics.add.collider(this.enemies, this.wallLayer);
+        this.physics.add.collider(this.bosses, this.wallLayer);
 
         /*var zoneChange = this.add.zone(8220, 1680,400,400)
         zoneChange.setOrigin(0);
