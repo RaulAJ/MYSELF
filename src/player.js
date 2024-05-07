@@ -202,7 +202,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             return;
         }
 
-        if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
+        if (Phaser.Input.Keyboard.JustDown(this.w)) {
             if (this.body.onFloor() || (this.canDoubleJump && !this.body.onFloor() && !this.doubleJumped)) {
                 if (!this.body.onFloor()) {
                     this.doubleJumped = true; // Registrar el doble salto
@@ -256,7 +256,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
         }
        
-        if (this.cursors.left.isDown) {
+        if (this.a.isDown) {
             if(this.dashed){
                 this.body.setVelocityX(-this.speed * 1.7);
             }
@@ -266,7 +266,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.setFlipX(true);
             isRunning = true;
         }
-        else if (this.cursors.right.isDown) {
+        else if (this.d.isDown) {
             if(this.dashed){
                 this.body.setVelocityX(this.speed * 1.7);
             }
