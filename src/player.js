@@ -143,12 +143,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     makeDamage(){
-       // if(level_melee == 1){
         
         this.scene.physics.overlap(this.attackHitbox.body, this.scene.enemies,(hitbox, enemy) => {
           enemy.getDamage(40);
         });
-        //}
+        
+        this.scene.physics.overlap(this.attackHitbox.body, this.scene.bosses,(hitbox, boss) => {
+            boss.getDamage(40);
+          });
     }
 
     make_pause(){
