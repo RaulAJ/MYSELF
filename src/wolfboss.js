@@ -4,7 +4,7 @@ import Player from './player.js';
 export default class WolfBoss extends Enemy {
 
     constructor(scene, x, y) {
-        super(scene, x, y, 550, 75, 0, 400, 50, 100, 25);
+        super(scene, x, y, 550, 75, 0, 400, 90, 80, 25);
         this.setDisplaySize(180, 140);
         this.body.setSize(70, 60);
         this.body.setOffset(40, 70);

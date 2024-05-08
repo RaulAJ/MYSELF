@@ -99,12 +99,12 @@ export default class Level extends Phaser.Scene {
         this.minotaur13 = new Minotaur(this, 20600, 900);
         this.minotaur14 = new Minotaur(this, 21200, 900);
         this.minotaur15 = new Minotaur(this, 10900, 1600);
-        this.minotaur16 = new Minotaur(this, 14900, 4000);
-        this.minotaur17 = new Minotaur(this, 14800, 3600);
+        this.minotaur16 = new Minotaur(this, 14900, 4600);
+        this.minotaur17 = new Minotaur(this, 14800, 3800);
         this.minotaur18 = new Minotaur(this, 15000, 2600);
         this.minotaur19 = new Minotaur(this, 15400, 2600);
-        this.minotaur20 = new Minotaur(this, 13600, 2600);
-        this.minotaur21 = new Minotaur(this, 14000, 2600);
+        this.minotaur20 = new Minotaur(this, 13600, 2800);
+        this.minotaur21 = new Minotaur(this, 14000, 2800);
         //Zona3
         this.spider1 = new Spider(this, 10100, 5100);
         this.spider2 = new Spider(this, 10500, 5100);
@@ -113,8 +113,8 @@ export default class Level extends Phaser.Scene {
         this.spider5 = new Spider(this, 11000, 3500);
         this.spider6 = new Spider(this, 11300, 2800);
         this.spider7 = new Spider(this, 10900, 2300);
-        this.spider8 = new Spider(this, 10500, 2300);
-        this.spider9 = new Spider(this, 11000, 1700);
+        this.spider8 = new Spider(this, 10500, 2400);
+        this.spider9 = new Spider(this, 11000, 2000);
         this.spider10 = new Spider(this, 11300, 4100);
         this.spider11 = new Spider(this, 12500, 4300);
         this.spider12 = new Spider(this, 13000, 4300);

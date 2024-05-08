@@ -16,7 +16,7 @@ import spider_die from '../assets/sprites/Spider/spider_die.png'
 import wolfBoss_stand from '../assets/sprites/Wolf/Red_Werewolf/Idle.png'
 import wolfBoss_walk from '../assets/sprites/Wolf/Red_Werewolf/walk.png'
 import wolfBoss_dead from '../assets/sprites/Wolf/Red_Werewolf/Dead.png'
-import wolfBoss_attack from '../assets/sprites/Wolf/Red_Werewolf/Attack_1.png'
+import wolfBoss_attack from '../assets/sprites/Wolf/Red_Werewolf/Attack_2.png'
 import wolfBoss_hurt from '../assets/sprites/Wolf/Red_Werewolf/Hurt.png'
 /*import finalBoss_attack from '../assets/sprites/Dwarf 2/bossFinal_ataque2.png'
 import finalBoss_walk from '../assets/sprites/Dwarf 2/bossFinal_correr.png'
@@ -423,7 +423,7 @@ export default class Boot extends Phaser.Scene {
       
       this.anims.create({
         key: 'wolfBoss_attack',
-        frames: this.anims.generateFrameNumbers('wolfBoss_attack', { start: 0, end: 5 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        frames: this.anims.generateFrameNumbers('wolfBoss_attack', { start: 0, end: 3 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
         frameRate: 6, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
         repeat: 0  // para no repetir la animación continuamente
       });
