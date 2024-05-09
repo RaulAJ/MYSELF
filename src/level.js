@@ -255,7 +255,7 @@ export default class Level extends Phaser.Scene {
             this.background.setTexture('mountain');
         },this);*/
 
-       /* const config = {
+        const config = {
             mute: false,
             volume: 0.15,
             rate: 1,
@@ -269,7 +269,7 @@ export default class Level extends Phaser.Scene {
         this.musica_ambiente.play();
 
         
-*/
+
     }
 
    /* changeBackground2(){

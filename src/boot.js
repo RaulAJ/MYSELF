@@ -49,7 +49,7 @@ import mapa4 from '../assets/map/mapa4.json'
 
 import tileset from '../assets/sprites/Environment/PNG/tileset.png'
 import tileset2 from '../assets/sprites/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-tileset.png'
-//import musica from '../assets/audio/musica_ambiente.wav'
+import musica_ambiente from '../assets/audio/musica_ambiente.mp3'
 
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
@@ -120,7 +120,7 @@ export default class Boot extends Phaser.Scene {
           porcentaje.destroy();
           assetText.destroy();
       });
-      this.load.audio('musica_ambiente', "../assets/audio/musica_ambiente.mp3");
+      this.load.audio('musica_ambiente', musica_ambiente);
 
       // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
       this.load.setPath('assets/sprites/');
