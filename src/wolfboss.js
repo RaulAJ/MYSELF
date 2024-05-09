@@ -4,7 +4,7 @@ import Player from './player.js';
 export default class WolfBoss extends Enemy {
 
     constructor(scene, x, y) {
-        super(scene, x, y, 550, 75, 0, 400, 90, 80, 25);
+        super(scene, x, y, 150, 75, 0, 400, 90, 80, 25);
         this.setDisplaySize(180, 140);
         this.body.setSize(70, 60);
         this.body.setOffset(40, 70);
@@ -25,7 +25,7 @@ export default class WolfBoss extends Enemy {
             }
             else{
                 this.health = 0;
-                
+                this.scene.player.canDash = true;
                 this.anims.play('wolfBoss_dead',true);
                 this.body.setVelocityX(0);
                 this.scene.time.delayedCall(5000, () => {this.destroy();}, [], this);

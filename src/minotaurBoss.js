@@ -25,7 +25,7 @@ export default class Minotaur extends Enemy {
             }
             else{
                 this.health = 0;
-                
+                this.scene.player.canDoubleJump = true;
                 this.anims.play('minotaur_death',true);
                 this.body.setVelocityX(0);
                 this.scene.time.delayedCall(5000, () => {this.destroy();}, [], this);

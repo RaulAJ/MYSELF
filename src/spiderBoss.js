@@ -25,7 +25,7 @@ export default class Spider extends Enemy {
             }
             else{
                 this.health = 0;
-                
+                this.scene.player.canShrink = true;
                 this.anims.play('spider_die',true);
                 this.body.setVelocityX(0);
                 this.scene.time.delayedCall(5000, () => {this.destroy();}, [], this);

@@ -45,7 +45,10 @@ export default class Level extends Phaser.Scene {
         this.fondo_grounds.setScrollFactor(0,0);
         this.fondo_grounds.setScale(3.0, 2.0);
         
-        
+        this.castle_background = this.add.tileSprite(0, 470, this.game.config.width+235, this.game.config.height-435, 'castle_background');
+        this.castle_background.setScrollFactor(0,0);
+        this.castle_background.setScale(3.0, 2.0);
+        this.castle_background.setDepth(-5);
 
         this.map = this.make.tilemap({key: 'tilemap4'});
 
@@ -141,8 +144,8 @@ export default class Level extends Phaser.Scene {
         this.minotaur24 = new Minotaur(this, 18500, 4100);
         this.minotaur25 = new Minotaur(this, 19250, 3600);
         this.minotaur26 = new Minotaur(this,1800,5300);
-        this.player = new Player(this, 500, 1950);
-
+       // this.player = new Player(this, 500, 1950);
+        this.player = new Player(this,7894,1692);
         this.enemies.add(this.wolf1);
         this.enemies.add(this.wolf2);
         this.enemies.add(this.wolf3);
@@ -248,13 +251,60 @@ export default class Level extends Phaser.Scene {
         this.physics.add.collider(this.enemies, this.wallLayer);
         this.physics.add.collider(this.bosses, this.wallLayer);
 
-        /*var zoneChange = this.add.zone(8220, 1680,400,400)
-        zoneChange.setOrigin(0);
-        zoneChange.setInteractive();
-        zoneChange.on('pointerdown',function(){
-            this.background.setTexture('mountain');
-        },this);*/
+        this.zone2Change1 = this.add.zone(8220, 1680,100,100);
+        this.zone3Change1 = this.add.zone(10650, 2144,100,100);
+        this.zone3Change2 = this.add.zone(9365,5723,100,100);
+        this.zone2Change2 = this.add.zone(13460, 4603,100,100);
+        this.zone4Change = this.add.zone(15070,5723,100,100);
+        this.grupo1 = this.add.group();
+        this.grupo2 = this.add.group();
+        this.grupo3 = this.add.group();
+        this.grupo1.add(this.zone2Change1);
+        this.grupo1.add(this.zone2Change2);
+        this.grupo2.add(this.zone3Change1);
+        this.grupo2.add(this.zone3Change2);
+        this.grupo3.add(this.zone4Change);
+        this.physics.add.existing(this.zone2Change1);
+        this.physics.add.existing(this.zone3Change1);
+        this.physics.add.existing(this.zone3Change2);
+        this.physics.add.existing(this.zone2Change2);
+        this.physics.add.existing(this.zone4Change);
+        this.zone2Change1.body.setAllowGravity(false);
+        this.zone3Change1.body.setAllowGravity(false);
+        this.zone3Change2.body.setAllowGravity(false);
+        this.zone2Change2.body.setAllowGravity(false);
+        this.zone4Change.body.setAllowGravity(false);
 
+        this.currentZone = "";            
+        this.zone2Change1.setOrigin(0);
+        this.physics.add.overlap(this.player, this.zone2Change1, function() {
+            if(this.currentZone != "zona2"){
+                this.castle_background.addToDisplayList();
+                this.currentZone = "zona2";
+            }
+      
+        });
+               
+        /*zone3Change1.setOrigin(0);
+        this.physics.add.overlap(player, zone2Change1, function() {
+            
+        });
+            
+        zone3Change2.setOrigin(0);
+        this.physics.add.overlap(player, zone2Change1, function() {
+            
+        });
+     
+        zone2Change2.setOrigin(0);
+        this.physics.add.overlap(player, zone2Change1, function() {
+            
+        });
+        
+        zone4Change.setOrigin(0);
+        this.physics.add.overlap(player, zone2Change1, function() {
+            
+        });
+*/
         const config = {
             mute: false,
             volume: 0.15,
