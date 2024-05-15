@@ -45,7 +45,7 @@ export default class Level extends Phaser.Scene {
         this.fondo_grounds.setScrollFactor(0,0);
         this.fondo_grounds.setScale(3.0, 2.0);
         
-        this.castle_background = this.add.tileSprite(0, 470, this.game.config.width+235, this.game.config.height-435, 'castle_background');
+        this.castle_background = this.add.tileSprite(0, 470, this.game.config.width+235, this.game.config.height, 'castle_background');
         this.castle_background.setScrollFactor(0,0);
         this.castle_background.setScale(3.0, 2.0);
         this.castle_background.setDepth(-5);
@@ -274,12 +274,17 @@ export default class Level extends Phaser.Scene {
         this.zone3Change2.body.setAllowGravity(false);
         this.zone2Change2.body.setAllowGravity(false);
         this.zone4Change.body.setAllowGravity(false);
-
+        
         this.currentZone = "";            
         this.zone2Change1.setOrigin(0);
-        this.physics.add.overlap(this.player, this.zone2Change1, function() {
+        this.physics.add.overlap(this.player, this.zone2Change1, () => {
             if(this.currentZone != "zona2"){
                 this.castle_background.addToDisplayList();
+                this.fondo_clouds.removeFromDisplayList();
+                this.fondo_sky.removeFromDisplayList();
+                this.fondo_grounds.removeFromDisplayList();
+                this.castle_background.setDepth(0);
+
                 this.currentZone = "zona2";
             }
       
