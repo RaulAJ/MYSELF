@@ -159,6 +159,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
     }
 
+    checkRestZones(){
+        this.scene.physics.overlap(this.body, this.scene.restZones,(hitbox, restZone) => {
+            this.spawnX = restZone.x;
+            this.spawnY = restZone.y;
+            this.health = 100;
+        });
+    }
+
     makeDamage(attackCount){
         
         this.scene.physics.overlap(this.attackHitbox.body, this.scene.enemies,(hitbox, enemy) => {
@@ -218,6 +226,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
+        this.checkRestZones();
         let isRunning = false;
        // this.positionText.setText('Posición: (' + this.x + ', ' + this.y + ')');
 

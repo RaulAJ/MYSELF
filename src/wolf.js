@@ -37,6 +37,8 @@ export default class Wolf extends Enemy {
         this.scene.physics.overlap(this.body, this.scene.player, (hitbox, player) => {
             player.getDamage(damage); // Aplicar daño al jugador
         });
+        this.beast_hit.play();
+
      }
 
     attack(){

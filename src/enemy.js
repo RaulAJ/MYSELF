@@ -23,6 +23,17 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.healthBar = this.scene.add.graphics();
         this.updateHealthBar();
 
+        const config = {
+            mute: false,
+            volume: 0.10,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0,
+        };
+        this.spider_hit = this.scene.sound.add("spider_hit", config);
+        this.beast_hit = this.scene.sound.add("beast_hit", config);
     }
 
     getDamage(damage) {}

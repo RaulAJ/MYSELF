@@ -46,6 +46,7 @@ import mapa from '../assets/map/mapa.json'
 import mapa2 from '../assets/map/mapa2.json'
 import mapa3 from '../assets/map/mapa3.json'
 import mapa4 from '../assets/map/mapa4.json'
+import restZone from '../assets/sprites/Rest/RestZone.png'
 
 import tileset from '../assets/sprites/Environment/PNG/tileset.png'
 import tileset2 from '../assets/sprites/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-tileset.png'
@@ -54,7 +55,8 @@ import slash_attack1 from '../assets/audio/slash_attack1.mp3'
 import slash_attack2 from '../assets/audio/slash_attack2.mp3'
 import player_hurt from '../assets/audio/player_hurt.mp3'
 import slash_hit from '../assets/audio/slash_hit.mp3'
-
+import beast_hit from '../assets/audio/beast_hit.mp3'
+import spider_hit from '../assets/audio/spider_hit.mp3'
 
 /**
  * Escena para la precarga de los assets que se usarán en el juego.
@@ -130,6 +132,8 @@ export default class Boot extends Phaser.Scene {
       this.load.audio('slash_attack2', slash_attack2);
       this.load.audio('slash_hit', slash_hit);
       this.load.audio('player_hurt', player_hurt);
+      this.load.audio('spider_hit', spider_hit);
+      this.load.audio('beast_hit',beast_hit);
 
       // Con setPath podemos establecer el prefijo que se añadirá a todos los load que aparecen a continuación
       this.load.setPath('assets/sprites/');
@@ -142,6 +146,7 @@ export default class Boot extends Phaser.Scene {
       this.load.image('mainMap', tileset);
       this.load.image('zone4',tileset2);
 
+      this.load.image('rest_zone', restZone);
       this.load.image('logo_hormiga', logo_hormiga);
       this.load.image('background_clouds', background_clouds);
       this.load.image('background_sky', background_sky);

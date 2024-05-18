@@ -5,6 +5,7 @@ import Minotaur from './minotaur.js';
 import WolfBoss from './wolfboss.js';
 import MinotaurBoss from './minotaurBoss.js'
 import SpiderBoss from './spiderBoss.js'
+import restZone from './restZone.js';
 /*import FinalBoss from './finalboss.js';*/
 import Phaser from 'phaser'
 
@@ -62,8 +63,8 @@ export default class Level extends Phaser.Scene {
 
         this.enemies = this.add.group();
         this.bosses = this.add.group();
+        this.restZones = this.add.group();
         //this.backWallLayer.setCollisionByProperty({colision:true});
-
         this.boss1 = new WolfBoss(this, 8100, 5000); // y 5696
         this.boss2 = new MinotaurBoss(this, 21410,1700);
         this.boss3 = new SpiderBoss(this,17400, 6600);
@@ -144,8 +145,11 @@ export default class Level extends Phaser.Scene {
         this.minotaur24 = new Minotaur(this, 18500, 4100);
         this.minotaur25 = new Minotaur(this, 19250, 3600);
         this.minotaur26 = new Minotaur(this,1800,5300);
-       // this.player = new Player(this, 500, 1950);
-        this.player = new Player(this,7894,1692);
+
+        this.restZone1 = new restZone(this, 500, 1950);
+        this.restZones.add(this.restZone1);
+        this.player = new Player(this, 500, 1950);
+        //this.player = new Player(this,7894,1692);
         this.enemies.add(this.wolf1);
         this.enemies.add(this.wolf2);
         this.enemies.add(this.wolf3);
@@ -250,6 +254,7 @@ export default class Level extends Phaser.Scene {
         this.physics.add.collider(this.player, this.wallLayer);
         this.physics.add.collider(this.enemies, this.wallLayer);
         this.physics.add.collider(this.bosses, this.wallLayer);
+        this.physics.add.collider(this.restZones, this.groundLayer);
 
         this.zone2Change1 = this.add.zone(8220, 1680,100,100);
         this.zone3Change1 = this.add.zone(10650, 2144,100,100);

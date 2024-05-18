@@ -1,5 +1,4 @@
 import Enemy from './enemy.js';
-import Player from './player.js';
 
 export default class Minotaur extends Enemy {
 
@@ -37,6 +36,8 @@ export default class Minotaur extends Enemy {
         this.scene.physics.overlap(this.body, this.scene.player, (hitbox, player) => {
             player.getDamage(damage); // Aplicar daño al jugador
         });
+        this.beast_hit.play();
+
      }
 
     attack(){

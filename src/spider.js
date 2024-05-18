@@ -37,6 +37,7 @@ export default class Spider extends Enemy {
         this.scene.physics.overlap(this.body, this.scene.player, (hitbox, player) => {
             player.getDamage(damage); // Aplicar daño al jugador
         });
+        this.spider_hit.play();
      }
 
     attack(){
