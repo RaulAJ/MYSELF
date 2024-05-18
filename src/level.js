@@ -312,7 +312,7 @@ export default class Level extends Phaser.Scene {
 */
         const config = {
             mute: false,
-            volume: 0.15,
+            volume: 0.10,
             rate: 1,
             detune: 0,
             seek: 0,

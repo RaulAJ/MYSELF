@@ -69,6 +69,22 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.relleno_healthbar.setCrop(0,0,this.relleno_healthbar.width*((this.health/ 100)), 317);
         this.relleno_healthbar.isCropped = true;
 
+        const config = {
+            mute: false,
+            volume: 0.10,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0,
+        };
+        this.slash_hit = this.scene.sound.add("slash_hit", config);
+        this.slash_attack1 = this.scene.sound.add("slash_attack1", config);
+        this.slash_attack2 = this.scene.sound.add("slash_attack2", config);
+        this.player_hurt = this.scene.sound.add("player_hurt", config);
+
+
+
     }
 
     createAttackHitbox(){
@@ -133,6 +149,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.health-=damage;
         if(this.health > 0 && !this.isAttacking){    
             this.play('hurt', true);
+            this.player_hurt.play();
             this.gettingHurt = true;
             this.canMove = false;
             this.on('animationcomplete-hurt', () => {
@@ -142,15 +159,21 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
     }
 
-    makeDamage(){
+    makeDamage(attackCount){
         
         this.scene.physics.overlap(this.attackHitbox.body, this.scene.enemies,(hitbox, enemy) => {
           enemy.getDamage(40);
+          this.slash_hit.play();
         });
         
         this.scene.physics.overlap(this.attackHitbox.body, this.scene.bosses,(hitbox, boss) => {
             boss.getDamage(40);
-          });
+            this.slash_hit.play();
+        });
+        if(attackCount === 1)
+            this.slash_attack1.play();
+        else
+            this.slash_attack2.play();
     }
 
     make_pause(){
@@ -225,7 +248,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.createAttackHitbox();
             this.scene.time.delayedCall(200, () => {
                     if (!this.hasBeenHurt) 
-                        this.makeDamage();
+                        this.makeDamage(this.attackCount);
                     
                 }, [], this);
             if (this.attackCount === 1) {
