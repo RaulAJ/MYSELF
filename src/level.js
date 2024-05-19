@@ -347,7 +347,7 @@ export default class Level extends Phaser.Scene {
 
         this.currentZone = "zona1";            
         this.zone2Change1.setOrigin(0);
-        this.physics.add.overlap(this.player, this.zone2Change1, (player, zone) => {
+        this.physics.add.overlap(this.player, this.zone2Change1, () => {
             // Verificar si el jugador está en movimiento
             if (this.isPlayerMoving() && this.currentZone != "zona2") {
                 this.currentZone = "zona2";
@@ -389,7 +389,7 @@ export default class Level extends Phaser.Scene {
         });
                
         this.zone3Change1.setOrigin(0);
-        this.physics.add.overlap(this.player, this.zone3Change1, function() {
+        this.physics.add.overlap(this.player, this.zone3Change1, () => {
             if(this.currentZone != "zona3"){
                 this.cave_background.addToDisplayList();
                 this.cave2_background.addToDisplayList();
@@ -411,7 +411,7 @@ export default class Level extends Phaser.Scene {
         });
             
         this.zone3Change2.setOrigin(0);
-        this.physics.add.overlap(this.player, this.zone3Change2, function() {
+        this.physics.add.overlap(this.player, this.zone3Change2, () => {
             if(this.currentZone != "zona3"){
                 this.cave_background.addToDisplayList();
                 this.cave2_background.addToDisplayList();
@@ -433,7 +433,7 @@ export default class Level extends Phaser.Scene {
         });
      
         this.zone2Change2.setOrigin(0);
-        this.physics.add.overlap(this.player, this.zone2Change2, function() {
+        this.physics.add.overlap(this.player, this.zone2Change2, () => {
             if(this.currentZone != "zona2"){
                 this.mountain_sky.addToDisplayList();
                 this.mountain1.addToDisplayList();
@@ -450,7 +450,7 @@ export default class Level extends Phaser.Scene {
         });
 
         this.zone1Change2.setOrigin(0);
-        this.physics.add.overlap(this.player, this.zone1Change2, function() {
+        this.physics.add.overlap(this.player, this.zone1Change2, () => {
             if(this.currentZone != "zona1"){
                 this.fondo_clouds.addToDisplayList();
                 this.fondo_sky.addToDisplayList();
@@ -472,7 +472,7 @@ export default class Level extends Phaser.Scene {
         });
         
         this.zone4Change.setOrigin(0);
-        this.physics.add.overlap(this.player, this.zone4Change, function() {
+        this.physics.add.overlap(this.player, this.zone4Change, () => {
              if(this.currentZone != "zona4"){
                 this.castle_background.addToDisplayList();
                 this.fondo_clouds.removeFromDisplayList();
