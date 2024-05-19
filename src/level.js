@@ -191,7 +191,7 @@ export default class Level extends Phaser.Scene {
         this.minotaur26 = new Minotaur(this,1800,5300);
 
         //this.player = new Player(this, 500, 1950);
-        this.player = new Player(this,7694,1692);
+        this.player = new Player(this,8100,1680);
         this.enemies.add(this.wolf1);
         this.enemies.add(this.wolf2);
         this.enemies.add(this.wolf3);
@@ -351,13 +351,11 @@ export default class Level extends Phaser.Scene {
             // Verificar si el jugador está en movimiento
             if (this.isPlayerMoving() && this.currentZone != "zona2") {
                 this.currentZone = "zona2";
+                this.removeDisplay();
                 this.mountain_sky.addToDisplayList();
                 this.mountain1.addToDisplayList();
                 this.mountain2.addToDisplayList();
-                //this.mountain.addToDisplayList();
-                this.fondo_clouds.removeFromDisplayList();
-                this.fondo_sky.removeFromDisplayList();
-                this.fondo_grounds.removeFromDisplayList();
+                
                 this.mountain_sky.setDepth(-1);
                 this.mountain1.setDepth(-1);
                 this.mountain2.setDepth(-1);
@@ -371,15 +369,14 @@ export default class Level extends Phaser.Scene {
 
         this.zone1Change1.setOrigin(0);
         this.physics.add.overlap(this.player, this.zone1Change1, () => {
-            if(this.currentZone != "zona1"){
+            if(this.isPlayerMoving() && this.currentZone != "zona1"){
                 this.currentZone = "zona1";
+                this.removeDisplay();
 
                 this.fondo_clouds.addToDisplayList();
                 this.fondo_sky.addToDisplayList();
                 this.fondo_grounds.addToDisplayList();
-                this.mountain_sky.removeFromDisplayList();
-                this.mountain1.removeFromDisplayList();
-                this.mountain2.removeFromDisplayList();
+                
                 this.fondo_clouds.setDepth(-1);
                 this.fondo_sky.setDepth(-1);
                 this.fondo_grounds.setDepth(-1);
@@ -390,14 +387,14 @@ export default class Level extends Phaser.Scene {
                
         this.zone3Change1.setOrigin(0);
         this.physics.add.overlap(this.player, this.zone3Change1, () => {
-            if(this.currentZone != "zona3"){
+            if(this.isPlayerMoving() && this.currentZone != "zona3"){
+                this.removeDisplay();
+
                 this.cave_background.addToDisplayList();
                 this.cave2_background.addToDisplayList();
                 this.cave3_background.addToDisplayList();
                 this.cave4_background.addToDisplayList();
-                this.mountain_sky.removeFromDisplayList();
-                this.mountain1.removeFromDisplayList();
-                this.mountain2.removeFromDisplayList();
+                
                 this.cave_background.setDepth(-1);
                 this.cave2_background.setDepth(-1);
                 this.cave3_background.setDepth(-1);
@@ -412,14 +409,14 @@ export default class Level extends Phaser.Scene {
             
         this.zone3Change2.setOrigin(0);
         this.physics.add.overlap(this.player, this.zone3Change2, () => {
-            if(this.currentZone != "zona3"){
+            if(this.isPlayerMoving() && this.currentZone != "zona3"){
+                this.removeDisplay();
+
                 this.cave_background.addToDisplayList();
                 this.cave2_background.addToDisplayList();
                 this.cave3_background.addToDisplayList();
                 this.cave4_background.addToDisplayList();
-                this.fondo_clouds.removeFromDisplayList();
-                this.fondo_sky.removeFromDisplayList();
-                this.fondo_grounds.removeFromDisplayList();
+                
                 this.cave_background.setDepth(-1);
                 this.cave2_background.setDepth(-1);
                 this.cave3_background.setDepth(-1);
@@ -434,31 +431,33 @@ export default class Level extends Phaser.Scene {
      
         this.zone2Change2.setOrigin(0);
         this.physics.add.overlap(this.player, this.zone2Change2, () => {
-            if(this.currentZone != "zona2"){
+            if(this.isPlayerMoving() && this.currentZone != "zona2"){
+                this.removeDisplay();
+
                 this.mountain_sky.addToDisplayList();
                 this.mountain1.addToDisplayList();
                 this.mountain2.addToDisplayList();
-                this.cave_background.removeFromDisplayList();
-                this.cave2_background.removeFromDisplayList();
-                this.cave3_background.removeFromDisplayList();
-                this.cave4_background.removeFromDisplayList();
+               
+                this.mountain_sky.setDepth(-1);
+                this.mountain1.setDepth(-1);
+                this.mountain2.setDepth(-1);
 
                 this.currentSong.stop();
                 this.currentSong = this.musica_ambiente;
                 this.currentSong.play();
+                this.currentZone = "zona2";
+
             }
         });
 
         this.zone1Change2.setOrigin(0);
         this.physics.add.overlap(this.player, this.zone1Change2, () => {
-            if(this.currentZone != "zona1"){
+            if(this.isPlayerMoving() && this.currentZone != "zona1"){
+                this.removeDisplay();
+
                 this.fondo_clouds.addToDisplayList();
                 this.fondo_sky.addToDisplayList();
                 this.fondo_grounds.addToDisplayList();
-                this.cave_background.removeFromDisplayList();
-                this.cave2_background.removeFromDisplayList();
-                this.cave3_background.removeFromDisplayList();
-                this.cave4_background.removeFromDisplayList();
 
                 this.fondo_clouds.setDepth(-1);
                 this.fondo_sky.setDepth(-1);
@@ -473,11 +472,12 @@ export default class Level extends Phaser.Scene {
         
         this.zone4Change.setOrigin(0);
         this.physics.add.overlap(this.player, this.zone4Change, () => {
-             if(this.currentZone != "zona4"){
+             if(this.isPlayerMoving() && this.currentZone != "zona4"){
+                this.removeDisplay();
+
+
                 this.castle_background.addToDisplayList();
-                this.fondo_clouds.removeFromDisplayList();
-                this.fondo_sky.removeFromDisplayList();
-                this.fondo_grounds.removeFromDisplayList();
+                
                 this.castle_background.setDepth(-1);
 
                 this.currentZone = "zona4";
@@ -516,6 +516,19 @@ export default class Level extends Phaser.Scene {
             this.children.respawn();
         }, [], this);
     }*/
+    removeDisplay(){
+        this.cave_background.removeFromDisplayList();
+        this.cave2_background.removeFromDisplayList();
+        this.cave3_background.removeFromDisplayList();
+        this.cave4_background.removeFromDisplayList();
+        this.fondo_clouds.removeFromDisplayList();
+        this.fondo_sky.removeFromDisplayList();
+        this.fondo_grounds.removeFromDisplayList();
+        this.castle_background.removeFromDisplayList();
+        this.mountain_sky.removeFromDisplayList();
+        this.mountain1.removeFromDisplayList();
+        this.mountain2.removeFromDisplayList();
+    }
 
     playerDeath() {
         this.time.delayedCall(4000, () => {

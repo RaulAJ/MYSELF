@@ -25,7 +25,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.canMove = true; // Inicializar la variable canMove como true para permitir que el jugador se mueva
         this.canDoubleJump = true; //cambiar luego
         this.canShrink = true;
-        this.canDash = false; //cambiar luego
+        this.canDash = true; //cambiar luego
         this.doubleJumped = false;
         this.dashed = false;
         this.shrinked = false;
@@ -35,7 +35,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.spawnX = this.x;
         this.spawnY = this.y;
 
-        //this.positionText = this.scene.add.text(500, 50, 'Posición: (0, 0)', { fontSize: '24px', fill: '#ffffff' }).setScrollFactor(0);
+        this.positionText = this.scene.add.text(500, 50, 'Posición: (0, 0)', { fontSize: '24px', fill: '#ffffff' }).setScrollFactor(0);
 
         this.scene.add.existing(this);
         this.originalBodySize = {width: 35, height: 52};
@@ -192,22 +192,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         }
     }
 
-    /*adjustHitbox(){
-        if(this.flipX){
-            this.body.setSize(this.originalBodySize.width * 1.4, this.originalBodySize.height);
-            this.body.setOffset(25, 21);
-        }
-        else{
-            this.body.setSize(this.originalBodySize.width * 1.4, this.originalBodySize.height);
-            this.body.setOffset(43, 21);
-        }
-    }
-
-    readjustHitbox(){
-        this.body.setSize(this.originalBodySize.width, this.originalBodySize.height);
-        this.body.setOffset(39, 20);
-    }*/
-
     respawn() {
         // Restablecer la posición del jugador a su punto de aparición inicial
         this.x = this.spawnX+10;
@@ -230,7 +214,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
         this.checkRestZones();
         let isRunning = false;
-       // this.positionText.setText('Posición: (' + this.x + ', ' + this.y + ')');
+        this.positionText.setText('Posición: (' + this.x + ', ' + this.y + ')');
 
         if (!this.canMove) {
             // Si el jugador no puede moverse, establecer la velocidad del jugador en 0 y salir de preUpdate
