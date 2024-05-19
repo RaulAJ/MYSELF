@@ -18,12 +18,12 @@ import wolfBoss_walk from '../assets/sprites/Wolf/Red_Werewolf/walk.png'
 import wolfBoss_dead from '../assets/sprites/Wolf/Red_Werewolf/Dead.png'
 import wolfBoss_attack from '../assets/sprites/Wolf/Red_Werewolf/Attack_2.png'
 import wolfBoss_hurt from '../assets/sprites/Wolf/Red_Werewolf/Hurt.png'
-/*import finalBoss_attack from '../assets/sprites/Dwarf 2/bossFinal_ataque2.png'
-import finalBoss_walk from '../assets/sprites/Dwarf 2/bossFinal_correr.png'
-import finalBoss_dead from '../assets/sprites/Dwarf 2/bossFinal_muerte.png'
-import finalBoss_jump from '../assets/sprites/Dwarf 2/bossFinal_salto.png'
-import finalBoss_hurt from '../assets/sprites/Dwarf 2/bossFinal_daño.png'
-import finalBoss_stand from '../assets/sprites/Dwarf 2/bossFinal_salto.png'*/
+import finalBoss_attack from '../assets/sprites/Dwarf/bossFinal_ataque2.png'
+import finalBoss_walk from '../assets/sprites/Dwarf/bossFinal_correr.png'
+import finalBoss_dead from '../assets/sprites/Dwarf/bossFinal_muerte.png'
+import finalBoss_jump from '../assets/sprites/Dwarf/bossFinal_salto.png'
+import finalBoss_hurt from '../assets/sprites/Dwarf/bossFinal_danio.png'
+import finalBoss_stand from '../assets/sprites/Dwarf/bossFinal_salto.png'
 
 import logo_hormiga from '../assets/sprites/logo_hormiga.png'
 import background_clouds from '../assets/sprites/Environment/PNG/clouds.png'
@@ -221,7 +221,7 @@ export default class Boot extends Phaser.Scene {
         frameWidth: 128, frameHeight: 128 
       })
    
-      /*this.load.spritesheet('finalBoss_attack', finalBoss_attack,{
+      this.load.spritesheet('finalBoss_attack', finalBoss_attack,{
         frameWidth: 80, frameHeight: 80 
       });
       this.load.spritesheet('finalBoss_walk', finalBoss_walk,{
@@ -239,7 +239,7 @@ export default class Boot extends Phaser.Scene {
       this.load.spritesheet('finalBoss_dead', finalBoss_dead,{
         frameWidth: 80, frameHeight: 80 
       });
-      */
+      
       
 }
     
@@ -479,7 +479,7 @@ export default class Boot extends Phaser.Scene {
         frameRate: 6, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
         repeat: 0  // para no repetir la animación continuamente
       });
-/*
+
       this.anims.create({
         key: 'finalBoss_stand',
         frames: this.anims.generateFrameNumbers('finalBoss_stand', { start: 0, end: 2 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
@@ -495,8 +495,8 @@ export default class Boot extends Phaser.Scene {
       });
 
       this.anims.create({
-        key: 'finalBoss_die',
-        frames: this.anims.generateFrameNumbers('finalBoss_dead', { start: 0, end: 5 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
+        key: 'finalBoss_dead',
+        frames: this.anims.generateFrameNumbers('finalBoss_dead', { start: 0, end: 4 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
         frameRate: 6, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
         repeat: 0 // -1 para repetir la animación continuamente
       });
@@ -520,7 +520,7 @@ export default class Boot extends Phaser.Scene {
         frames: this.anims.generateFrameNumbers('finalBoss_jump', { start: 0, end: 3 }), // Ajusta 'inicio' y 'fin' según los frames de tu animación
         frameRate: 3, // Ajusta 'velocidad' con la velocidad de reproducción de tu animación
         repeat: 0 // -1 para repetir la animación continuamente
-      });*/
+      });
     }
     
   }

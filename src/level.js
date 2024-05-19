@@ -6,7 +6,7 @@ import WolfBoss from './wolfboss.js';
 import MinotaurBoss from './minotaurBoss.js'
 import SpiderBoss from './spiderBoss.js'
 import restZone from './restZone.js';
-/*import FinalBoss from './finalboss.js';*/
+import FinalBoss from './finalboss.js';
 import Phaser from 'phaser'
 
 
@@ -112,7 +112,7 @@ export default class Level extends Phaser.Scene {
         this.boss1 = new WolfBoss(this, 8100, 5000); // y 5696
         this.boss2 = new MinotaurBoss(this, 21410,1700);
         this.boss3 = new SpiderBoss(this,17400, 6600);
-        //this.finalBoss = new FinalBoss(this, 21300, 3200);
+        this.finalBoss = new FinalBoss(this, 21300, 3200);
      
         //Zona1
         this.wolf1 = new Wolf(this, 1200,1100);
@@ -191,7 +191,7 @@ export default class Level extends Phaser.Scene {
         this.minotaur26 = new Minotaur(this,1800,5300);
 
         //this.player = new Player(this, 500, 1950);
-        this.player = new Player(this,8100,1680);
+        this.player = new Player(this,21300,3200);
         this.enemies.add(this.wolf1);
         this.enemies.add(this.wolf2);
         this.enemies.add(this.wolf3);
@@ -268,7 +268,7 @@ export default class Level extends Phaser.Scene {
         this.bosses.add(this.boss1);
         this.bosses.add(this.boss2);
         this.bosses.add(this.boss3);
-        //this.bosses.add(finalBoss);
+        this.bosses.add(this.finalBoss);
 
         this.restZone1 = new restZone(this, 6430, 1700);
         this.restZone2 = new restZone(this,2398,4350);

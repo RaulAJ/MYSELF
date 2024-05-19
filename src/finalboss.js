@@ -6,8 +6,8 @@ export default class FinalBoss extends Enemy {
     constructor(scene, x, y) {
         super(scene, x, y, 550, 75, 0, 400, 50, 100, 30);
         this.setDisplaySize(180, 140);
-        this.body.setSize(70, 60);
-        this.body.setOffset(40, 70);
+        //this.body.setSize(70, 60);
+        this.body.setOffset(20, 25);
         this.setScale(2.2, 2);
 
         // Queremos que el enemigo no se salga de los límites del mundo
@@ -26,7 +26,7 @@ export default class FinalBoss extends Enemy {
             delay: 0,
         };
 
-        this.FinalBossTheme = this.sound.add("finalBossTheme", config);
+        this.FinalBossTheme = this.scene.sound.add("finalBossTheme", config);
         this.FinalBossTheme.play();
     }
 
@@ -39,7 +39,7 @@ export default class FinalBoss extends Enemy {
             else{
                 this.health = 0;
                 
-                this.anims.play('finalBoss_dead',true);
+                this.play('finalBoss_dead',true);
                 this.body.setVelocityX(0);
                 this.scene.time.delayedCall(5000, () => {this.destroy();}, [], this);
             }
