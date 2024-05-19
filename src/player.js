@@ -160,11 +160,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     checkRestZones(){
-        this.scene.physics.overlap(this.body, this.scene.restZones,(hitbox, restZone) => {
+        if(this.body.velocity.x !== 0){
+            this.scene.physics.overlap(this.body, this.scene.restZones,(hitbox, restZone) => {
             this.spawnX = restZone.x;
             this.spawnY = restZone.y;
             this.health = 100;
         });
+    }
     }
 
     makeDamage(attackCount){
