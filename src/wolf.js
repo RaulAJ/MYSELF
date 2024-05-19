@@ -21,6 +21,7 @@ export default class Wolf extends Enemy {
         if(this.health>0){
             if(this.health>=damage){
                 this.health-=damage;
+                //this.beast_hit.play();
                 //this.play('wolf_hurt',true);
             }
             else{
@@ -40,6 +41,19 @@ export default class Wolf extends Enemy {
         this.beast_hit.play();
 
      }
+
+    respawn() {
+        // Restablecer la posición del jugador a su punto de aparición inicial
+        this.x = this.spawnX+10;
+        this.y = this.spawnY+10;
+    
+        // Restablecer la vida del jugador y otras propiedades
+        this.health = 100;
+ 
+        // Reproducir la animación de estar de pie
+        this.play('wolf_stand');
+    
+    }
 
     attack(){
         if(this.scene.player.health > 0 && (this.x - this.rangeAttack < this.scene.player.x)  && (this.scene.player.x < this.x + this.rangeAttack) && ( this.y - this.rangeAttack < this.scene.player.y)  && (this.scene.player.y < this.y + this.rangeAttack) && this.health > 0){

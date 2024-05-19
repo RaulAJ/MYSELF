@@ -34,6 +34,7 @@ export default class Level extends Phaser.Scene {
         const Collectible_list = [];
         this.collectible_list = Collectible_list;
 
+        //Zona1
         this.fondo_sky = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height+45, 'background_sky');
         this.fondo_sky.setScrollFactor(0,0);
         this.fondo_sky.setScale(2.0, 2.0);
@@ -45,11 +46,54 @@ export default class Level extends Phaser.Scene {
         this.fondo_grounds = this.add.tileSprite(0, 470, this.game.config.width+235, this.game.config.height-435, 'background_grounds');
         this.fondo_grounds.setScrollFactor(0,0);
         this.fondo_grounds.setScale(3.0, 2.0);
-        
-        this.castle_background = this.add.tileSprite(0, 470, this.game.config.width+235, this.game.config.height, 'castle_background');
+
+        //Zona2
+        this.mountain_sky = this.add.tileSprite(0, 0, this.game.config.width+45, this.game.config.height+45, 'mountain_sky');
+        this.mountain_sky.setScrollFactor(0,0);
+        this.mountain_sky.setScale(2.0, 2.0);
+        this.mountain_sky.setDepth(-5);
+
+        this.mountain1 = this.add.tileSprite(0, 0, this.game.config.width+2000, this.game.config.height-135, 'mountain_1');
+        this.mountain1.setScrollFactor(0,0);
+        this.mountain1.setScale(0.8, 0.5);
+        this.mountain1.setDepth(-5); 
+
+        this.mountain2 = this.add.tileSprite(0, 470, this.game.config.width+2400, this.game.config.height+1845, 'mountain_2');
+        this.mountain2.setScrollFactor(0,0);
+        this.mountain2.setScale(1.0, 0.5);
+        this.mountain2.setDepth(-5);
+
+        this.mountain = this.add.tileSprite(20,0,this.game.config.width, this.game.config.height+45, 'mountain');
+        this.mountain.setScrollFactor(0,0);
+        this.mountain.setScale(1.5,2.0);
+        this.mountain.setDepth(-5);
+
+        //Zona3
+        this.cave_background = this.add.tileSprite(0, 470, this.game.config.width+235, this.game.config.height, 'cave_1');
+        this.cave_background.setScrollFactor(0,0);
+        this.cave_background.setScale(3.0, 2.0);
+        this.cave_background.setDepth(-10);
+
+        this.cave2_background = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height+45, 'cave_2');
+        this.cave2_background.setScrollFactor(0,0);
+        this.cave2_background.setScale(2.0, 2.0);
+        this.cave2_background.setDepth(-10);
+
+        this.cave3_background = this.add.tileSprite(0, 0, this.game.config.width+2000, this.game.config.height-90, 'cave_3');
+        this.cave3_background.setScrollFactor(0,0);
+        this.cave3_background.setScale(0.8, -0.5);
+        this.cave3_background.setDepth(-10);
+
+        this.cave4_background = this.add.tileSprite(0, 470, this.game.config.width+235, this.game.config.height-435, 'cave_4');
+        this.cave4_background.setScrollFactor(0,0);
+        this.cave4_background.setScale(3.0, 2.0);
+        this.cave4_background.setDepth(-10);
+
+        //Zona4
+        this.castle_background = this.add.tileSprite(0, 470, this.game.config.width, this.game.config.height, 'castle_background');
         this.castle_background.setScrollFactor(0,0);
-        this.castle_background.setScale(3.0, 2.0);
-        this.castle_background.setDepth(-5);
+        this.castle_background.setScale(2.0, 2.0);
+        this.castle_background.setDepth(-15);
 
         this.map = this.make.tilemap({key: 'tilemap4'});
 
@@ -86,7 +130,7 @@ export default class Level extends Phaser.Scene {
         this.wolf13 = new Wolf(this, 5600, 4502); //y 5056
         this.wolf14 = new Wolf(this, 2800, 4502); //y 5056
         this.wolf15 = new Wolf(this, 3900, 4502); //y 5056
-        this.wolf16 = new Wolf(this, 6377, 1600); //y 2128
+        this.wolf16 = new Wolf(this, 6377, 2000); //y 2128
         //Zona2
         this.minotaur1 = new Minotaur(this, 9750, 1100);
         this.minotaur2 = new Minotaur(this, 10200, 1100);
@@ -136,7 +180,7 @@ export default class Level extends Phaser.Scene {
         this.wolf17 = new Wolf(this,18400, 4800);
         this.wolf18 = new Wolf(this,17600, 5100);
         this.wolf19 = new Wolf(this,18500, 5400);
-        this.wolf20 = new Wolf(this,20600, 5100);
+        this.wolf20 = new Wolf(this,20600, 5500);
         this.wolf21 = new Wolf(this,19900, 4400);
         this.wolf22 = new Wolf(this,20300, 4400);
         this.wolf23 = new Wolf(this,19000, 3800);
@@ -146,10 +190,8 @@ export default class Level extends Phaser.Scene {
         this.minotaur25 = new Minotaur(this, 19250, 3600);
         this.minotaur26 = new Minotaur(this,1800,5300);
 
-        this.restZone1 = new restZone(this, 500, 1950);
-        this.restZones.add(this.restZone1);
-        this.player = new Player(this, 500, 1950);
-        //this.player = new Player(this,7894,1692);
+        //this.player = new Player(this, 500, 1950);
+        this.player = new Player(this,7694,1692);
         this.enemies.add(this.wolf1);
         this.enemies.add(this.wolf2);
         this.enemies.add(this.wolf3);
@@ -227,6 +269,20 @@ export default class Level extends Phaser.Scene {
         this.bosses.add(this.boss2);
         this.bosses.add(this.boss3);
         //this.bosses.add(finalBoss);
+
+        this.restZone1 = new restZone(this, 6430, 1700);
+        this.restZone2 = new restZone(this,2398,4350);
+        this.restZone3 = new restZone(this,14340,4650);
+        this.restZone4 = new restZone(this,10500,4200);
+        this.restZone5 = new restZone(this,18370,1300);
+        this.restZone6 = new restZone(this,21485,5650);
+        this.restZones.add(this.restZone1);
+        this.restZones.add(this.restZone2);
+        this.restZones.add(this.restZone3);
+        this.restZones.add(this.restZone4);
+        this.restZones.add(this.restZone5);
+        this.restZones.add(this.restZone6);
+
         this.physics.world.setBounds(0, -13870, 23566, 23000); // Cambiar los valores según sea necesario
 
         // Establecer los límites de desplazamiento de la cámara
@@ -256,65 +312,178 @@ export default class Level extends Phaser.Scene {
         this.physics.add.collider(this.bosses, this.wallLayer);
         this.physics.add.collider(this.restZones, this.groundLayer);
 
-        this.zone2Change1 = this.add.zone(8220, 1680,100,100);
-        this.zone3Change1 = this.add.zone(10650, 2144,100,100);
-        this.zone3Change2 = this.add.zone(9365,5723,100,100);
-        this.zone2Change2 = this.add.zone(13460, 4603,100,100);
-        this.zone4Change = this.add.zone(15070,5723,100,100);
+        this.zone1Change1 = this.add.zone(8140,1680,50,200);
+        this.zone2Change1 = this.add.zone(8220, 1680,100,200);
+        this.zone3Change1 = this.add.zone(10650, 2144,100,200);
+        this.zone3Change2 = this.add.zone(9365,5723,100,200);
+        this.zone2Change2 = this.add.zone(13460, 4603,100,200);
+        this.zone1Change2 = this.add.zone(9235,5723,50,20);
+        this.zone4Change = this.add.zone(15070,5723,100,200);
         this.grupo1 = this.add.group();
         this.grupo2 = this.add.group();
         this.grupo3 = this.add.group();
+        this.grupo4 = this.add.group();
         this.grupo1.add(this.zone2Change1);
         this.grupo1.add(this.zone2Change2);
         this.grupo2.add(this.zone3Change1);
         this.grupo2.add(this.zone3Change2);
         this.grupo3.add(this.zone4Change);
+        this.grupo4.add(this.zone1Change1);
+        this.grupo4.add(this.zone1Change2);
         this.physics.add.existing(this.zone2Change1);
         this.physics.add.existing(this.zone3Change1);
         this.physics.add.existing(this.zone3Change2);
         this.physics.add.existing(this.zone2Change2);
         this.physics.add.existing(this.zone4Change);
+        this.physics.add.existing(this.zone1Change1);
+        this.physics.add.existing(this.zone1Change2);
         this.zone2Change1.body.setAllowGravity(false);
         this.zone3Change1.body.setAllowGravity(false);
         this.zone3Change2.body.setAllowGravity(false);
         this.zone2Change2.body.setAllowGravity(false);
         this.zone4Change.body.setAllowGravity(false);
-        
+        this.zone1Change1.body.setAllowGravity(false);
+        this.zone1Change2.body.setAllowGravity(false);
+
         this.currentZone = "";            
         this.zone2Change1.setOrigin(0);
         this.physics.add.overlap(this.player, this.zone2Change1, () => {
             if(this.currentZone != "zona2"){
+                this.mountain_sky.addToDisplayList();
+                this.mountain1.addToDisplayList();
+                this.mountain2.addToDisplayList();
+                //this.mountain.addToDisplayList();
+                this.fondo_clouds.removeFromDisplayList();
+                this.fondo_sky.removeFromDisplayList();
+                this.fondo_grounds.removeFromDisplayList();
+                this.mountain_sky.setDepth(0);
+                this.mountain1.setDepth(0);
+                this.mountain2.setDepth(0);
+                //this.mountain.setDepth(0);
+                this.currentZone = "zona2";
+
+                this.currentSong.stop();
+                this.currentSong = this.zona3_backgroundMusic;
+                this.currentSong.play();
+            }
+           
+      
+        });
+
+       /* this.zone1Change1.setOrigin(0);
+        this.physics.add.overlap(this.player, this.zone1Change1, () => {
+            if(this.currentZone != "zona1"){
+                this.fondo_clouds.addToDisplayList();
+                this.fondo_sky.addToDisplayList();
+                this.fondo_grounds.addToDisplayList();
+                this.mountain_sky.removeFromDisplayList();
+                this.mountain1.removeFromDisplayList();
+                this.mountain2.removeFromDisplayList();
+                this.fondo_clouds.setDepth(0);
+                this.fondo_sky.setDepth(0);
+                this.fondo_grounds.setDepth(0);
+                this.currentZone = " zona1";
+
+            }
+      
+        });*/
+               
+        /*zone3Change1.setOrigin(0);
+        this.physics.add.overlap(this.player, this.zone3Change1, function() {
+            if(this.currentZone != "zona3"){
+                this.cave_background.addToDisplayList();
+                this.cave2_background.addToDisplayList();
+                this.cave3_background.addToDisplayList();
+                this.cave4_background.addToDisplayList();
+                this.mountain_sky.removeFromDisplayList();
+                this.mountain1.removeFromDisplayList();
+                this.mountain2.removeFromDisplayList();
+                this.cave_background.setDepth(0);
+                this.cave2_background.setDepth(0);
+                this.cave3_background.setDepth(0);
+                this.cave4_background.setDepth(0);
+
+                this.currentZone = "zona3"
+                this.currentSong.stop();
+                this.currentSong = this.zona3_backgroundMusic;
+                this.currentSong.play();
+            }
+        });
+            
+        zone3Change2.setOrigin(0);
+        this.physics.add.overlap(this.player, this.zone3Change2, function() {
+            if(this.currentZone != "zona3"){
+                this.cave_background.addToDisplayList();
+                this.cave2_background.addToDisplayList();
+                this.cave3_background.addToDisplayList();
+                this.cave4_background.addToDisplayList();
+                this.fondo_clouds.removeFromDisplayList();
+                this.fondo_sky.removeFromDisplayList();
+                this.fondo_grounds.removeFromDisplayList();
+                this.cave_background.setDepth(0);
+                this.cave2_background.setDepth(0);
+                this.cave3_background.setDepth(0);
+                this.cave4_background.setDepth(0);
+
+                this.currentZone = "zona3"
+                this.currentSong.stop();
+                this.currentSong = this.zona3_backgroundMusic;
+                this.currentSong.play();
+            }
+        });
+     
+        zone2Change2.setOrigin(0);
+        this.physics.add.overlap(this.player, this.zone2Change2, function() {
+            if(this.currentZone != "zona2"){
+                this.mountain_sky.addToDisplayList();
+                this.mountain1.addToDisplayList();
+                this.mountain2.addToDisplayList();
+                this.cave_background.removeFromDisplayList();
+                this.cave2_background.removeFromDisplayList();
+                this.cave3_background.removeFromDisplayList();
+                this.cave4_background.removeFromDisplayList();
+
+                this.currentSong.stop();
+                this.currentSong = this.musica_ambiente;
+                this.currentSong.play();
+            }
+        });
+
+        zone1Change2.setOrigin(0);
+        this.physics.add.overlap(this.player, this.zone1Change2, function() {
+            if(this.currentZone != "zona1"){
+                this.fondo_clouds.addToDisplayList();
+                this.fondo_sky.addToDisplayList();
+                this.fondo_grounds.addToDisplayList();
+                this.cave_background.removeFromDisplayList();
+                this.cave2_background.removeFromDisplayList();
+                this.cave3_background.removeFromDisplayList();
+                this.cave4_background.removeFromDisplayList();
+
+                this.currentZone = "zona1";
+                this.currentSong.stop();
+                this.currentSong = this.musica_ambiente;
+                this.currentSong.play();
+            }
+        });
+        
+        zone4Change.setOrigin(0);
+        this.physics.add.overlap(this.player, this.zone4Change, function() {
+             if(this.currentZone != "zona4"){
                 this.castle_background.addToDisplayList();
                 this.fondo_clouds.removeFromDisplayList();
                 this.fondo_sky.removeFromDisplayList();
                 this.fondo_grounds.removeFromDisplayList();
                 this.castle_background.setDepth(0);
 
-                this.currentZone = "zona2";
+                this.currentZone = "zona4";
+
+                this.currentSong.stop();
+                this.currentSong = this.zona4_backgroundMusic;
+                this.currentSong.play();
             }
-      
-        });
-               
-        /*zone3Change1.setOrigin(0);
-        this.physics.add.overlap(player, zone2Change1, function() {
-            
-        });
-            
-        zone3Change2.setOrigin(0);
-        this.physics.add.overlap(player, zone2Change1, function() {
-            
-        });
-     
-        zone2Change2.setOrigin(0);
-        this.physics.add.overlap(player, zone2Change1, function() {
-            
-        });
-        
-        zone4Change.setOrigin(0);
-        this.physics.add.overlap(player, zone2Change1, function() {
-            
-        });
-*/
+        });*/
+
         const config = {
             mute: false,
             volume: 0.10,
@@ -325,19 +494,22 @@ export default class Level extends Phaser.Scene {
             delay: 0,
         };
 
+        this.currentSong = "";
         this.musica_ambiente = this.sound.add("musica_ambiente", config);
-        this.musica_ambiente.play();
+        this.zona3_backgroundMusic = this.sound.add("zona3_background", config);
+        this.zona4_backgroundMusic = this.sound.add("zona4_background", config);
+
+        this.currentSong = this.musica_ambiente;
+        this.currentSong.play();
 
         
 
     }
 
-   /* changeBackground2(){
-        this.add.image(0,0,'mountain').setOrigin(0);
-    }
+    /*
     enemiesRespawn(){
         this.time.delayedCall(4000, () => {
-            this.enemies.respawn();
+            this.children.respawn();
         }, [], this);
     }*/
 
@@ -349,9 +521,21 @@ export default class Level extends Phaser.Scene {
     
 
     update(){
-        this.fondo_clouds.tilePositionX = this.playerCamera.scrollX * 0.1;
-        this.fondo_sky.tilePositionX = this.playerCamera.scrollX * 0.05;
-        this.fondo_grounds.tilePositionX = this.playerCamera.scrollX * 0.2;
+        /*
+        if(this.currentZone == "zona2"){
+            this.mountain1.tilePositionX = this.playerCamera.scrollX * 0.1;
+            this.mountain_sky.tilePositionX = this.playerCamera.scrollX * 0.05;
+            this.mountain2.tilePositionX = this.playerCamera.scrollX * 0.2;
+        }
+        else if(this.currentZone == "zona3"){
+
+        }
+        else if(this.currentZone == "zona4"){}
+        else{
+            this.fondo_clouds.tilePositionX = this.playerCamera.scrollX * 0.1;
+            this.fondo_sky.tilePositionX = this.playerCamera.scrollX * 0.05;
+            this.fondo_grounds.tilePositionX = this.playerCamera.scrollX * 0.2;
+        }*/
     }
 
     pause_function(){

@@ -61,6 +61,10 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         }
     }
     
+    respawn() {
+    
+    }
+
     isWallInFront(offsetX) {
         // Calcula las coordenadas del punto en frente del enemigo
         const frontX = this.x + offsetX;

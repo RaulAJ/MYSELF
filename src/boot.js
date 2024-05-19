@@ -51,6 +51,9 @@ import restZone from '../assets/sprites/Rest/RestZone.png'
 import tileset from '../assets/sprites/Environment/PNG/tileset.png'
 import tileset2 from '../assets/sprites/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-tileset.png'
 import musica_ambiente from '../assets/audio/musica_ambiente.mp3'
+import zona3Background from '../assets/audio/zona3_backgroundMusic.mp3'
+import zona4Background from '../assets/audio/zona4_backgroundMusic.mp3'
+import finalBossTheme from '../assets/audio/FinalBossTheme.mp3'
 import slash_attack1 from '../assets/audio/slash_attack1.mp3'
 import slash_attack2 from '../assets/audio/slash_attack2.mp3'
 import player_hurt from '../assets/audio/player_hurt.mp3'
@@ -128,6 +131,9 @@ export default class Boot extends Phaser.Scene {
           assetText.destroy();
       });
       this.load.audio('musica_ambiente', musica_ambiente);
+      this.load.audio('zona3_background', zona3Background);
+      this.load.audio('zona4_background', zona4Background);
+      this.load.audio('finalBossTheme', finalBossTheme);
       this.load.audio('slash_attack1', slash_attack1);
       this.load.audio('slash_attack2', slash_attack2);
       this.load.audio('slash_hit', slash_hit);

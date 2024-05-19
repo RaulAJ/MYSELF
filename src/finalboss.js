@@ -15,6 +15,19 @@ export default class FinalBoss extends Enemy {
 
         // Animación inicial default
         this.play('finalBoss_stand');
+
+        const config = {
+            mute: false,
+            volume: 0.10,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay: 0,
+        };
+
+        this.FinalBossTheme = this.sound.add("finalBossTheme", config);
+        this.FinalBossTheme.play();
     }
 
     getDamage(damage) {
