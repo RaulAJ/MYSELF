@@ -380,6 +380,10 @@ export default class Level extends Phaser.Scene {
                 this.fondo_clouds.setDepth(-1);
                 this.fondo_sky.setDepth(-1);
                 this.fondo_grounds.setDepth(-1);
+
+                this.currentSong.stop();
+                this.currentSong = this.musica_ambiente;
+                this.currentSong.play();
                 
             }
       
