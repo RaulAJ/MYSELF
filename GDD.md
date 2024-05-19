@@ -38,35 +38,35 @@ Para diferenciar dichas zonas, habrá un fondo que muestre claramente la zona de
 En cuanto a los enemigos, vamos a diferenciar entre los enemigos comunes y los bosses.
 
 #### Enemigos comunes ####
-![Lobo](../MYSELF/assets/sprites/Wolf/LoboComun.png)
+![Lobo](./assets/sprites/Wolf/LoboComun.png)
 Los lobos son los enemigos que se encuentran en la primera zona, son enemigos grandes que disponen de un ataque normal a melee y no son especialmente rápidos.
 
-![Minotauro](../MYSELF/assets/sprites/128x80Minotaur_Idle.gif)
+![Minotauro](./assets/sprites/128x80Minotaur_Idle.gif)
 Los minotauros nos los encontraremos en la segunda zona, son enemigos pequeños pero fuertes que disponen al igual que los lobos un ataque normal a melee.
 
-![Araña](../MYSELF/assets/sprites/spider_walk.gif)
+![Araña](./assets/sprites/spider_walk.gif)
 Las arañas se encuentran en la tercera zona, son enemigos rápidos con una cadencia de ataque mayor aunque con menor daño que los otros enemigos.
 
 Estos tres tipos de enemigos nos los encontraremos a la vez en la última zona.
 
 #### Bosses ####
-![Boss1](../MYSELF/assets/sprites/Wolf/LoboBoss.png)
+![Boss1](./assets/sprites/Wolf/LoboBoss.png)
 Este boss será el primero al que se enfrentará el jugador, se encuentra en la zona 1 y tiene un tipo de ataque más que el lobo común, es más grande y quita bastante más vida.
 Al derrotarlo el jugador obtendrá el poder del dash.
 
-![Boss2](../MYSELF/assets/sprites/128x80Minotaur_Idle.gif)
+![Boss2](./assets/sprites/128x80Minotaur_Idle.gif)
 Este boss será el segundo que se enfrente, como con el anterior, sigue la temática de su zona, la zona 2 y será un minotauro mucho más grande, con más rango de ataque y más daño.
 Al derrotarlo, te otorgará el poder del doble salto.
 
-![Boss3](../MYSELF/assets/sprites/spider_walk.gif)
+![Boss3](./assets/sprites/spider_walk.gif)
 Los bosses anteriores eran bestias salvajes del propio mundo, sin embargo, este boss es una mascota del enemigo final y sigue los mismos pasos que los bosses anteriores.
 Al derrotarlo, obtienes el poder de encogerte y volver a tu tamaño original.
 
-![BossFinal](../MYSELF/assets/sprites/dwarf_2_walk.gif)
+![BossFinal](./assets/sprites/dwarf_2_walk.gif)
 Este boss se encuentra en la zona 4, y tiene un tamaño parecido al del jugador, con más daño pero menos rango que los demás bosses.
 
 ### Personaje principal ###
-![Protagonista](../MYSELF/assets/sprites/Viking/Viking.png)
+![Protagonista](./assets/sprites/Viking/Viking.png)
 El protagonista será este vikingo que portará un hacha como arma para atacar a los enemigos.
 
 ### Control: ###
