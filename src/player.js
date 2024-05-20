@@ -34,7 +34,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.spawnX = this.x;
         this.spawnY = this.y;
 
-        this.positionText = this.scene.add.text(500, 50, 'Posición: (0, 0)', { fontSize: '24px', fill: '#ffffff' }).setScrollFactor(0);
+        //this.positionText = this.scene.add.text(500, 50, 'Posición: (0, 0)', { fontSize: '24px', fill: '#ffffff' }).setScrollFactor(0);
 
         this.scene.add.existing(this);
         this.originalBodySize = {width: 35, height: 52};
@@ -224,7 +224,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
         this.checkRestZones();
         let isRunning = false;
-        this.positionText.setText('Posición: (' + this.x + ', ' + this.y + ')');
+       // this.positionText.setText('Posición: (' + this.x + ', ' + this.y + ')');
 
         if (!this.canMove) {
             // Si el jugador no puede moverse, establecer la velocidad del jugador en 0 y salir de preUpdate
