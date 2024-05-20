@@ -41,7 +41,8 @@ export default class FinalBoss extends Enemy {
                 
                 this.play('finalBoss_dead',true);
                 this.body.setVelocityX(0);
-                this.scene.time.delayedCall(5000, () => {this.destroy();}, [], this);
+                this.scene.time.delayedCall(3000, () => {this.destroy();}, [], this);
+                this.scene.end();
             }
         }
     }

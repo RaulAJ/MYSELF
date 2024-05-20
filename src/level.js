@@ -48,30 +48,26 @@ export default class Level extends Phaser.Scene {
         this.fondo_grounds.setScale(3.0, 2.0);
 
         //Zona2
-        this.mountain_sky = this.add.tileSprite(0, 0, this.game.config.width+45, this.game.config.height+45, 'mountain_sky');
+        this.mountain_sky = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height + 90, 'mountain_sky');
         this.mountain_sky.setScrollFactor(0,0);
         this.mountain_sky.setScale(2.0, 2.0);
         this.mountain_sky.setDepth(-5);
 
-        this.mountain1 = this.add.tileSprite(0, 0, this.game.config.width+2000, this.game.config.height-135, 'mountain_1');
+        this.mountain1 = this.add.tileSprite(0, 220, this.game.config.width, this.game.config.height + 135, 'mountain_1');
         this.mountain1.setScrollFactor(0,0);
-        this.mountain1.setScale(0.8, 0.5);
+        this.mountain1.setOrigin(0, 0);
         this.mountain1.setDepth(-5); 
 
-        this.mountain2 = this.add.tileSprite(0, 470, this.game.config.width+2400, this.game.config.height+1845, 'mountain_2');
+        this.mountain2 = this.add.tileSprite(0, 250, this.game.config.width, this.game.config.height + 400, 'mountain_2');
         this.mountain2.setScrollFactor(0,0);
-        this.mountain2.setScale(1.0, 0.5);
+        this.mountain2.setOrigin(0, 0);
         this.mountain2.setDepth(-5);
 
-        this.mountain = this.add.tileSprite(20,0,this.game.config.width, this.game.config.height+45, 'mountain');
-        this.mountain.setScrollFactor(0,0);
-        this.mountain.setScale(1.5,2.0);
-        this.mountain.setDepth(-5);
-
         //Zona3
-        this.cave_background = this.add.tileSprite(0, 470, this.game.config.width+235, this.game.config.height, 'cave_1');
+        this.cave_background = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height, 'cave_1');
         this.cave_background.setScrollFactor(0,0);
-        this.cave_background.setScale(3.0, 2.0);
+        //this.cave_background.setScale(3.0, 2.0);
+        this.cave_background.setOrigin(0,0);
         this.cave_background.setDepth(-10);
 
         this.cave2_background = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height+45, 'cave_2');
@@ -79,20 +75,22 @@ export default class Level extends Phaser.Scene {
         this.cave2_background.setScale(2.0, 2.0);
         this.cave2_background.setDepth(-10);
 
-        this.cave3_background = this.add.tileSprite(0, 0, this.game.config.width+2000, this.game.config.height-90, 'cave_3');
+        this.cave3_background = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height, 'cave_3');
         this.cave3_background.setScrollFactor(0,0);
-        this.cave3_background.setScale(0.8, -0.5);
+        this.cave3_background.setOrigin(0,0);
         this.cave3_background.setDepth(-10);
 
-        this.cave4_background = this.add.tileSprite(0, 470, this.game.config.width+235, this.game.config.height-435, 'cave_4');
+        this.cave4_background = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height, 'cave_4');
         this.cave4_background.setScrollFactor(0,0);
-        this.cave4_background.setScale(3.0, 2.0);
+        this.cave4_background.setScale(1.0, 1.2);
+        this.cave4_background.setOrigin(0,0);
         this.cave4_background.setDepth(-10);
 
         //Zona4
-        this.castle_background = this.add.tileSprite(0, 470, this.game.config.width, this.game.config.height, 'castle_background');
+        this.castle_background = this.add.tileSprite(0, 0, this.game.config.width, this.game.config.height, 'castle_background');
         this.castle_background.setScrollFactor(0,0);
-        this.castle_background.setScale(2.0, 2.0);
+        this.castle_background.setScale(1.5, 1.8);
+        this.castle_background.setOrigin(0, 0);
         this.castle_background.setDepth(-15);
 
         this.map = this.make.tilemap({key: 'tilemap4'});
@@ -359,7 +357,6 @@ export default class Level extends Phaser.Scene {
                 this.mountain_sky.setDepth(-1);
                 this.mountain1.setDepth(-1);
                 this.mountain2.setDepth(-1);
-                //this.mountain.setDepth(0);
     
                 this.currentSong.stop();
                 this.currentSong = this.zona3_backgroundMusic;
@@ -417,12 +414,10 @@ export default class Level extends Phaser.Scene {
                 this.removeDisplay();
 
                 this.cave_background.addToDisplayList();
-                this.cave2_background.addToDisplayList();
                 this.cave3_background.addToDisplayList();
                 this.cave4_background.addToDisplayList();
                 
                 this.cave_background.setDepth(-1);
-                this.cave2_background.setDepth(-1);
                 this.cave3_background.setDepth(-1);
                 this.cave4_background.setDepth(-1);
 
@@ -522,7 +517,6 @@ export default class Level extends Phaser.Scene {
     }*/
     removeDisplay(){
         this.cave_background.removeFromDisplayList();
-        this.cave2_background.removeFromDisplayList();
         this.cave3_background.removeFromDisplayList();
         this.cave4_background.removeFromDisplayList();
         this.fondo_clouds.removeFromDisplayList();
@@ -545,11 +539,11 @@ export default class Level extends Phaser.Scene {
     }
 
     update(){
-        /*
+        
         if(this.currentZone == "zona2"){
-            this.mountain1.tilePositionX = this.playerCamera.scrollX * 0.1;
+            this.mountain1.tilePositionX = this.playerCamera.scrollX * 0.05;
             this.mountain_sky.tilePositionX = this.playerCamera.scrollX * 0.05;
-            this.mountain2.tilePositionX = this.playerCamera.scrollX * 0.2;
+            this.mountain2.tilePositionX = this.playerCamera.scrollX * 0.1;
         }
         else if(this.currentZone == "zona3"){
 
@@ -559,12 +553,16 @@ export default class Level extends Phaser.Scene {
             this.fondo_clouds.tilePositionX = this.playerCamera.scrollX * 0.1;
             this.fondo_sky.tilePositionX = this.playerCamera.scrollX * 0.05;
             this.fondo_grounds.tilePositionX = this.playerCamera.scrollX * 0.2;
-        }*/
+        }
     }
 
     pause_function(){
         this.scene.launch('pause',{collectible_list: this.collectible_list});
         this.scene.pause();
+    }
+
+    end(){
+        this.scene.start('end');
     }
     
 }

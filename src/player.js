@@ -1,5 +1,4 @@
 import Phaser from 'phaser'
-import Enemy from './enemy.js';
 
 /**
  * Clase que representa el jugador del juego. El jugador se mueve por el mundo usando los cursores.
@@ -23,9 +22,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.enemies_distance = 0;
 
         this.canMove = true; // Inicializar la variable canMove como true para permitir que el jugador se mueva
-        this.canDoubleJump = true; //cambiar luego
-        this.canShrink = true;
-        this.canDash = true; //cambiar luego
+        this.canDoubleJump = false; //cambiar luego
+        this.canShrink = false;
+        this.canDash = false; //cambiar luego
         this.doubleJumped = false;
         this.dashed = false;
         this.shrinked = false;
@@ -236,7 +235,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             this.doubleJumped = false;
         }
 
-        if (Phaser.Input.Keyboard.JustDown(this.j) && !this.isAttacking) {
+        if (Phaser.Input.Keyboard.JustDown(this.j) && !this.isAttacking && !this.shrinked) {
             this.isAttacking = true;
             this.attackCount++; // Incrementar el contador de ataques
 
@@ -264,7 +263,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }           
         }
 
-        if(Phaser.Input.Keyboard.JustDown(this.ctrl)){
+        if(Phaser.Input.Keyboard.JustDown(this.ctrl) && this.canShrink){
             if(!this.shrinked){
             this.shrinkTween();
             this.shrinked = true;
