@@ -187,7 +187,21 @@ export default class Player extends Phaser.GameObjects.Sprite {
          this.scene.pause_function();
         }
     }
+    dash() {
+        this.dashed = true;
+        this.canDash = false;
+        this.dashCooldown = true;
 
+        this.body.setVelocityY(0); // Detener cualquier movimiento vertical
+        this.body.setAllowGravity(false);
+
+        // Restaurar la capacidad de hacer dash después del cooldown
+        this.scene.time.delayedCall(2000, () => {
+            this.dashCooldown = false;
+            this.canDash = true;
+            this.body.setAllowGravity(true); // Permitir la gravedad nuevamente
+        }, [], this);
+    }
     respawn() {
         // Restablecer la posición del jugador a su punto de aparición inicial
         this.x = this.spawnX+10;
@@ -297,9 +311,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             isRunning = false;
         }
         if(Phaser.Input.Keyboard.JustDown(this.cursors.shift) && this.canDash && !this.dashed){
-            this.dashed = true;
-            this.body.setVelocityY(0); // Detener cualquier movimiento vertical
-            this.body.setAllowGravity(false);
+            this.dash();
 
         }  
         if (this.y >= 8000 || this.health <= 0) {
