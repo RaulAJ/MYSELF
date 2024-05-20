@@ -22,9 +22,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.enemies_distance = 0;
 
         this.canMove = true; // Inicializar la variable canMove como true para permitir que el jugador se mueva
-        this.canDoubleJump = false; //cambiar luego
+        this.canDoubleJump = false; 
         this.canShrink = false;
-        this.canDash = true; //cambiar luego
+        this.canDash = false; 
         this.doubleJumped = false;
         this.dashed = false;
         this.shrinked = false;
