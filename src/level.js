@@ -189,7 +189,7 @@ export default class Level extends Phaser.Scene {
         this.minotaur26 = new Minotaur(this,1800,5300);
 
         //this.player = new Player(this, 500, 1950);
-        this.player = new Player(this,21300,3200);
+        this.player = new Player(this,500,1100);
         this.enemies.add(this.wolf1);
         this.enemies.add(this.wolf2);
         this.enemies.add(this.wolf3);
