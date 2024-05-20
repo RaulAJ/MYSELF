@@ -106,6 +106,13 @@ export default class Level extends Phaser.Scene {
         this.enemies = this.add.group();
         this.bosses = this.add.group();
         this.restZones = this.add.group();
+
+        this.restZone1 = new restZone(this, 6430, 1700);
+        this.restZone2 = new restZone(this,2398,4350);
+        this.restZone3 = new restZone(this,14340,4650);
+        this.restZone4 = new restZone(this,10500,4200);
+        this.restZone5 = new restZone(this,18370,1300);
+        this.restZone6 = new restZone(this,21485,5650);
         //this.backWallLayer.setCollisionByProperty({colision:true});
         this.boss1 = new WolfBoss(this, 8100, 5000); // y 5696
         this.boss2 = new MinotaurBoss(this, 21410,1700);
@@ -188,8 +195,9 @@ export default class Level extends Phaser.Scene {
         this.minotaur25 = new Minotaur(this, 19250, 3600);
         this.minotaur26 = new Minotaur(this,1800,5300);
 
+        
         //this.player = new Player(this, 500, 1950);
-        this.player = new Player(this,500,1100);
+        this.player = new Player(this,500,1600);
         this.enemies.add(this.wolf1);
         this.enemies.add(this.wolf2);
         this.enemies.add(this.wolf3);
@@ -268,12 +276,7 @@ export default class Level extends Phaser.Scene {
         this.bosses.add(this.boss3);
         this.bosses.add(this.finalBoss);
 
-        this.restZone1 = new restZone(this, 6430, 1700);
-        this.restZone2 = new restZone(this,2398,4350);
-        this.restZone3 = new restZone(this,14340,4650);
-        this.restZone4 = new restZone(this,10500,4200);
-        this.restZone5 = new restZone(this,18370,1300);
-        this.restZone6 = new restZone(this,21485,5650);
+        
         this.restZones.add(this.restZone1);
         this.restZones.add(this.restZone2);
         this.restZones.add(this.restZone3);
@@ -392,12 +395,10 @@ export default class Level extends Phaser.Scene {
                 this.removeDisplay();
 
                 this.cave_background.addToDisplayList();
-                this.cave2_background.addToDisplayList();
                 this.cave3_background.addToDisplayList();
                 this.cave4_background.addToDisplayList();
                 
                 this.cave_background.setDepth(-1);
-                this.cave2_background.setDepth(-1);
                 this.cave3_background.setDepth(-1);
                 this.cave4_background.setDepth(-1);
 
@@ -546,7 +547,9 @@ export default class Level extends Phaser.Scene {
             this.mountain2.tilePositionX = this.playerCamera.scrollX * 0.1;
         }
         else if(this.currentZone == "zona3"){
-
+            this.cave3_background.tilePositionX = this.playerCamera.scrollX * 0.05;
+            this.cave4_background.tilePositionX = this.playerCamera.scrollX * 0.1;
+            this.cave_background.tilePositionX = this.playerCamera.scrollX * 0.05;
         }
         else if(this.currentZone == "zona4"){}
         else{
