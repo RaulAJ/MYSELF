@@ -7,6 +7,8 @@ export default class FinalBoss extends Enemy {
         super(scene, x, y, 550, 75, 0, 400, 50, 100, 30);
         this.setDisplaySize(180, 140);
         //this.body.setSize(70, 60);
+        this.scene = scene;  // Asegúrate de guardar una referencia a la escena
+
         this.body.setOffset(20, 25);
         this.setScale(2.2, 2);
 
@@ -31,21 +33,24 @@ export default class FinalBoss extends Enemy {
     }
 
     getDamage(damage) {
-        if(this.health>0){
-            if(this.health>=damage){
-                this.health-=damage;
-                //this.play('finalBoss_hurt',true);
-            }
-            else{
+        if (this.health > 0) {
+            if (this.health >= damage) {
+                this.health -= damage;
+                // this.play('finalBoss_hurt', true);
+            } else {
                 this.health = 0;
-                
-                this.play('finalBoss_dead',true);
+                this.play('finalBoss_dead', true);
                 this.body.setVelocityX(0);
-                this.scene.time.delayedCall(3000, () => {this.destroy();}, [], this);
-                this.scene.end();
+    
+                // Usamos delayedCall para destruir el objeto y llamar a this.scene.end() después de 3 segundos
+                this.scene.time.delayedCall(3000, (scene) => {
+                    this.destroy();
+                    scene.end();
+                }, [this.scene], this);
             }
         }
     }
+    
     
     makeDamage(damage){
         this.scene.physics.overlap(this.body, this.scene.player, (hitbox, player) => {
@@ -105,6 +110,26 @@ export default class FinalBoss extends Enemy {
         }
 
         this.updateHealthBar();
+    }
+    updateHealthBar() {
+        if(this.health > 0){
+            const barWidth = this.width/2; // Ancho de la barra de vida igual al ancho del enemigo
+            const barHeight = 5; // Alto de la barra de vida
+            const padding = -30; // Espacio entre la barra de vida y el enemigo
+            const barX = this.x - (barWidth + 100); // Posición horizontal de la barra de vida
+            const barY = this.y - this.height / 2 - barHeight - padding; // Posición vertical de la barra de vida
+            const healthPercentage = this.health / 100; // Porcentaje de vida actual del enemigo
+
+            // Limpiar la barra de vida
+            this.healthBar.clear();
+
+            // Dibujar la barra de vida encima del enemigo
+            this.healthBar.fillStyle(0xff0000); // Color rojo para la barra de vida
+            this.healthBar.fillRect(barX, barY, barWidth * healthPercentage, barHeight);
+        }
+        else{
+            this.healthBar.clear();
+        }
     }
     
 }
