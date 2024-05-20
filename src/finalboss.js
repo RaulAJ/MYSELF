@@ -27,9 +27,6 @@ export default class FinalBoss extends Enemy {
             loop: true,
             delay: 0,
         };
-
-        this.FinalBossTheme = this.scene.sound.add("finalBossTheme", config);
-        this.FinalBossTheme.play();
     }
 
     getDamage(damage) {

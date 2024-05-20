@@ -483,7 +483,7 @@ export default class Level extends Phaser.Scene {
                 this.currentZone = "zona4";
 
                 this.currentSong.stop();
-                this.currentSong = this.zona4_backgroundMusic;
+                this.currentSong = this.FinalBossTheme;
                 this.currentSong.play();
             }
         });
@@ -499,6 +499,7 @@ export default class Level extends Phaser.Scene {
         };
 
         this.currentSong = "";
+        this.FinalBossTheme = this.sound.add("finalBossTheme", config);
         this.musica_ambiente = this.sound.add("musica_ambiente", config);
         this.zona3_backgroundMusic = this.sound.add("zona3_background", config);
         this.zona4_backgroundMusic = this.sound.add("zona4_background", config);
