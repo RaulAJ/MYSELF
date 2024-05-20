@@ -24,7 +24,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.canMove = true; // Inicializar la variable canMove como true para permitir que el jugador se mueva
         this.canDoubleJump = false; //cambiar luego
         this.canShrink = false;
-        this.canDash = false; //cambiar luego
+        this.canDash = true; //cambiar luego
         this.doubleJumped = false;
         this.dashed = false;
         this.shrinked = false;
@@ -81,9 +81,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.slash_attack1 = this.scene.sound.add("slash_attack1", config);
         this.slash_attack2 = this.scene.sound.add("slash_attack2", config);
         this.player_hurt = this.scene.sound.add("player_hurt", config);
-
-
-
     }
 
     createAttackHitbox(){
